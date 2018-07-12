@@ -1,0 +1,24 @@
+{extend name="base" /}
+{block name="body"}
+    <div class="otherBanner">
+        <img src="__HOME__/img/n-banner.jpg"/>
+    </div>
+</div>
+<!--忘记密码部分-->
+<div class="wzw_wangj">
+    <form action="{:url('api/Forgot/forgetPasswd')}" method="POST" id="findForm">
+        <div class="wzw_wangj_Auto">
+            <h3>忘记了您的密码？</h3>
+            <p>输入您的电子邮箱地址，我们会给您发送指令来重置您的密码。</p>
+            <p>电子邮件</p>
+            <p>
+                <input type="email" name="email" id="" value="" class="form-control findpa" />
+                <input type="hidden" name="__token__" value="{$Request.token}" />
+                <button class="btn btn2 " onclick="return findpass()">SEND ME RERSET INSTRUCTIONS</button>
+            </p>
+        </div>
+    </form>
+    
+</div>
+<script src="__HOME__/js/home-findpass.js"></script>
+{/block}

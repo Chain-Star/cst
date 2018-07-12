@@ -1,0 +1,171 @@
+<!-- 登录弹窗 -->
+<div class="wzw_dltk">
+		<div class="wzw_dltk_aoto">
+			<img src="__HOME__/img/wrong.png" class="Close" data-url="{:url('api/Register/ajaxloginClose')}"/>
+			<div class="dltk_padding">
+				<div class="biao">
+					<span>—————————</span>
+					<span class="sp1">{:lang('index_box_login_btn')}</span>
+					<span>—————————</span>
+				</div>
+				<div class="inp">
+					<form class="cmxform" id="signupForm" method="POST" action="{:url('api/Mregister/mlogin')}">
+						<fieldset>
+							<div class="wzw_dl_tab2">
+								<div class="wzw_dl_tab2_son1" style="display: block;">
+									<input type="text" value="" name='loginname' class="form-control wzw_telyzm" placeholder="{:lang('index_box_login_title')}/{:lang('mobile_input')}[eg:86-18888888888]" style="margin:0;"/>
+									<div class="clear" style="clear: both;"></div>
+									<input type="password" name="password" value="" placeholder="{:lang('mobile_r5')}" class="form-control denglumima loginpas"/>
+								</div>
+							</div>
+							<input type="hidden" name="__token__" value="{$Request.token}" class="logtok" />
+							<input type="hidden" name="ltime" value="{$time}" class="ltime">
+							<input type="hidden" name="lpubkey" value="{$pubkey}" class="lpubkey">
+							<input type="hidden" name="zllang" value="{$zllang}">
+							<label>
+								<input type="checkbox" name="remember" value="1" class="fux"/>
+								{:lang('index_box_login_remember')}
+							</label>
+							<a href="{:url('index/forgot/index')}">{:lang('index_box_login_forgot')}</a>
+							<div style="clear: both;"></div>
+							<button class="btn dengl" id="homelogin" onclick="return loginbtn()">{:lang('index_box_login_btn')}</button>
+							<button class="btn zhuc">{:lang('index_box_register_btn')}</button>
+							<div style="clear: both;"></div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--注册弹框-->
+	<div class="wzw_zctk">
+		<div class="wzw_zctk_aoto">
+			<img src="__HOME__/img/wrong.png" class="Close"/>
+			<div class="zctk_padding">
+				<div class="biao">
+					<span>——————————</span>
+					<span class="sp1">{:lang('index_box_register_btn')}</span>
+					<span>——————————</span>
+				</div>
+				<form id="registerForm" method="POST" action="{:url('api/Mregister/mregister')}">
+					<div class="zc_inp">
+						<div class="wzw_telyzm" style="width: 440px;height: 34px;margin:0;">
+							<div id="wzw_yzmparent1">
+								<input type="text" id="" name='code' class="form-control wzw_telnum" oninput="wtelfun()" value="+86" style="margin: 0;border-bottom-right-radius: 0;border-top-right-radius: 0;"/>
+							</div>
+							<input type="text" value="" name="mobile" class="form-control wzw_telyzm" id="wzw_telyzm" placeholder="{:lang('mobile_input')}" oninput="wzwtelfun()" style="margin:0;width: 320px;border-bottom-left-radius: 0;border-top-left-radius: 0;"/>
+							<div class="clear" style="clear: both;"></div>
+							<ul class="sele_twoul">
+								{foreach name='country_codes' item='codes'}
+								<li>{$codes.cn}(+{$codes.area_code})</li>
+								{/foreach}
+							</ul>
+						</div>
+						<div class="clear" style="clear: both;margin: 0;"></div>
+						<!--<input type="text" name="name" value="" class="form-control regfn" placeholder="Name"/>-->
+						<div class="wzw_sryzm">
+							<input type="hidden" class="zl_mobile_empty" value="{:lang('mobile_empty')}">
+							<input type="hidden" class="zl_mobile_url" value="{:url('api/Mregister/sendmsgz')}{$zllang}">
+							<input type="text" name="mcode" value="" class="form-control wzw_sryzm_son" placeholder="{:lang('mobile_verfied')}" style="width: 320px;margin: 0;"/>
+							<button class="btn wzw_sryzm_btn zlmobilebtn" disabled="disabled" style="width: 120px;margin: 0;background: #ffffff;">{:lang('send_verfied')}</button>
+						</div>
+						<div class="clear" style="clear: both;margin: 0;"></div>
+						<input type="password" name="password" value="" class="form-control regpa" placeholder="Password"/>
+						<input type="password" name="rpassword" value="" class="form-control regrpa" placeholder=" Confirm Password"/>
+						<input type="email" name="email" value="" class="form-control regem" placeholder="Email" />
+						<input type="hidden" name="__token__" value="{$Request.token}" class="regtok" />
+						<input type="hidden" name="rtime" value="{$time}" class="rtime">
+						<input type="hidden" name="rpubkey" value="{$pubkey}" class="rpubkey">
+						<input type="hidden" name="zllang" value="{$zllang}">
+					</div>
+					<label>
+						<input type="checkbox" name="is_news" value="1" class="fux"/>
+						{:lang('index_box_register_news')}
+					</label>
+					<div style="clear: both;"></div>
+					<button class="btn zcBtn" onclick="return forrsa()">{:lang('index_box_register_btn_wzw')}</button>
+					<p class="sp1">
+						<input type="checkbox" checked="checked" class="wzw_agree" onchange="thisfun()"/>
+						{:lang('index_box_register_des1')}<a href="{:url('index/terms/index',['id'=>1])}">{:lang('footer_Terms_Use')}</a>{:lang('index_box_register_des1_and')}<a href="{:url('index/terms/index',['id'=>3])}">{:lang('footer_Privacy_Policy')}</a></p>
+				</form>
+				<div class="other2">
+					<a href="#" class="a1">{:lang('index_box_register_has')}</a>
+					<a href="javascript:;" class="a2">{:lang('index_box_login_btn')}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function thisfun(){
+			var att=$(".wzw_agree").attr("checked");
+			var zcBtn=$(".zcBtn");
+			if(att){
+				zcBtn.removeAttr("disabled");
+			}else{
+				zcBtn.attr("disabled","disabled");
+			}
+		}
+//		注册
+		$(".wzw_sryzm_btn").attr("disabled","disabled");
+		function wzwtelfun(){
+			var val1=$("#wzw_telyzm").val();
+			if(Number(val1)){
+				$(".wzw_sryzm_btn").removeAttr("disabled");
+			}else{
+				$(".wzw_sryzm_btn").attr("disabled","disabled");
+			}
+		}
+		//注册选择区号点击事件
+		$(".wzw_telnum").click(function(){
+			wtelfun();
+		})
+		//注册选择区号oninput触发事件
+		function wtelfun(){
+			$(".wzw_telnum").parent().next().next().next(".sele_twoul").fadeIn();
+			$(".sele_twoul>li").click(function(){				
+				var htm=$(this).html().split("(");
+				$(".wzw_telnum").attr("value",$(this).html().split("(")[1].toString().split(")")[0]);
+				$(".sele_twoul").css('display','none');				
+			})
+		}
+//	 	登陆
+		$(".wzw_dl_tab>li").click(function(){
+			var index=$(this).index();
+			$(".wzw_dl_tab>li").eq(index).addClass("yzm_bor").siblings().removeClass("yzm_bor");
+			$(".wzw_dl_tab2_son1").eq(index).fadeIn(300).siblings().fadeOut(300);
+		})
+		function wzwtelfun2(){
+			var val2=$("#wzw_telyzm2").val();
+			if(Number(val2)){
+				$(".wzw_sryzm_btn").removeAttr("disabled");
+			}else{
+				$(".wzw_sryzm_btn").attr("disabled","disabled");
+			}
+		}
+		//登陆选择区号点击事件
+		$(".wzw_telnum2").click(function(){
+			wtelfun2();
+		})
+		//登陆选择区号oninput触发事件
+		function wtelfun2(){
+			$(".wzw_telnum2").parent().next().next().next().next(".sele_twoul").fadeIn();
+			$(".sele_twoul>li").click(function(){				
+				var htm=$(this).html().split("(");
+				$(".wzw_telnum2").attr("value",$(this).html().split("(")[1].toString().split(")")[0]);
+				$(".sele_twoul").css('display','none');				
+			})
+		}
+		//登陆选择区号点击事件
+		$(".wzw_telnum3").click(function(){
+			wtelfun3();
+		})
+		//登陆选择区号oninput触发事件
+		function wtelfun3(){
+			$(".wzw_telnum3").parent().next().next().next().next(".sele_twoul").fadeIn();
+			$(".sele_twoul>li").click(function(){				
+				var htm=$(this).html().split("(");
+				$(".wzw_telnum3").attr("value",$(this).html().split("(")[1].toString().split(")")[0]);
+				$(".sele_twoul").css('display','none');				
+			})
+		}
+	</script>

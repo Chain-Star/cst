@@ -1,0 +1,46 @@
+{extend name="base"/}
+{block name="body"}
+<link rel="stylesheet" type="text/css" href="__HOME__/css/FAQ.css" />
+<!--第二部分banner-->
+    <div class="wzw_banner">
+        <img src="__HOME__/img/FAQbanner.jpg"/>
+        <div class="wzw_bannerPosi">
+            <ul>
+                <li class="li1"></li>
+                <li class="li2">FAQ</li>
+                <li class="li3"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="wzw_box">
+			
+    <!--第3部分问题部分-->
+    <div class="wzw_three">
+        <div class="wzw_threeAuto">
+            <ul>
+                {foreach name="faqs_list" item="fl"}
+                <li>
+                    <div class="wzw_li_left">
+                        <img src="__HOME__/img/sanjiao.jpg" class=""/>
+                    </div>
+                    <div class="wzw_li_right">
+                        <div class="wzw_li_top" data-id="{$fl.id}" id="faqzl{$fl.id}">
+                            <a href="javascript:;">{$fl.faq_title}</a>
+                        </div>
+                        <div class="wzw_li_bottom">
+                            {$fl.faq_reply}
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                </li>
+                {/foreach}
+                
+            </ul>
+            <input type="hidden" value="{:url('index/faq/ajax_faq')}" class="faqurl">
+            <input type="hidden" name="__token__" value="{$Request.token}" class="faqtoken" />
+        </div>
+    </div>
+</div>
+<script src="__HOME__/js/home-faq.js"></script>
+{/block}

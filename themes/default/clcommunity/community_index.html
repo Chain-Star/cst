@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<title>{:lang("community_h2")}</title>
+		<!--[if lte IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<script src="__HOME__/js/respond.js"></script>
+		<script src="__HOME__/js/html5shiv.min.js"></script>
+		<script src="__HOME__/js/selectivizr-min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="__HOME__/css/invest.css" />
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+	</head>
+
+	<body>
+		<img src="__HOME__/img/shequ.jpg" alt="" class="request" />
+		<div id="z_guanfang">
+			{include file="common/community_header" /}
+			<div id="touzi">
+				{if $isopen eq 1}
+				<div id="z_center">
+					<span id="z_cen1">{:lang('community_des')}</span><br />
+					<span id="z_cen2">{:lang('colcommunity_desc')}</span><br />
+					<span id="z_cen3">{:lang('colcommunity_desc1')}</span>
+				</div>
+				
+				<div id="z_foot">
+                    {foreach name="ulist" item="ul" key="k"}
+                    {if $k eq 0}
+					<div id="z_foot1">
+                        <img {if !empty($ul.img_path)}src="__PUBLIC__{$ul.img_path}"{/if} alt="" style="width: 100%">
+                    </div>
+                    {/if}
+                    {/foreach}
+					<div id="z_foot2">
+						<img src="__HOME__/img/logo-white.png" />
+                    </div>
+                    {foreach name="ulist" item="ul" key="k"}
+                        {if $k eq 1}
+                        <div id="z_foot3">                        
+                            <img {if !empty($ul.img_path)}src="__PUBLIC__{$ul.img_path}"{/if} alt="" style="width: 100%">                        
+                        </div>
+                        {/if}
+                    {/foreach}
+				</div>
+				<div class="z_footer">
+                    {foreach name="ulist" item="ul" key="k"}                    
+					<div class="z_footer{if $k eq 0}left{else}right{/if}">
+						<span>{$ul.title}</span><br />
+						<span>{$ul.description}</span>
+                    </div>                  
+                    {/foreach}
+					
+				</div>
+				{else}
+				<div id="z_center" style="height: 200px;">
+					<span id="z_cen1">{:lang('community_des12')}</span><br /><br /><br />
+					<span id="z_cen2">{:lang('error_login_no')}</span><br />
+					<span id="z_cen3"><a href="{:url('index/index/index')}" style="color: #fff">{:lang('back_index')}->{:lang('index_box_login_btn')}</a></span>
+				</div>
+				{/if}
+			</div>
+
+			
+		</div>
+	</body>
+</html>

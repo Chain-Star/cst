@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__CSS__/whhtouzi.css" />
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+	</head>
+
+	<body style="background: #f3f3f3;">
+		<div class="mainbox">
+			<div class="mainRight">
+				<div class="pwdnav">
+					<img src="__IMAGES__/icon2.png" />
+					<span>{:lang('Investment_records')}</span>
+				</div>
+				<div class="yin">
+					<img src="__IMAGES__/yin.png" />
+				</div>
+				<div style="clear: both;"></div>
+				<div class="touzi">
+					<div class="tzBox" style="height: 100%">
+						<table cellspacing="0">
+							<tr>
+								<th style="width: 157.27px;">{:lang('record1')}</th>
+								<th style="width: 162.73px;">{:lang('record2')}</th>
+								<th style="width: 138.18px;">{:lang('record3')}</th>
+								<th style="width: 240.91px;">{:lang('record4')}/{:lang('record5')}</th>
+								<th style="width: 88.18px;">{:lang('record6')}</th>
+							</tr>
+							{foreach name='transaction_list' item='vo'}
+							
+							 <tr class="tr">
+								<td class="pointer">
+									<a href="javascript:;" onclick="parent.sethref('{:url('index/invest/index',array('project_id'=>$vo.project_id))}')" style="text-decoration: none;color: black;">
+									<img {if !empty($vo.logo_path)} src="__PUBLIC__{$vo.logo_path}"{/if} />
+									<p>{$vo.name}</p>
+									</a>
+								</td>
+								
+								<td class="pointer ee" style="position: relative;">
+									<button class="w_tzje" style="outline: none;border: none;background: white;font-size: 16px;">
+										<span>{$vo.amount}</span>
+										<span>{if $vo.currency==1}BTC{elseif $vo.currency==2}ETH{else}NNS{/if}</span>
+								    </button>
+										<div class="w_tzno" style="position: absolute;top: 40px;left: -87px;">
+											<div class="w_hide">
+												<div class="w_xq">
+													<table cellspacing="0">
+														<tr>
+															<th style="width: 150px;">{:lang('record7')}</th>
+															<th style="width: 198.18px;">{:lang('record8')}</th>
+															<th style="width: 198.18px;">{:lang('record9')}</th>
+														</tr>
+														<tr>
+															<td>{$vo.order} </td>
+															<td>{$vo.start_path}</td>
+															<td>{$vo.end_path}</td>
+														</tr>
+													</table>
+													<div class="closee">
+														<img src="__IMAGES__/u_close.png" />
+													</div>
+												</div>
+											</div>
+										</div>
+								</td>
+								
+								<td>
+									<span>{:date('d-m-Y',$vo.log_time)}</span>
+								</td>
+								<td>
+									<span>{$vo.raise}/{$vo.plan}</span>
+									<span>{if $vo.currency==1}BTC{elseif $vo.currency==2}ETH{else}NNS{/if}</span>
+								</td>
+								<td class="pointer kk" style="position: relative;">
+									{if $vo.state==2}
+									<p>{:lang('record10-1')}</p>
+									{elseif $vo.state==99}
+									<p>{:lang('myProject3')}</p>
+									{elseif $vo.state==98}
+									<p>{:lang('myProject4')}</p>
+									{elseif $vo.state==97}
+									<p>{:lang('myProject5')}</p>
+									{else}
+									<button class="delpro">{:lang('record10')}</button>
+									{/if}
+									<div class="w_tzz" style="position: absolute;top: 10px;left: -526px;z-index: 99;">
+										<div class="w_prozz">
+											<p style="padding-top: 50px;">{:lang('record12')}</p>
+											<button class="w_proqxx">{:lang('record13')}</button>
+											<button class="w_peoqrx" onclick="show_xq(this,'{$vo.id}')">{:lang('record14')}</button>
+										</div>
+						        	</div>
+								</td>
+							</tr>
+							 
+							{/foreach}
+						</table>
+						<!--分页-->
+						<div class="w_proPage">
+							<div class="w_proFirst">
+								<ul class="w_proPages">
+									<a class="w_ys" onclick="return parent.changehtml('{:url('index/user_info/record',array('page'=>1))}',this)">{:lang('news_page_index')}</a>
+									{for start="0" end="$count1"}
+									<a class="w_ys w_dj {if $page==$i+1}active{/if}" href="javascript:;" onclick="return parent.changehtml('{:url('index/user_info/record',array('page'=>$i+1))}',this)">{$i+1}
+									</a>
+									{/for}
+									<a class="w_ys" onclick="return parent.changehtml('{:url('index/user_info/record',array('page'=>$count1))}',this)">{:lang('news_page_end')}</a>
+									<div style="clear: both;"></div>
+								</ul>
+							</div>
+							<div class="w_proLast">
+								<span>{:lang('expert_total')}{$count}{:lang('page_tiao')}</span>
+								<span>{:lang('page_per')}10{:lang('page_tiao')}</span>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+
+						<p class="del">{:lang('record11')}</p>
+<!-- 						<div class="w_tzz">
+							<div class="w_prozz">
+								<p>{:lang('record12')}</p>
+								<button class="w_proqxx">{:lang('record13')}</button>
+								<button class="w_peoqrx">{:lang('record14')}</button>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<!--投资金额详情-->
+
+		</div>
+
+	</body>
+	<script src="__JS__/whh_personal.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//投资记录部分	点击投资金额
+		function show_xq(t,id) {
+			$.ajax({
+					url: "{:url('index/user_info/set_record')}",
+					type: 'post',
+					data: {
+						'id': id
+					},
+				})
+				.done(function(data) {
+					if(data.code == 1) {
+						$(t).parent().css("display", "none");
+						return parent.changehtml('{:url('index/user_info/record',array('page'=>$Request.param.page))}{$zllang}',t);
+						
+					} else {
+						//失败
+						alert("哎！好可惜！失败了")
+					}
+					// console.log(data);
+				})
+				.fail(function() {
+					alert("error")
+				});
+
+		}
+
+		$(".w_tzje").click(function() {
+			$(this).siblings(".w_tzno").css("display", "block");
+			$(".w_tzje").attr("disabled",true)
+			$(".delpro").attr("disabled",true)
+		});
+		$(".closee").click(function() {
+			$(this).parent().parent().parent().css("display", "none");
+//			$(".delpro").bind('click', function() {
+//				$(this).parents("table").siblings(".w_tzz") .show();
+//			});
+			$(".w_tzje").attr("disabled",false)
+			$(".delpro").attr("disabled",false)
+		});
+		
+		
+		//		点击撤销
+		$(".delpro").click(function(){
+		//	$(this).parents("table").siblings(".w_tzz").show();
+			$(this).siblings(".w_tzz").show()
+			$(".w_tzje").attr("disabled",true)
+			$(".delpro").attr("disabled",true)
+		})
+		$(".w_proqxx").click(function() {
+			$(".w_tzz").css("display", "none");
+			$(".delpro").attr("disabled",false)
+			$(".w_tzje").attr("disabled",false)
+		});
+	</script>
+
+</html>

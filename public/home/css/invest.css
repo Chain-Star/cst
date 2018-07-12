@@ -1,0 +1,182 @@
+*,
+body,
+html {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	overflow-y: hidden;
+}
+
+
+/*社区*/
+
+.request {
+	font-size: 100% 100%;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+#z_guanfang {
+	width: 1200px;
+	height: 800px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-top: 60px;
+	margin-left: -600px;
+}
+
+#z_guanban {
+	width: 1200px;
+	height: 60px;
+}
+
+.z_one {
+	width: 200px;
+	height: 50px;
+	color: white;
+	border: 1px solid white;
+	border-radius: 5px 5px 5px 5px;
+	text-align: center;
+	line-height: 50px;
+	float: left;
+	overflow: hidden;
+	font-size: 18px;
+	cursor:pointer;
+}
+
+.two {
+	margin-left: 30px;
+}
+
+.z_three {
+	position: absolute;
+	top: 10px;
+	right: 0;
+	text-align: right;
+}
+
+.z_three a {
+	color: white;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#z_center {
+	width: 1200px;
+	height: 100px;
+	text-align: center;
+	line-height: 30px;
+	color: white;
+	margin-top: 160px;
+}
+
+#z_cen1 {
+	font-size: 24px;
+}
+
+#z_cen2 {
+	font-size: 18px;
+}
+
+#z_foot {
+	width: 700px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: 0;
+	margin-left: -350px;
+}
+
+#z_foot1 {
+	width: 180px;
+	height: 180px;
+	background: #FFFFFF;
+	border: 1px solid black;
+	text-align: center;
+	float: left;
+	overflow: hidden;
+}
+
+#z_foot2 {
+	width: 200px;
+	height: 180px;
+	text-align: center;
+	line-height: 180px;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+}
+
+#z_foot2 img {
+	width: 180px;
+	height: auto;
+}
+
+#z_foot3 {
+	width: 180px;
+	height: 180px;
+	background: #FFFFFF;
+	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: center;
+}
+
+#z_foot3 {
+	font-size: 20px;
+}
+
+#z_foot1 {
+	font-size: 20px;
+}
+
+#z_foot3 .face {
+	width: 100px;
+	height: 50px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	margin-left: -50px;
+}
+
+#z_foot1 .face {
+	width: 100px;
+	height: 50px;
+	margin-top: 60px;
+	margin-left: 40px;
+}
+
+.z_footer {
+	width: 700px;
+	height: 50px;
+	position: absolute;
+	top: 75%;
+	left: 50%;
+	margin-top: 0;
+	margin-left: -350px;
+	color: #F5F5F5;
+}
+
+.z_footerleft {
+	width: 165px;
+	height: 50px;
+	float: left;
+	margin-left: 15px;
+}
+
+.z_footerright {
+	width: 165px;
+	height: 50px;
+	float: right;
+}
+
+#touzi {
+	/* display: none; */
+}
+
+

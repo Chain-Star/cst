@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none; }
+
+.wzw_box .wzw_banner {
+  position: relative;
+  width: 100%; }
+  .wzw_box .wzw_banner img {
+    width: 100%; }
+  .wzw_box .wzw_banner .wzw_bannerPosi {
+    position: absolute;
+    width: 1200px;
+    left: 50%;
+    margin-left: -600px;
+    top: 150px;
+    color: white; }
+    .wzw_box .wzw_banner .wzw_bannerPosi ul {
+      height: 60px;
+      float: right; }
+      .wzw_box .wzw_banner .wzw_bannerPosi ul li {
+        width: 80px;
+        float: left;
+        height: 60px; }
+      .wzw_box .wzw_banner .wzw_bannerPosi ul .li1 {
+        border-bottom: 1px solid white; }
+      .wzw_box .wzw_banner .wzw_bannerPosi ul .li2 {
+        font-size: 46px;
+        text-align: center;
+        line-height: 60px;
+        border-bottom: 1px solid white;
+        border-top: 1px solid white; }
+      .wzw_box .wzw_banner .wzw_bannerPosi ul .li3 {
+        border-top: 1px solid white; }
+.wzw_box .wzw_three {
+  background: #f5f5f5; }
+  .wzw_box .wzw_three .wzw_threeAuto {
+    margin: 0px auto;
+    padding: 30px 0;
+    width: 1100px; }
+    .wzw_box .wzw_three .wzw_threeAuto ul li .wzw_li_left {
+      width: 54px;
+      float: left;
+      padding: 40px 0;
+      text-align: center; }
+      .wzw_box .wzw_three .wzw_threeAuto ul li .wzw_li_left img {
+        width: 16px; }
+    .wzw_box .wzw_three .wzw_threeAuto ul li .wzw_li_right {
+      float: right;
+      width: 1046px; }
+      .wzw_box .wzw_three .wzw_threeAuto ul li .wzw_li_right .wzw_li_top {
+        font-weight: 500;
+        color: #333333;
+        padding: 40px 0 10px;
+        font-size: 24px; }
+      .wzw_box .wzw_three .wzw_threeAuto ul li .wzw_li_right .wzw_li_bottom {
+        font-size: 14px;
+        padding: 0 0 10px;
+        color: #666666;
+        line-height: 30px;
+        display: none; }
+
+.wzw_li_top a{
+	color: #333333;
+	text-decoration: none;
+}
+.wzw_li_top a:hover {
+  color: #003366 !important;}
+
+.bor {
+  transform: rotate(-180deg);
+  transition: 0.5s; }
+
+/*# sourceMappingURL=FAQ.css.map */

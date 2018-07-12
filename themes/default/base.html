@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="__PUBLIC__favicon.ico" type="image/x-icon" />
+	    <!--[if lte IE 8]>
+			<script>
+				window.location.href="__HOME__/new_file.html";
+			</script>
+		<![endif]-->
+       	<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__HOME__/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="__HOME__/css/bootstrap.min.css" />
+		{block name="css"}{/block}
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__JS__/bootstrap.min.js"></script>
+		<script src="__JS__/rsa.js"></script>
+		<title>{$seoz.title}</title>
+		<meta name="keywords" content="{$seoz.keywords}" />
+		<meta name="description" content="{$seoz.description}" />
+		<style>
+			.header_nav_li4 a:hover{
+			    color: #2253AB !important;
+			}
+			.borthree{
+			    background: rgba(3,54,54,0.5) !important;
+			    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF184235,endColorstr=#BF184235);
+			}
+			.error {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<!--登陆弹框-->
+		{include file="common/register_login" /}
+		<div id="box">
+			<!--头部导航-->
+			<div class="header">
+				<div class="header_nav">
+					<ul>
+						<li class="header_nav_li1">
+							<a href="{:url('index/index/index')}{$zllang}">
+								<img src="__HOME__/img/logo.png" />
+							</a>
+						</li>
+						<li class="header_nav_li2">
+							<p>
+								<label>
+									<a href="javascript:;" class="faxianClick">{:lang('common_discovery')}</a>
+									<img src="__HOME__/img/deploy.png" />
+								</label>
+							</p>
+						</li>
+						<li class="header_nav_li3">
+								<form action="{:url('index/invest/index',array('seachstate'=>$Request.param.seachstate,'field_id'=>$Request.param.field_id))}{$zllang}" method="post">									
+								<input type="text" name="seachtest" class="form-control" value="{$Request.param.seachtest}" placeholder="{:lang('search_w')}" />
+								<img src="__HOME__/img/search.png" class="search_k" onclick="submit()" style="cursor: pointer" />
+								</form>						
+						</li>
+						<li class="header_nav_li4">
+							<a href="{:url('index/invest/index')}{$zllang}">{:lang('common_initiate_investment')}</a>
+							<a href="{:url('index/project/add')}{$zllang}">{:lang('common_initiate_project')}</a>
+						</li>
+						<li class="header_nav_li5">
+							{if $user_infox eq ''}
+							<button class="btn header_nav_li5_btn1">{:lang('index_box_login_btn')}</button>
+							<button class="btn header_nav_li5_btn2">{:lang('index_box_register_btn')}</button>
+							{else}
+							<div class="btn-group geren">
+								<button class="btn btn-default btn-lg dropdown-toggle touxaing" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<div class="touxiang_raidus">
+										<img src="{if $user_infox.tx_path}__PUBLIC__{$user_infox.tx_path}{else}__HOME__/img/crown.png{/if}" style="width: 34px"/>  
+									</div>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="{:url('index/UserInfo/index',['where'=>0])}{$zllang}">{:lang('common_personal_information')}</a></li>
+									<li><a href="{:url('index/UserInfo/index',['where'=>2])}{$zllang}">{:lang('common_my_item')}</a></li>
+									<li><a href="{:url('index/UserInfo/index',['where'=>1])}{$zllang}">{:lang('common_investment_record')}</a></li>
+									<li><a href="{:url('index/UserInfo/index',['where'=>3])}{$zllang}">{:lang('common_help')}</a></li>
+									<li><a href="{:url('index/UserInfo/index',['where'=>4])}{$zllang}">{:lang('common_message')}</a></li>
+									<li><a href="{:url('api/register/logout')}" data-lang="{$zllang}" onclick="return userlogout()" class="logout">{:lang('common_logout')}</a></li>
+								</ul>
+							</div>
+							{/if}
+						</li>
+						<li class="header_nav_li6">
+							
+							<div id="parent1">
+								<select>
+									<!-- <option value="">{:lang('common_language')}</option> -->
+									{foreach name="language" item="lan"}
+									<option value="{$lan.url}" {if $langid eq $lan.id}selected{/if}>{$lan.category_name}</option>
+									{/foreach}
+								</select>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!--banner-->
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				<!-- 导航发现Click部分 -->
+				<div class="faxianClickShow">
+					<div class="ShowAuto">
+						<div class="ImgHover">
+							<ul>
+								{foreach name="discovery" item="dlist" key='k'}
+								<li {if $k eq 0}class="ImgHoverbor"{/if}>
+									<a href="{:url($dlist.url)}{$zllang}"><span class="sp1">{$dlist.category_name}</span></a>
+									<div class="muhuImg_posi">
+										<img src="{if $dlist.img_path}__PUBLIC__{$dlist.img_path}{else}__HOME__/img/hover-b.png{/if}"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								{/foreach}
+							</ul>
+						</div>
+						<div class="showTwo">
+							<div class="showTwo_right">
+								{foreach name="plist" item="p"}
+								<a href="{:url('index/invest/index',['field_id'=>$p.id])}{$zllang}">{$p.cn}</a>
+								{/foreach}
+							</div>
+						</div>
+					</div>
+				</div>
+				{block name="body"}{/block}
+			<!--底部-->
+			{include file="common/footer"/}
+			<!-- 提示窗 -->
+			<script>
+				//发现里面6个li的 鼠标点击效果
+				$(".ImgHover>ul>li").css("cursor","pointer");
+				$(".ImgHover>ul>li").click(function(){
+					var src=$(this).children("a").attr("href");
+					window.location.href=src;
+				});
+				window.addEventListener("mousewheel", (e) => {
+ 				 if (e.deltaY === 1) {
+				    e.preventDefault();
+ 					 }
+				});
+			</script>
+			<style>
+					.toast{
+						display: none;
+						width:200px;
+						height:60px;
+						background:transparent;
+						background:rgba(255,255,255,0.4);
+						border-radius:8px;
+						position: fixed;
+						margin:auto;left:0; right:0; top:0; bottom:0;
+						z-index: 1;
+				   }
+				   .toast span{
+						color: #fff;
+						position: absolute;
+						font-size: 18px;
+						margin-left: 0px;
+						margin-right: 0px;
+						padding: 15px;
+						margin: auto;
+						text-align: center;
+						left: 10%;
+						right: 10%;}
+				</style>
+				
+				<div class="toast">
+					<span>提交成功</span>
+				</div>
+			<!--返回顶部-->
+			<div class="back">
+				<img src="__HOME__/img/up.png"/>
+			</div>
+			<script src="__HOME__/js/home-user.js"></script>
+			
+			<script src="__HOME__/js/home-base.js"></script>
+			
+			{block name="contactjs"}{/block}
+			<script type="text/javascript" src="__JS__/jquery.media.js"></script>
+			{block name="js"}{/block}
+			<!--页面JS脚本-->
+			{block name="script"}{/block}		
+			<script>
+				var zlogin = {$Think.session.zllogin_error};
+				if(zlogin == 1)
+				{
+					clicklogin();
+				}
+			</script>
+	</body>
+	
+</html>

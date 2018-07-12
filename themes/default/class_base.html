@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<title>{$seoz.title}</title>
+		<meta name="keywords" content="{$seoz.keywords}" />
+		<meta name="description" content="{$seoz.description}" />
+        <link rel="stylesheet" type="text/css" href="__HOME__/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="__HOME__/css/style.css" />
+		<link rel="stylesheet" href="__HOME__/css/touzi.css" />
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+		<script src="__HOME__/js/bootstrap.min.js"></script>
+		<script src="__JS__/rsa.js"></script>
+
+	</head>
+
+	<body>
+		
+		{include file="common/register_login" /}
+		<!--轮播-->
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				{foreach name="banner_list.bann" item="bl" key="bk"}
+				<div class="item {if $bk eq 0}active{/if}">
+					<img {if !empty($bl.img_path)}src="__PUBLIC__{$bl.img_path}"{/if} alt="...">
+					<div class="z_lunbo">
+						<div class="z_tese">
+							<h4>{$bl.banner_tag}</h4></div>
+						<span><h4>{if $bl.banner_title eq '_'}{else}{$bl.banner_title}{/if}</h4></span>
+						<span><h5>{$bl.banner_description}</h5></span>
+					</div>
+				</div>
+				{/foreach}
+			</div>
+
+			<!-- Controls -->
+			<div class="Controls">
+				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"><img src="__HOME__/img/arrow-left.png"/></span>
+					<span class="sr-only"></span>
+				</a>
+				<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"><img src="__HOME__/img/arrow-right.png"/></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<!--页码-->
+			<!--<div class="page">
+				<span class="span1">1</span>&nbsp;<span>/</span>&nbsp;<span>{$banner_list.count}</span>
+			</div>-->
+
+		</div>
+
+		<!--banner-->
+		<div class="z_tou">
+			<div class="z_tuoleft"><a href="{:url('index/index/index')}{$zllang}"><img src="__HOME__/img/logo-white.png" class="z_logo" /></a></div>
+			<div class="z_tuoright">
+				<ul>
+					<li class="z_tzzj wzwLi">
+						<a href="{:url('index/expert/index')}{$zllang}">{:lang('expert_title')}</a>
+					</li>
+					<li>|</li>
+					<li class="z_lkt wzwLi">
+						<a href="{:url('index/ChainClass/index')}{$zllang}">{:lang('class_title')}</a>
+					</li>
+					<li>|</li>
+					<li>
+						<a href="{:url('index/community/index')}{$zllang}">{:lang('community_title')}</a>
+					</li>
+				</ul>
+				{if $user_infox eq ''}
+				<div class="z_right1 zlregister">{:lang('index_box_register_btn')}</div>
+				<div class="z_right1 zllogin" id="z_right1">{:lang('index_box_login_btn')}</div>
+				{else}
+				<div class="z_right1" id="z_right1" onclick="window.location.href='{:url('index/User/logout')}{$zllang}'">{:lang('common_logout')}</div>
+				<div class="z_right2">
+						<p onclick="window.location.href='{:url('index/UserInfo/index',['where'=>0])}{$zllang}'" style="cursor: pointer;"><img src="{if $user_infox.tx_path}__PUBLIC__{$user_infox.tx_path}{else}__HOME__/img/crown.png{/if}" style="width: 45px"/></p>
+				</div>
+				
+				{/if}
+			</div>
+		</div>
+
+        {block name="class_body"}{/block}
+         
+		<div class="z_hr"></div>
+		
+		<!--底部-->
+		{include file="common/footer" /}
+		<!--返回顶部-->
+		<div class="back">
+			<img src="__HOME__/img/up.png" />
+		</div>
+		<script src="__HOME__/js/home-class.js"></script>
+		<script src="__HOME__/js/home-user.js"></script>
+		<script src="__HOME__/js/home-base.js"></script>
+	</body>
+
+</html>

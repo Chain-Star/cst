@@ -1,0 +1,41 @@
+{extend name="base"/}
+{block name="body"}
+<link rel="stylesheet" type="text/css" href="__HOME__/css/team.css" />
+    <!--第二部分banner-->
+    <div class="wzw_banner">
+        <img src="__HOME__/img/team_banner02.jpg"/>
+        <div class="wzw_bannerbiao">
+                         团队介绍
+        </div>
+    </div>
+</div>
+
+<div class="wzw_box">
+			
+    <!--第三部分team-->
+    <div class="wzw_team">
+        <ul>
+            {foreach name="team_list" item="tl"}
+            <li>
+                <div class="wzw_team_img">
+                    <img {if !empty($tl.img_path)}src="__PUBLIC__{$tl.img_path}"{/if}/>
+                </div>
+                <div class="wzw_team_jie">
+                    <div class="wzw_team_jie_bor">
+                        <div class="wzw_team_jie_bor_top">
+                            <h3>{$tl.name}</h3>
+                            <span>{$tl.position}</span>
+                        </div>
+                        <div class="wzw_team_jie_bor_bottom">
+                          {$tl.content}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {/foreach}
+            <div style="clear: both;"></div>
+        </ul>
+    </div>
+    <script type="text/javascript" src="__HOME__/js/home-team.js"></script>
+</div>
+{/block}

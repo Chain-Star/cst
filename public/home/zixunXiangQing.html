@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9"> 
+
+		<!--[if IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<script src="js/respond.js"></script>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/selectivizr-min.js"></script>
+		<![endif]-->
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/zixun.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<script src="js/jquery-1.8.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<title></title>
+		<style>
+			.header_nav_li4 a:hover{
+			    color: #2253AB !important;
+			}
+			.borthree{
+			    background: rgba(3,54,54,0.5) !important;
+			    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF184235,endColorstr=#BF184235);
+			}
+		</style>
+	</head>
+	<body>
+		
+	    <!--登陆弹框-->
+		<div class="wzw_dltk">
+			<div class="wzw_dltk_aoto">
+				<img src="img/wrong.png" class="Close"/>
+				<div class="dltk_padding">
+					<div class="biao">
+						<span>—————————</span>
+						<span class="sp1">log in with email</span>
+						<span>—————————</span>
+					</div>
+					<div class="inp">
+						<input type="email" name="" id="" value="Email" class="form-control dengluemail"/>
+						<input type="text" name="" id="" value="Password" class="form-control denglumima"/>
+						<label>
+							<input type="checkbox" name="" id="" value="" class="fux"/>
+							Remember me
+						</label>
+						<a href="wjmm.html">Forgot password？</a>
+						<div style="clear: both;"></div>
+						<button class="btn dengl">登陆</button>
+						<button class="btn zhuc">注册</button>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="other">
+						<span>您还可以使用以下方式进行登录</span>
+						<p><img src="img/f.png"/><img src="img/t.png"/></p>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--注册弹框-->
+		<div class="wzw_zctk">
+			<div class="wzw_zctk_aoto">
+				<img src="img/wrong.png" class="Close"/>
+				<div class="zctk_padding">
+					<div class="biao">
+						<span>————————————</span>
+						<span class="sp1">注册</span>
+						<span>————————————</span>
+					</div>
+					<div class="zc_inp">
+						<input type="text" name="" id="" value="First Name" class="form-control"/>
+						<input type="text" name="" id="" value="Last Name" class="form-control"/>
+						<input type="email" name="" id="" value="Email" class="form-control"/>
+						<input type="text" name="" id="" value="Password" class="form-control"/>
+					</div>
+					<label>
+						<input type="checkbox" name="" id="" value="" class="fux"/>
+						帮我申请每周时事通讯
+					</label>
+					<div style="clear: both;"></div>
+					<button class="btn zcBtn">CREATE AN ACCOUNT</button>
+					<p class="sp1">我同意ChainStar的<a href="fwtk.html">使用条款</a>和<a href="#">隐私政策</a></p>
+					<div class="other2">
+						<a href="#" class="a1">已经有一个账户吗？</a>
+						<a href="#" class="a2">登陆</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="box">
+			<!--头部导航-->
+			<div class="header">
+				<div class="header_nav">
+					<ul>
+						<li class="header_nav_li1">
+							<a href="index.html">
+								<img src="img/logo.png" />
+							</a>
+						</li>
+						<li class="header_nav_li2">
+							<p>
+								<label>
+									<a href="javascript:;" class="faxianClick">发现</a>
+									<img src="img/deploy.png" />
+								</label>
+							</p>
+						</li>
+						<li class="header_nav_li3">
+							<input type="text" name="" id="search" class="form-control" />
+							<img src="img/search.png" />
+						</li>
+						<li class="header_nav_li4">
+							<a href="#">发起投资</a>
+							<a href="#">发起项目</a>
+						</li>
+						<li class="header_nav_li5">
+							<button class="btn header_nav_li5_btn1">登陆</button>
+							<button class="btn header_nav_li5_btn2">注册</button>
+							<!--<div class="btn-group geren">
+								<button class="btn btn-default btn-lg dropdown-toggle touxaing" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img src="img/crown.png"/> <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">投资记录</a></li>
+									<li><a href="#">我的项目</a></li>
+									<li><a href="#">投资记录</a></li>
+									<li><a href="#">帮助</a></li>
+								</ul>
+							</div>-->
+						</li>
+						<li class="header_nav_li6">
+							<div class="btn-group yuyan yuyan2">
+								<button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 中文简体 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">中文简体</a></li>
+									<li><a href="#">日文</a></li>
+									<li><a href="#">韩文</a></li>
+									<li><a href="#">English</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+//				首页点击登陆弹框
+				$(".header_nav_li5_btn1").click(function(){
+						$(".wzw_dltk").fadeToggle();
+						$('body').css({ 
+				            "overflow-x":"hidden",
+				            "overflow-y":"hidden"       
+				        });
+				         inp=$(".inp input");
+				        for(var j=0;j<inp.length;j++){
+				        	inp.eq(j).css({"color":"gray"});
+				        	inp.eq(j).focus(function(){
+				        		if($(this).val()=="Email" || $(this).val()=="Password"){
+				        			$(this).val("");
+				        		}
+				        	})
+				        }
+				});
+//				 注册框点击x号关闭
+                $(".Close").click(function(){
+				     $(this).parent().parent().fadeOut();
+				        $('body').css({ 
+					        "overflow-x":"auto",
+					        "overflow-y":"auto"       
+					    });
+				});
+//				点击注册弹框
+                $(".header_nav_li5_btn2").click(function(){
+                	$(".wzw_zctk").fadeToggle();
+                	$('body').css({ 
+				            "overflow-x":"hidden",
+				            "overflow-y":"hidden"       
+				        });
+				        var inP=$(".zc_inp>input");
+				        for(var n=0;n<inP.length;n++){
+				        	inP.eq(n).css({"color":"gray"});
+				        	inP.eq(n).focus(function(){
+				        		if($(this).val()=="Email" || $(this).val()=="Password" || $(this).val()=="First Name" || $(this).val()=="Last Name"){
+				        			$(this).val("");
+				        		}
+				        	})
+				        }
+                })
+//              首页登陆验证
+               $(".dengl").click(function(){
+               	   var Email=$(".dengluemail").val();
+               	   var PassWord=$(".denglumima").val();
+               	   if(Email=="123@qq.com" && PassWord=="123"){
+               	   	$(".wzw_dltk").stop(true,true).fadeOut();
+               	   	$(".header_nav_li5").html("<div class='btn-group geren'>"
+               	   	+"<button class='btn btn-default btn-lg dropdown-toggle touxaing' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
+						+"<img src='img/crown.png'/> <span class='caret'></span>"
+					+"</button>"
+					+"<ul class='dropdown-menu'>"
+						+"<li><a href='#'>投资记录</a></li>"
+						+"<li><a href='#'>我的项目</a></li>"
+						+"<li><a href='#'>投资记录</a></li>"
+						+"<li><a href='#'>帮助</a></li>"
+					+"</ul>"
+               	   	+"</div>");
+               	   };
+               	   $('body').css({ 
+					        "overflow-x":"auto",
+					        "overflow-y":"auto"       
+					    });
+               });
+			</script>
+			<!--banner-->
+			<div id="carousel-example-generic" class="carousel slide wzw_box" data-ride="carousel"> 
+                 <!--第二部分banner-->
+				<div class="wzw_banner">
+					<img src="img/banner2.jpg"/>
+					<div class="wzw_bannerbiao">
+						<span class="wzw_sp1">——————</span><span class="wzw_sp2">热门资讯</span><span class="wzw_sp1">——————</span>
+					</div>
+				</div>
+				<!--导航发现Click部分-->
+				<div class="faxianClickShow">
+					<div class="ShowAuto">
+						<div class="ImgHover">
+							<ul>
+								<li class="ImgHoverbor">
+									<span class="sp1">发起项目</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">发起投资</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">公益捐赠</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">投资课堂</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">Chain Star Recommend</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">新闻资讯</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="showTwo">
+							<div class="showTwo_right">
+								<a href="#">底层技术及基础设施</a>
+								<a href="#">通用应用及技术扩展</a>
+								<a href="#">金融</a>
+								<a href="#">数字货币</a>
+								<a href="#">娱乐</a>
+								<a href="#">社交</a>
+								<a href="#">供应链管理</a>
+								<a href="#">物联网</a>
+								<a href="#">医疗</a>
+								<a href="#">能源服务</a>
+								<a href="#">公益</a>
+								<a href="#">法律服务</a>
+								<a href="#">其他</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--导航发现Click事件-->
+			<script type="text/javascript">
+//				点击导航发现功能
+				$(".faxianClick").click(function(){
+					$(".faxianClickShow").stop(true,true).slideToggle(500);
+				})
+//				发现里面6个li的 鼠标hover效果
+                $(".ImgHover>ul>li").hover(function(){
+                	var index=$(this).index();
+                    $(".ImgHover>ul>li").eq(index).attr("style","border: 4px solid #06c5d2;");
+                    $(".ImgHover>ul>li").children(".muhuImg_posi").eq(index).css({"display":"block"});
+                    $(".ImgHover>ul>li").children("span").eq(index).css({"margin-top":"-10px"});
+                    $(".ImgHover>ul>li").children(".border_bottom").eq(index).css({"display":"none"});
+                },function(){
+                	var index=$(this).index();
+                    $(".ImgHover>ul>li").eq(index).removeAttr("style","border: 4px solid #06c5d2;");
+                    $(".ImgHover>ul>li").children(".muhuImg_posi").eq(index).css({"display":"none"});
+                    $(".ImgHover>ul>li").children("span").eq(index).css({"margin-top":"0"});
+                    $(".ImgHover>ul>li").children(".border_bottom").eq(index).css({"display":"block"});
+                })
+                //				首页轮播
+				$('.carousel').carousel({
+					interval: 3000,
+				})
+
+//              轮播左右按钮实现页码显示
+                function banner(){
+	                	var i=1;
+	                $(".right").click(function(){
+	                	i++;
+	                	$(".span1").html(i);
+	                	if(i>5){
+	                		i=1;
+	                		$(".span1").html(i);
+	                	}
+	                })
+	                $(".left").click(function(){
+	                	i--;
+	                	$(".span1").html(i);
+	                	if(i<1){
+	                		i=5;
+	                		$(".span1").html(i);
+	                	}
+	                })
+                }
+                banner();
+                
+			</script>
+           
+            <div class="wzw_box">	
+			<!--第三部分li-->
+			<div class="wzw_zixun2">
+				<div class="wzw_zixunAuto2">
+					<div class="wzw_zixun2_biaoti">
+						数腾软件出席Ucon2015第二届中国信息安全用户大全
+					</div>
+					<div class="wzw_zixun_xiang">
+						<div class="wzw_zixun_xiang_left">
+							<div class="wzw_zixun_xiang_left1">
+								<p>来源: <span>新华网</span></p>
+								<p class="p2">发布时间:<span>2015-04-22</span></p>
+								<div style="clear: both;"></div>
+							</div>
+							<p class="wzw_zixun_xiang_left2">
+								噼噼铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺阿萨德拉数据的没饿额贷款时间肯定就是看见看见伤口的就是肯定就是空间打开数据库的就是肯定就是肯定就是空间打开手机打开就是肯定就是空间打开数据库的技术框架的
+							</p>
+							<div class="wzw_zixun_xiang_left3">
+								<img src="img/zixunli.jpg"/>
+							</div>
+							<p class="wzw_zixun_xiang_left2">
+								噼噼铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺阿萨德拉数据的没饿额贷款时间肯定就是看见看见伤口的就是肯定就是空间打开数据库的就是肯定就是肯定就是空间打开手机打开就是肯定就是空间打开数据库的技术框架的
+							</p>
+							<p class="wzw_zixun_xiang_left2">
+								噼噼铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺铺阿萨德拉数据的没饿额贷款时间肯定就是看见看见伤口的就是肯定就是空间打开数据库的就是肯定就是肯定就是空间打开手机打开就是肯定就是空间打开数据库的技术框架的
+							</p>
+							<a href="#" class="wzw_zixun_xiang_left4">
+								<span>上一篇:</span><span>文化人与咨询业</span>
+							</a>
+							<a href="#" class="wzw_zixun_xiang_left5">
+								<span>上一篇:</span><span>文化人与咨询业</span>
+							</a>
+						</div>
+						<div class="wzw_zixun_xiang_right">
+							<div class="wzw_zixun_xiang_right1">
+								<p>相关资讯</p>
+							</div>
+							<ul>
+
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+								<li class="li"><a href="#">斤斤计较绿绿囧偶偶偶</a></li>
+							</ul>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<!--底部-->
+			<div class="footer">
+				<div class="foot">
+					<div class="foot_left">
+						<table>
+							<tr>
+								<th>发现</th>
+								<th>帮助</th>
+								<th>说明</th>
+								<th>语言</th>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">发起投资</a>
+								</td>
+								<td>
+									<a href="AboutUs.html">关于我们</a>
+								</td>
+								<td>
+									<a href="FeiYong.html">费用说明</a>
+								</td>
+								<td rowspan="7" class="enyuyan">
+									<div class="btn-group yuyan">
+										<button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    中文简体 <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+										  <li><a href="#">中文简体</a></li>
+										  <li><a href="#">日文</a></li>
+										  <li><a href="#">韩文</a></li>
+										  <li><a href="#">English</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">发起项目</a>
+								</td>
+								<td>
+									<a href="team.html">团队介绍</a>
+								</td>
+								<td>
+									<a href="FAQ.html">FAQ</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">公益捐赠</a>
+								</td>
+								<td>
+									<a href="zixun.html">热门资讯</a>
+								</td>
+								<td>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">投资课堂</a>
+								</td>
+								<td>
+									<a href="#">信任和安全</a>
+								</td>
+								<td>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">项目推荐</a>
+								</td>
+								<td>
+									<a href="#">联系我们</a>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">投资机构</a>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">投资个人</a>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						
+					</div>
+					<div class="foot_right">
+						<p class="p1"><img src="img/logo.png"/></p>
+						<p class="p2">chainstar.com</p>
+						<p class="p3">400-1123-4567</p>
+						<p class="p4">周一到周日(9:00-18:00)</p>
+					</div>
+				</div>
+				<div class="foot2">
+					<div class="foot2_zhong">
+						<div class="footImgOne">
+							<img src="img/icon.png"/>
+						</div>
+						<div class="footImgTwo">
+							<img src="img/icon2.png"/>
+						</div>
+						<div class="footThree">
+							<a href="#">使用条款</a>
+							<a href="#">隐私政策</a>
+							<a href="#">ChainStar政策</a>
+							<a href="#">合作条款</a>
+						</div>
+						<div class="footFour">
+							<p>
+								<img src="img/icon3.png"/>
+								<img src="img/icon4.png"/>
+								<img src="img/icon5.png"/>
+								<img src="img/icon6.png"/>
+								<span>©chain star公司保留所有权利</span>
+							</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--footer点击语言切换-->
+			<script type="text/javascript">
+				$(".yuyan li").click(function(ev){
+					ev.preventDefault();
+					$(".yuyan li").parent("ul").prev("button").html($(this).html()+"<span class='caret'></span>")
+				})
+			</script>
+			<!--返回顶部-->
+			<div class="back">
+				<img src="img/up.png"/>
+			</div>
+			<!--返回顶部js代码-->
+			<script type="text/javascript">
+				function back(){
+					$(".back").click(function(){
+						$("body,html").animate({
+							scrollTop:0,
+						},500);
+	                })
+				};
+                back();
+				var inter=setInterval(function(){
+					 var htmlTop=$("body,html").scrollTop();
+					if(htmlTop>500){
+						$(".back").fadeIn();
+					}else{
+						$(".back").fadeOut();
+					};
+				},20);
+			</script>
+	
+	
+	    
+	
+	
+	
+	
+		
+		<script>
+			$(".wzw_zixun li").hover(function(){
+				var index=$(this).index();
+				$(".wzw-radius").eq(index).css({"background":"#036699"});
+				$(this).children().children().eq(1).stop(true,true).fadeIn();
+			},function(){
+				var index=$(this).index();
+				$(".wzw-radius").eq(index).css({"background":"#535353"});
+				$(this).children().children().eq(1).stop(true,true).fadeOut();
+			});
+			$(".wzw-radius").hover(function(){
+				var index=$(this).index();
+				var index2=index/2
+				$(this).css({"background":"#036699"});
+				$(".wzw_zixun li").eq(index2).children().children("div").eq(1).stop(true,true).fadeIn();
+			},function(){
+				var index=$(this).index();
+				var index2=index/2;
+				$(this).css({"background":"#535353"});
+				$(".wzw_zixun li").eq(index2).children().children("div").eq(1).stop(true,true).fadeOut();
+			});
+		</script>
+	</body>
+</html>

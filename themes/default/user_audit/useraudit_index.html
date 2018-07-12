@@ -1,0 +1,462 @@
+{extend name="base" /} {block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/smrz.css" />
+<style type="text/css">
+	.w_zzsc {
+		display: none;
+	}
+</style>
+{/block} {block name="body"}
+</div>
+<!--banner部分-->
+<div class="w_smBox">
+	<div class="w_smImg">
+		<img src="__IMAGES__/u-banner.jpg" />
+	</div>
+	<div class="w_smInput">
+		<!--实名认证部分-->
+		<form id="up_from" enctype='multipart/form-data'>
+			<div class="smTop">
+				<div class="w_header">
+					{:lang('Verified')}
+				</div>
+				<div class="w_ipt">
+					<div class="w_smName w_jj">
+						<input type="text" placeholder="" disabled="disabled" class="smIpt" value="{$user.email}" />
+					</div>
+					<div class="w_smName">
+						<input type="text" placeholder="{:lang('Verified1')}" name="name" class="smIpt" id="xm" style="float: left;" />
+						<span class="w_star" style="float: left;display: block;">*</span>
+						<p class="iam"></p>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="w_smName w_jj">
+						<input type="text" placeholder="{:lang('Verified2')}" name="tel" class="smIpt" id="number" style="float: left;" />
+						<span class="w_star" style="float: left;">*</span>
+						<p class="t"></p>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="one">
+						<select name="country_id" class="yuyan" id="cc">
+							<option value="">{:lang('Verified4')}</option>
+							{foreach name="country_list" item="vo"}
+							<option value="{$vo.id}">{if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</option>
+							{/foreach}
+						</select>
+						<span class="w_star">*</span>
+						<p class="count" style="color: #f00;margin-top: 15px;margin-left: 10px;float: left;"></p>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+
+			</div>
+			<!--选择认证身份部分-->
+			<div class="w_center">
+				<div class="w_header">
+					{:lang('Verified15')}
+				</div>
+				<div class="two he">
+					<select name="identity" class="IDcard" onchange="hs(this)">
+						<option value="1">{:lang('Verified5')}</option>
+						<option value="2">{:lang('Verified6')}</option>
+						<option value="3" selected="selected">{:lang('Verified7')}</option>
+					</select>
+					<p style="margin-left: 10px;margin-top: 10px;display: inline-block;float: left;position: relative;">
+								<span style="width: 22px;height: 23px;position: absolute;top: 8px;left: 0;"><img src="__IMAGES__/mark.png" class="w_pd"/></span>
+								<span style="margin-left: 20px;margin-top: -1px;display: inline-block;display: none;" class="w_tzperson"><img src="__IMAGES__/{:lang('Verified32')}"/></span>
+								<span style="margin-left: 20px;margin-top: -1px;display: none;" class="w_z"><img src="__IMAGES__/{:lang('Verified33')}"/></span>
+					</p>
+				</div>
+				<div style="clear: both;"></div>
+				<div class="w_tt">
+					<input type="text" placeholder="{:lang('Verified8')}" name='wallet_token' class="smIpt" id="mony" />
+					<p class="w_star"><img src="__IMAGES__/mark.png" class="w_move" /><img src="__IMAGES__/{:lang('Verified34')}" class="w_yuck" /></p>
+					<p class="mon" style="float: left;margin-top: 15px;margin-left: 10px;color: #f00;"></p>
+					<div style="clear: both;"></div>
+				</div>
+				<div style="clear: both;"></div>
+				<div class="hz">
+					<div class="dropdown IDcard" style="float: left;">
+
+						<p class="w_smhz f">
+							<label><input type="radio" name="sex" id="one" value="1" checked="checked"/>{:lang('Verified10')}</label>
+						</p>
+						<p class="w_smid f">
+							<label><input type="radio" name="sex" id="two" value="2" />{:lang('Verified11')}</label>
+						</p>
+						<div style="clear: both;"></div>
+					</div>
+					<span class="tsxx" style="float: left;margin-left: 39px;margin-top: 15px;color: #f00;"></span>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="w_hz">
+					<label for="file" class="btn btn-default w_schz" style="float: left;">{:lang('Verified10')}</label>
+					<input id="file" type="file" style="display:none" name="passport" onchange="change(this,'i','f')" class="upp">
+					<div style="width: 500px;text-align: center;" class="tpp">
+						<img id="i" class="y" style="display: none" />
+						<p id="f" class="w_upl"></p>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div style="clear: both;"></div>
+				<div class="w_hh" style="display: none;">
+					<label for="filez" class="btn btn-default w_schz">{:lang('Verified13')}</label>
+					<input id="filez" type="file" name="idcard_t" style="display:none" onchange="change(this,'img','p')">
+					<label for="filef" class="btn  btn-default w_schz">{:lang('Verified14')}</label>
+					<input id="filef" type="file" name="idcard_b" style="display:none" onchange="change(this,'fan','name')">
+					<div style="clear: both;"></div>
+					<div class="w_photo">
+						<img id="img" style="max-width: 240px;max-height: 151px;display: none;margin:auto;text-align:center;" />
+						<p id="p" style='width:240px;word-break:break-all;'></p>
+					</div>
+					<div class=" fan">
+						<img id="fan" style="max-width:240px;max-height: 151px;display: none;text-align:center;margin:auto;" />
+						<p id="name" style='width:240px;word-break:break-all;'></p>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<input type="submit" class="w_tjsh" id="upload" value="{:lang('myProject12')}" onclick="return tj(this)" />
+			</div>
+		</form>
+	</div>
+
+</div>
+<hr style="color: #ddd;"/>
+<!--遮罩部分提交成功部分-->
+<div class="w_success">
+	<div class="w_tjcg">
+		<p class="w_dui"><img src="__IMAGES__/success.png" /></p>
+		<p class="w_tjwz">{:lang('success_submit')}</p>
+		<p class="w_hy">{:lang('Verified16')}</p>
+		<a href="{:url('index/index')}">
+			<button class="w_back">{:lang('back_index')}</button>
+		</a>
+	</div>
+</div>
+
+<!--认证提示  确认成为投资个人-->
+<div class="w_tzgr">
+	<div class="w_cyrz">
+		<div class="w_kong">
+			<p class="w_tjwz">{:lang('Verified17')}</p>
+			<p class="w_rzwz w_per">{:lang('Verified18')} <span class="w_fq">{:lang('common_initiate_investment')}</span> {:lang('Verified19')} <span class="w_fq">{:lang('common_initiate_project')}</span> {:lang('Verified20')}</p>
+			<p class="w_rzwz">{:lang('Verified21')}</p>
+			<p class="w_rzwz t">{:lang('Verified22')}</p>
+			<p class="w_b">
+				<button class="w_back" onclick="return submitUpload('up_from','{:url('index/user_audit/upload')}')">{:lang('Verified23')}</button>
+			</p>
+			<p class="w_rzclose"><img src="__IMAGES__/u_close.png" /></p>
+		</div>
+	</div>
+</div>
+
+<!--我已确认成为创业者界面-->
+<div class="w_cyz">
+	<div class="w_cyrz">
+		<div class="w_kong">
+			<p class="w_tjwz">{:lang('Verified17')}</p>
+			<p class="w_rzwz">{:lang('Verified24')}</p>
+			<p class="w_rzwz t">{:lang('Verified25')}</p>
+			<p class="w_b">
+				<button class="w_back" onclick="return submitUpload('up_from','{:url('index/user_audit/upload')}')">{:lang('Verified26')}</button>
+			</p>
+			<p class="w_rzclose"><img src="__IMAGES__/u_close.png" /></p>
+		</div>
+	</div>
+</div>
+
+<!--正在上传中的界面-->
+<div class="w_zzsc">
+	<div class="w_sc">
+		<p>
+			{:lang('Verified27')}
+			<img src="__IMAGES__/wait.gif" />
+		</p>
+
+	</div>
+</div>
+<!--认证提示  确认成为投资机构-->
+<div class="w_tzgrr">
+	<div class="w_cyrz">
+		<div class="w_kong">
+			<p class="w_tjwz">{:lang('Verified17')}</p>
+			<p class="w_rzwz w_per">{:lang('Verified18')} <span class="w_fq">{:lang('common_initiate_investment')}</span> {:lang('Verified19')} <span class="w_fq">{:lang('common_initiate_project')}</span> {:lang('Verified20')}</p>
+			<p class="w_rzwz">{:lang('Verified21')}</p>
+			<p class="w_rzwz t">{:lang('Verified25')}</p>
+			<p class="w_b">
+				<button class="w_back" onclick="return submitUpload('up_from','{:url('index/user_audit/upload')}')">{:lang('Verified28')}</button>
+			</p>
+			<p class="w_rzclose"><img src="__IMAGES__/u_close.png" /></p>
+		</div>
+	</div>
+
+</div>
+{/block} {block name="js"}
+<script src="__JS__/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	function submitUpload(fromid, url) {
+
+		var option = {
+			url: url,
+			type: "post",
+			dataType: "json",
+			async: true,
+			contentType: "application/json; charset=utf-8",
+			beforeSubmit: function(arr, $from, options) {
+				$(".w_zzsc").show();
+			},
+			success: function(info) {
+				$(".w_zzsc").hide();
+				if(info.code === 1) {
+					$(".w_success").css("display", "block");
+				} else {
+					alert(info.msg)
+				}
+			},
+			error: function() {
+				alert("{:lang('remind1')}");
+			}
+
+		};
+		$("#" + fromid).ajaxSubmit(option);
+		return false;
+	}
+
+	//		确认成为创业者或者投资个人 点击关闭按钮实现功能
+	$(".w_rzclose").click(function() {
+		$(".w_cyz").hide()
+	})
+	//		投资个人
+	$(".w_rzclose").click(function() {
+		$(".w_tzgr").hide()
+	})
+	//		投资机构
+	$(".w_rzclose").click(function() {
+		$(".w_tzgrr").hide()
+	})
+
+	//			点击成为创业者按钮弹出成功
+
+	$(".w_back").click(function() {
+		$(".w_cyz").hide()
+	})
+	//		投资个人
+	$(".w_back").click(function() {
+		$(".w_tzgr").hide()
+	})
+	//		投资机构
+	$(".w_back").click(function() {
+		$(".w_tzgrr").hide()
+	})
+
+	//			ie8兼容placeholder
+	$(function() {
+		if(!('placeholder' in document.createElement('input'))) {
+			$('input[placeholder],textarea[placeholder]').each(function() {
+				var that = $(this),
+					text = that.attr('placeholder');
+				if(that.val() === "") {
+					that.val(text).addClass('placeholder');
+				}
+				that.focus(function() {
+						if(that.val() === text) {
+							that.val("").removeClass('placeholder');
+						}
+					})
+					.blur(function() {
+						if(that.val() === "") {
+							that.val(text).addClass('placeholder');
+						}
+					})
+					.closest('form').submit(function() {
+						if(that.val() === text) {
+							that.val('');
+						}
+					});
+			});
+		}
+	});
+
+	$(".w_move").mouseenter(function() {
+		$(".w_yuck").show()
+	})
+	$(".w_move").mouseout(function() {
+		$(".w_yuck").hide()
+	})
+	$(function() {
+		$(".IDcard").click(function() {
+			if($("input:radio[id='one']:checked").val()) {
+				$(".w_hz").css("display", "block");
+				$(".w_hh").css("display", "none")
+			} else if($("input:radio[id='two']:checked").val()) {
+				$(".w_hh").css("display", "block");
+				$(".w_hz").css("display", "none");
+			}
+		})
+	})
+
+	$(".w_hq>li").each(function(index, id) {
+		$(this).attr("id", index);
+		$(this).attr("id")
+	});
+
+	$(".w_pei>li").click(function() {
+		var index = $(".w_pei li").index(this);
+		console.log(index)
+		if(index == 0) {
+			$(".w_z").show();
+			$(".w_tzperson").hide();
+		} else if(index == 1) {
+			$(".w_tzperson").show();
+			$(".w_z").hide();
+		} else {
+			$(".w_tzperson").hide();
+			$(".w_z").hide();
+		}
+	})
+
+	function change(t, i, f) {
+		var file = t.files[0];
+		var size = file.size;
+		if(size >= 1024 * 1024 * 2) {
+			alert("{:lang('Verified29')}");
+			return false
+		}
+		if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+			alert('{:lang("Verified30")}');
+			return false;
+		}
+		var f = document.getElementById(f);
+		f.innerHTML = t.files[0].name;
+		var reader = new FileReader(); //5.实例化一个FileReader()接口
+		reader.readAsDataURL(t.files[0]); //6.通过readAsDataURL()方法读取文件，将图片内嵌在网页之中
+		reader.onload = function(evt) {
+			var img = document.getElementById(i);
+			img.style.display = 'block';
+			img.src = evt.target.result;
+		}
+	};
+
+	function hs(t) {
+		if($(t).find("option:selected").val() == 1) {
+			$(".w_tt").hide();
+		} else {
+			$(".w_tt").show();
+		}
+	};
+
+	function tj(t) {
+		//		用户名验证
+		var xm = $("#xm").val();
+		var regEn = /[`~!@#$%^&*()_+<>?:"{},.\/;'[\]]/im,
+			regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
+		if($("#xm").val() == '') {
+			$(".iam").html("{:lang('error_content_empty')}");
+			return false
+		} else if(regEn.test(xm) || regCn.test(xm)) {
+			$(".iam").html("{:lang('Verified31')}")
+			return false
+		} else {
+			$(".iam").html("")
+		}
+		//		电话号码验证
+		var number = document.getElementById("number");
+		if(number.value == '') {
+			$(".t").html("{:lang('Verified3')}")
+			return false
+		} 
+		else {
+			$(".t").html("")
+		}
+		//国家验证
+		if($(".one>select option:selected").val() == "") {
+			$(".count").html("{:lang('Verified4')}");
+			return false
+		} 
+		else {
+			$(".count").html("");
+		}
+		
+		// 请输入地址判断
+		if($(".IDcard").children("option:selected").val() == 1) {
+			$(".w_z").hide()
+		} else {
+			$(".w_tzperson").hide()
+			var re = /^[0-9a-zA-Z]*$/g;
+		    var mon = $("#mony").val();
+			mon = mon.trim();//去除两端空格
+			mon = mon.replace(/\s/g,"")//去除中间空格
+			$('#mony').val(mon);
+		    if(mon == '') {
+			    $(".mon").html("{:lang('Verified9')}");
+			    return false
+		    }
+			else if(!re.test(mon)){
+				$(".mon").html("{:lang('Verified36')}");
+				return false
+			}
+			else {
+			   $(".mon").html("")
+		    }
+		}
+		
+		
+		
+		//		判断图片
+		if($("input:radio[id='one']:checked").val()) {
+			if($("#file").val() == '') {
+				$(".tsxx").html("{:lang('Verified12')}");
+				return false
+			} else {
+				$(".tsxx").html(" ");
+			}
+		} else if($("input:radio[id='two']:checked").val()) {
+			if($("#filez").val() == '' || $("#filef").val() == '') {
+				$(".tsxx").html("{:lang('Verified12')}");
+				return false;
+			} else {
+				$(".tsxx").html("")
+			}
+		}
+
+		if($(".IDcard").children("option:selected").val() == 1) {
+			$(".w_cyz").show()
+		} else if($(".IDcard").children("option:selected").val() == 2) {
+			$(".w_tzgr").show()
+		} else {
+			$(".w_tzgrr").show()
+		}
+		return false;
+	}
+	
+	$(".w_pd").mouseenter(function() {
+		if($(".IDcard").children("option:selected").val() == 1) {
+			$(".w_tzperson").show();
+			$(".w_z").hide()
+		} else {
+			$(".w_z").show();
+			$(".w_tzperson").hide()
+		}
+	})
+	$(".w_pd").mouseleave(function() {
+		$(".w_tzperson").hide()
+		$(".w_z").hide()
+
+	})
+
+	//		点击审核按钮返回顶部
+	$("#upload").click(function() {
+		$("html,body").animate({
+			scrollTop: 600
+		}, 0);
+	});
+
+
+	$(".w_rzclose").click(function() {
+		$("body").css({
+			"overflow-x": "auto",
+			"overflow-y": "auto"
+		})
+	});
+</script>
+{/block}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$seoz.title}</title>
+		<meta name="keywords" content="{$seoz.keywords}" />
+		<meta name="description" content="{$seoz.description}" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<!--[if lte IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<script src="__HOME__/js/respond.js"></script>
+		<script src="__HOME__/js/html5shiv.min.js"></script>
+		<script src="__HOME__/js/selectivizr-min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="__HOME__/css/z-public.css" />
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+	</head>
+
+	<body>
+		<img src="__HOME__/img/request.jpg" class="request" />
+		<div id="z_center">
+				
+			<div class="z_center_top">
+				<span class="z_center_top_zi">{:lang('charitable_apply')}</span>
+			
+			</div>
+			<div class="z_center_bottom">
+				<form action="{:url('index/charitable/save')}" method="post" id="charitableform">
+					<span class="z_center_span">{:lang('charitable_company')}</span><br />
+					<input type="text" name="company" value="" /><span class="star">*</span><br /><br />
+					<span class="z_center_span">{:lang('charitable_project')}</span><br />
+					<input type="text" name="project_name" value="" /><span class="star">*</span><br /><br />
+					<span class="z_center_span">{:lang('country')}</span><br />
+					<select id="" class="" name="city">
+						{foreach name="country_list" item="cl"}
+						<option value="{$cl.cn}">{$cl.cn}</option>
+						{/foreach}
+					</select><span class="star">*</span><br /><br />
+					<span class="z_center_span">{:lang('contact')}</span><br />
+					<input type="email" name="email" value="" placeholder="{:lang('email_placeholder')}" /><span class="star">*</span><br />
+					<input type="tel" name="tel" placeholder="{:lang('tel_placeholder')}" /><br />
+                    <input type="tel" name="social_account" placeholder="{:lang('social_placeholder')}" /><br />
+					<input type="hidden" name="__token__" value="{$Request.token}">
+					<input type="hidden" name="lang" value="{$zllang}">
+					<input type="submit" value="{:lang('submit')}" class="z_input_tijaio" onclick="return charitablesub()"/>
+				</form>
+				
+			</div>
+
+        </div>
+        <span class="z_gysq"><a href="{:url('index/index/index')}">返回首页</a></span>
+        <script src="__HOME__/js/home-charitable.js"></script>
+	</body>
+
+</html>

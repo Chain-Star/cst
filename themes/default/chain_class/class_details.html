@@ -1,0 +1,44 @@
+{extend name='class_base' /}
+{block name="class_body"}
+		<!--详情页-->
+		<div id="z_xiangqing">
+			<div class="z_xiangqing_left">
+				<img src="__HOME__/img/title-b1.png" alt="" class="z_list_img" />
+				<span class="z_list">{:lang('class_list')}</span>
+				<div class="z_list_box">
+					{foreach name="classlist" item='cl'}
+					<span id="z_list_one">
+						<img src="__HOME__/img/list-b.png"/>
+						<a href="{:url('index/ChainClass/details',['id'=>$cl.id])}{$zllang}" style="color: #333"><span class="z_list_list">{$cl.title}</span></a>
+					</span><br /><br />
+					{/foreach}
+
+				</div>
+			</div>
+			<div class="z_xiangqing_right">
+				<div class="z_xiangqing_right_top">
+					<span class="z_xiangqing_why">
+						{$classd.title}
+					</span>
+					<span class="z_xiangqing_day">
+						{$classd.create_time|date="Y-m-d",###}
+					</span>
+				</div>
+
+				<div class="z_xiangqing_right_bottom">
+					<span class="z_xiangqing_zi">
+						{$classd.content}
+					</span>
+				</div>
+
+			</div>
+			<div class="z_text">
+				<span id="z_prev">
+					{:lang('class_pre')}: <a href="{:url('index/ChainClass/details',['id'=>$dpre.id])}{$zllang}">{$dpre.title}</a>
+				</span><br /><br />
+				<span id="z_next">
+					{:lang('class_next')}: <a href="{:url('index/ChainClass/details',['id'=>$dnext.id])}{$zllang}">{$dnext.title}</a>
+				</span>
+			</div>
+		</div>
+{/block}

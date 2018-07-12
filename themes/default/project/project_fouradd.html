@@ -1,0 +1,545 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/fqxm1.css" />
+<link rel="stylesheet" type="text/css" href="__CSS__/sqtz.css" />
+{/block}
+
+{block name="body"}
+</div>
+<!--中间部分-->
+            <div class="wzw_fqxm">
+                <div class="wzw_fqxmAuto">
+                    <div class="fqxm-biao">
+                            {:lang('my_project')}
+                    </div>
+                    <div class="wzw_fqxm_left">
+                        <form action="" method="post" id="ajax_form">
+                            <input type="hidden" name="project_id" value="{$project_id}" />
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('Starting_time')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float">
+                                    <input type="text " name="start_time" value="" name="start_time" class="start_time form-control" id="test1 " style="width: 100%;" placeholder="{:lang('Starting_time_des')} " onclick="WdatePicker({startDate: '%y-%M-%d',dateFmt: 'dd-MM-yyyy',alwaysUseStartDate:true}) ">
+                                    <img src="__IMAGES__/calendar icon.png" class="wzw_time"/>
+                                </div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('End_time')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float">
+                                    <input type="text " name="end_time" value=""  class="form-control end_time" id="test2 " style="width: 100%;" placeholder="{:lang('End_time_des')} " onclick="WdatePicker({startDate: '%y-%M-%d',dateFmt: 'dd-MM-yyyy',alwaysUseStartDate:true}) ">
+                                    <img src="__IMAGES__/calendar icon.png" class="wzw_time"/>
+                                </div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>TOKEN</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float"><input type="text" name="token" class="form-control forEmpty wzw_token" placeholder="{:lang('self_token')}"  /><img src="__IMAGES__/Empty.png" class="empty" /></div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('index_Total_Issued_Volume')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float"><input type="number" oninput="changefun()" name="sum"  class="form-control forEmpty wzw_zfxl" placeholder="{:lang('Issued_des')}" /><img src="__IMAGES__/Empty.png" class="empty" /></div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('index_Liquidity')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float"><input type="number" oninput="changefun()" name="actual"  class="form-control forEmpty wzw_ltl" placeholder="{:lang('Issued_des1')}" /><img src="__IMAGES__/Empty.png" class="empty" /></div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('index_Fundraising_Object')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float">
+                                    <div id="wzw_mzdx">
+                                        <div class="wzw_xiala"><span class="glyphicon glyphicon-chevron-down"></span></div>
+                                        <select name="currency">
+                                            <option value="">{:lang('class_3')}</option>
+                                            <!--<option value="1" >BTC</option>-->
+                                            <option value="2" >ETH</option>
+                                            <!--<option value="3" >USDT</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('index_Fundraising_Amount')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float"><input type="number" oninput="changefun()" name="plan" class="form-control forEmpty wzw_mzsl" placeholder="{:lang('Issued_des2')}"/><img src="__IMAGES__/Empty.png" class="empty" /></div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('index_Price_Ratio')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float"><input type="text" name="price" class="form-control forEmpty wzw_jgbl" placeholder="{:lang('Issued_des3')}"  /><img src="__IMAGES__/Empty.png" class="empty" /></div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"><span>{:lang('Collecting_wallet_address')}</span><img src="__IMAGES__/Required.png"></div>
+                                <div class="inp_li2 float"><input type="text" name="wallet_path" class="form-control wzw_sbqbdz" /><img src="__IMAGES__/Empty.png" class="empty"  />
+                                    <img src="__IMAGES__/help icon.png" class="wzw_wenhao" />
+                                    <img src="__IMAGES__/{:lang('projectzl3')}" class="ImgHover1" />
+                                </div>
+                                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="wzw_inp" style="height: 160px;">
+                                <div class="inp_li1 float">
+                                    <span>{:lang('Locking_mechanism')}</span><img src="__IMAGES__/Required.png">
+                                </div>
+                                <div class="inp_li2 float" style="font-size: 16px;color: #003366;text-align: left;height: 160px;">
+                                    <textarea name="locked" rows="" cols="" placeholder="{:lang('Locking_mechanism_des')}" maxlength="100" class="textare"></textarea>
+                                    <img src="__IMAGES__/help icon.png" class="wzw_wenhao1 wzw_wenhao2" />
+                                    <img src="__IMAGES__/{:lang('projectzl4')}" class="ImgHover2" />
+                                </div>
+                                <div class="inp_li3 float">
+                                    <img src="__IMAGES__/caveat.png" class="wzw_jg" /><span class="wzw_yz"></span>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <input type="hidden" name="zllang" value="{$zllang}">
+                            <input type="hidden" name="__token__" id='token' value="{$Request.token}" />
+                            <div class="wzw_inp">
+                                <div class="inp_li1 float"></div>
+                                <div class="inp_li2 float">
+                                	<button class="btn wzw_next subImg" style="color: #fff;background: #4fbecb;height: 44px;width: 120px;border-radius: 10px;font-size: 18px;margin: 0 20px;">{:lang('submit')}</button>
+                                </div>
+                                <div class="inp_li3 float"></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mar0">
+                        <a href="{:url('index/project/add',array('step'=>3,'project_id'=>$project_id))}">
+                        	<button class="btn wzw_prev"  style="color: #fff;background: #ccc;height: 44px;width: 120px;border-radius: 10px;font-size:18px;margin: 0 20px;">{:lang('remind35')}</button>
+                        </a>
+                    </div>
+                    <div class="wzw_fqxm_right">
+                        <!--五步布局-->
+                        <div class="wzw_fqxm_right_son">
+                            <div class="wzw_fqxm_right_son_left">
+                                <div>
+                                    <img src="__IMAGES__/step 1.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                    <img src="__IMAGES__/step2.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                    <img src="__IMAGES__/step3.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                    <img src="__IMAGES__/step4.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                	<!--<img src="__IMAGES__/step5.png" />-->
+                                	<div style="width: 40px;height: 40px;display: inline-block;text-align: center;font-size: 22px;color: white;background: #003366;border-radius: 50%;line-height: 40px;">5</div>
+                                </div>
+                            </div>
+                            <div class="wzw_fqxm_right_son_right">
+                                <div class="he1">{:lang('Basic_information')}</div>
+                                <div class="fqxmbor"></div>
+                                <div class="he1">{:lang('White_Paper')}</div>
+                                <div class="fqxmbor"></div>
+                                <div class="he1">{:lang('Route_planning')}</div>
+                                <div class="fqxmbor"></div>
+                                <div class="he1">{:lang('Team_introduction')}</div>
+                                <div class="fqxmbor"></div>
+                                <div class="he1">{:lang('raising_plan')}</div>
+                                <div class="fqxmbor"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+{/block}
+{block name="js"}
+<script src="__JS__/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__JS__/My97DatePicker/WdatePicker.js"></script>
+{/block}
+{block name='script'}
+<script type="text/javascript">
+// 鼠标经过问号时候显示img
+$(".wzw_wenhao").hover(function() {
+    $(this).css("cursor", "pointer");
+    $(this).next(".ImgHover1").fadeIn(300);
+}, function() {
+    $(this).next(".ImgHover1").fadeOut(300);
+});
+$(".wzw_wenhao1").hover(function() {
+    $(this).css("cursor", "pointer");
+    $(this).next(".ImgHover2").fadeIn(300);
+}, function() {
+    $(this).next(".ImgHover2").fadeOut(300);
+});
+//                           input框内的X号获得焦点显示
+var forEmpty = $(".forEmpty");
+for(var f = 0; f < forEmpty.length; f++) {
+    $(".forEmpty").eq(f).change(function() {
+        $(this).next().css({
+            "display": "block"
+        }).click(function() {
+            $(this).prev().val("").next().css({
+                "display": "none"
+            });
+        })
+    })
+};
+ function submitUpload(fromid, url) 
+  {
+
+    var option = {
+      url: url,
+      type: "post",
+      dataType: "json",
+      async: true,
+      xhr:xhrOnProgress(function(e){
+        var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+        $('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
+    }),
+      beforeSubmit: function(arr, $from, options) {
+			loading();
+      },
+      success: function(info) {
+      	clearloading();
+        if(info.code === 1) 
+        {
+            var data = "";
+            var chengyuanStr = "";
+            data = JSON.parse(info.msg);
+           var tu=data.white_book;
+            var tustr='';
+            var zllang = '{$zllang}';
+            if(zllang == '?lang=en')
+            {
+                data.book_pdf_path = data.book_pdf_path_en;
+            }
+            for(var i in tu) 
+            {
+		var src="";
+                if (tu[i]!="") 
+                {
+                    src="__PUBLIC__"+tu[i];
+                }
+                if (i==0) 
+                {
+                    tustr+="<div class='active item'><img src='"+src+"'></div>";
+                }
+                else
+                {
+                    tustr+="<div class='item'><img src='"+src+"'></div>";
+                }
+            }
+           var chengyuan = data.team;
+                for(var i in chengyuan) 
+                {
+		    var src="";
+                    if (chengyuan[i].tx_path!="") 
+                    {
+                        var src="__PUBLIC__"+chengyuan[i].tx_path;
+                    }
+                    chengyuanStr += "<li class='w_tzlist'>" +
+                        "<div class='tzdoc'><img src='" + src + "' /></div>" +
+                        "<div class='tzTxt'>" +
+                        "<span class='w_tztt'>" + chengyuan[i].firstname + chengyuan[i].lastname + "</span>" +
+                        "<span class='w_tztt w_color999'>" + chengyuan[i].cn + "</span>" +
+                        "<p class='w_tzwz'>" + chengyuan[i].content + "</p>" +
+                        "</div>" +
+                        "<div style='clear: both;'></div>" +
+                        "</li>";
+                }
+                var one = ["", "", "", ""];
+                for(var i = 0; i < data.account_url.length; i++) {
+                    if(data.account_url[i].indexOf('linked') != -1) {
+                        one[i] = "__IMAGES__/linked in.png";
+                    } else if(data.account_url[i].indexOf('facebook') != -1) {
+                        one[i] = "__IMAGES__/facebook icon.png";
+                    } else if(data.account_url[i].indexOf('twitter') != -1) {
+                        one[i] = "__IMAGES__/twitter.png";
+                    } else {
+                        one[i] = "";
+                    }
+                }
+            
+                var str = "";
+                str += "<div class='w_tzTc' style='display:block;'>" +
+                    "<div class='w_tzContent'>" +
+                    "<div class='w_tzHeader'>" +
+                    "<div class='w_tzImg'>" +
+                    "<img src='__PUBLIC__" + data.logo_path + "'/>" +
+                    "</div>" +
+                    "<div class='w_tzCenter'>" +
+                    "<p class='w_tzxm'>" + data.name + "</p>" +
+                    "<p class='w_tzje'>" + data.synopsis + "</p>" +
+                    "<div class='w_tzSj'>" +
+                    "<img src='__IMAGES__/{:lang('projectzl1')}' />" +
+                    "<a href='" + data.account_url[0] + "' target='_blank'><img src='" + one[0] + "'/></a>" +
+                    "<a href='" + data.account_url[1] + "' target='_blank'><img src='" + one[1] + "' /></a>" +
+                    "<a href='" + data.account_url[2] + "' target='_blank'><img src='" + one[2] + "' /></a>" +
+                    "<a href='" + data.account_url[3] + "' target='_blank'><img src='" + one[3] + "' /></a>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='w_tzTz'>" +
+                    "<a href='" + data.network_url + "' target='_blank'>{:lang('boxx3')}</a>" +
+                    "<a href='" + data.book_url + "' target='_blank'>{:lang('White_Paper')}</a>" +
+                    "</div>" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "<div class='w_cut'>" +
+                    "<div class='w_qh'>" +
+                    "<div class='w_tzmj'>" +
+                    "<div class='w_tzmsg'>" +
+                    "<div class='mjTitle'>" +
+                    "<span class='w_msg'>{:lang('Raise_information')}</span>" +
+                    "<img src='__IMAGES__/dashed.png' />" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "<div class='w_tzcon'>" +
+                    "<div class='w_mjxxLeft'>" +
+                    "<p>TOKEN</p>" +
+                    "<p>{:lang('index_Total_Issued_Volume')}</p>" +
+                    "<p>{:lang('index_Liquidity')}</p>" +
+                    "<p>{:lang('index_Fundraising_Object')}</p>" +
+                    "<p>{:lang('Recruited')}</p>" +
+                    "<p>{:lang('index_Price_Ratio')}</p>" +
+                    "<p>{:lang('Locking_mechanism')}</p>" +
+                    "</div>" +
+                    "<div class='w_mjxxRight'>" +
+                    "<p>" + data.token + "</p>" +
+                    "<p>" + data.sum + "</p>" +
+                    "<p>" + data.actual + "</p>" +
+                    "<p>" + 'ETH' + "</p>" +
+                    "<p>" + data.plan + "</p>" +
+                    "<p>" + data.price + "</p>" +
+                    "<p class='w_tztxt'>" + data.locked + "</p>" +
+                    "</div>" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "<div class='mjTitle'>" +
+                    "<span class='w_msg'>{:lang('Recruitment_time')}</span>" +
+                    "<img src='__IMAGES__/dashed.png' />" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "<div class='w_tzcon'>" +
+                    "<div class='w_mjxxLeft'>" +
+                    "<p>{:lang('Starting_time')}</p>" +
+                    "<p>{:lang('End_time')}</p>" +
+                    "</div>" +
+                    "<div class='w_mjxxRight'>" +
+                    "<p>" + data.start_time + "</p>" +
+                    "<p>" + data.end_time + "</p>" +
+                    "</div>" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='w_tzpdf'>" +
+                    "<div id='myCarousel' class='carousel slide'>"+
+                        "<div class='carousel-inner'>"+
+                            tustr+
+                        "</div>"+
+                       "<a class='carousel-control left' href='#myCarousel' data-slide='prev'>&lsaquo;</a>"+
+                       "<a class='carousel-control right' href='#myCarousel' data-slide='next'>&rsaquo;</a>"+
+                    "</div>"+
+                    "</div>"+
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "<div style='clear: both;'></div>" +
+                    "<div class='mjTitle'>" +
+                    "<span class='w_msg'>{:lang('Member_information')}</span>" +
+                    "<img src='__IMAGES__/bigdashed.png' />" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "<div class='w_tzdoctor'>" +
+                    "<ul class='w_tzboss'>" + chengyuanStr +
+                    "</ul>" +
+                    "</div>" +
+                    "<div class='mjTitle'>" +
+                    "<span class='w_msg'>{:lang('White_Paper')}</span>" +
+                    "<img src='__IMAGES__/bigdashed.png' />" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "<div class='w_bps'>" +
+                    "<a class='media' target='_blank' href='__PUBLIC__" + data.book_pdf_path + "'></a>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='w_look' style='text-align:center'>" +
+                    "<div class='return' style='display:inline-block;margin:0 50px'>" +
+                    "<a href=''><button class='btn' style='border:1px solid #003366;color:#003366;background:none'>{:lang('remind34')}</button></a>" +
+                    "</div>" +
+                    "<div class='carry' style='display:inline-block;margin:0 50px'>" +
+                    "<a href='{:url('index/user_info/index',array('where'=>2))}{$zllang}'><button class='btn' style='background:#003366;border:1px solid #003366;color:white'>{:lang('remind33')}</button></a>" +
+                    "</div>" +
+                    "<div style='clear: both;'></div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+                $("body").append(str);
+                $('a.media').media({
+                    width: '100%',
+                    height: 1000
+                });
+        } 
+        else 
+        {
+          loading(info.msg);
+          // console.log(info.msg);
+        }
+      },
+      error: function() {
+        // alert("{:lang('remind1')}");
+        loading("{:lang('remind1')}");
+      }
+
+    };
+    $("#" + fromid).ajaxSubmit(option);
+    return false;
+  }
+    $(".wzw_xiala").click(function() {
+                    $(this).next("select").focus();
+                })
+                //点击提交
+                $(".subImg").click(function() {
+                    // submitUpload('ajax_form',"{:url('index/project/addfour')}");  
+                    // return false;
+                    //开始时间
+                    var start_time=$(".start_time").val();
+                    if(start_time == "") {
+                        $(".wzw_jg").eq(0).css("display", "inline-block");
+                        $(".wzw_yz").eq(0).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(0).css("display", "none");
+                        $(".wzw_yz").eq(0).html("");
+                    }
+                    //结束时间
+                    var end_time=$(".end_time").val();
+                    if($(".end_time").val() == "") {
+                        $(".wzw_jg").eq(1).css("display", "inline-block");
+                        $(".wzw_yz").eq(1).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(1).css("display", "none");
+                        $(".wzw_yz").eq(1).html("");
+                    }
+                    //Token
+                    if($(".wzw_token").val() == "") {
+                        $(".wzw_jg").eq(2).css("display", "inline-block");
+                        $(".wzw_yz").eq(2).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(2).css("display", "none");
+                        $(".wzw_yz").eq(2).html("");
+                    }
+                    //总发行量
+                    if($(".wzw_zfxl").val() == "") {
+                        $(".wzw_jg").eq(3).css("display", "inline-block");
+                        $(".wzw_yz").eq(3).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(3).css("display", "none");
+                        $(".wzw_yz").eq(3).html("");
+                    }
+                    //流通量
+                    if($(".wzw_ltl").val() == "") {
+                        $(".wzw_jg").eq(4).css("display", "inline-block");
+                        $(".wzw_yz").eq(4).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(4).css("display", "none");
+                        $(".wzw_yz").eq(4).html("");
+                    }
+                    //项募资对象
+                    if($("#wzw_mzdx>select option:selected").text()=="{:lang('class_3')}"){
+                        $(".wzw_jg").eq(5).addClass("block");
+                        $(".wzw_yz").eq(5).html("{:lang('remind')}");
+                        return false;
+                    }else{
+                        $(".wzw_jg").eq(5).removeClass("block").addClass("none");
+                        $(".wzw_yz").eq(5).html("");
+                    }
+                    //募资数量
+                    if($(".wzw_mzsl").val() == "") {
+                        $(".wzw_jg").eq(6).css("display", "inline-block");
+                        $(".wzw_yz").eq(6).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(6).css("display", "none");
+                        $(".wzw_yz").eq(6).html("");
+                    }
+                    //募资数量
+                    if($(".wzw_jgbl").val() == "") {
+                        $(".wzw_jg").eq(7).css("display", "inline-block");
+                        $(".wzw_yz").eq(7).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(7).css("display", "none");
+                        $(".wzw_yz").eq(7).html("");
+                    }
+                    //收币钱包地址
+                    if($(".wzw_sbqbdz").val() == "") {
+                        $(".wzw_jg").eq(8).css("display", "inline-block");
+                        $(".wzw_yz").eq(8).html("{:lang('remind')}");
+                        return false;
+                    } else {
+                        $(".wzw_jg").eq(8).css("display", "none");
+                        $(".wzw_yz").eq(8).html("");
+                    }
+                    //  锁仓机制
+                    if($("textarea").eq(0).val()==""){
+                        $(".wzw_jg").eq(9).addClass("block");
+                        $(".wzw_yz").eq(9).html("{:lang('remind')}");
+                        return false;
+                    }else{
+                        $(".wzw_jg").eq(9).removeClass("block").addClass("none");
+                        $(".wzw_yz").eq(9).html("");
+                    }
+                    // $(".wzw_fqxmtk").fadeIn(300);
+                    return submitUpload('ajax_form',"{:url('index/project/addfour')}");   
+
+                });
+                //点击完成
+                // $(".fqxm_out").click(function() {
+                //     $(".wzw_fqxmtk").fadeOut(300);
+                // });
+                // //点击返回
+                // $(".fqxm_return").click(function() {
+                //     $(".wzw_fqxmtk").fadeOut(300);
+                // });
+                 //限制number框最多15位
+                function changefun(){
+					var This_text1=$(".wzw_zfxl").eq(0).val();
+					var This_text2=$(".wzw_ltl").eq(0).val();
+					var This_text3=$(".wzw_mzsl").eq(0).val();
+					if(This_text1.length>15){
+						let a=This_text1.substring(0,15);
+						$(".wzw_zfxl").eq(0).val(a)
+					}
+					if(This_text2.length>15){
+						let a=This_text2.substring(0,15);
+						$(".wzw_ltl").eq(0).val(a)
+					}
+					if(This_text3.length>15){
+						let a=This_text3.substring(0,15);
+						$(".wzw_mzsl").eq(0).val(a)
+					}
+				}
+      </script>
+{/block}

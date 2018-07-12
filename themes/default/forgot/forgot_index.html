@@ -1,0 +1,25 @@
+{extend name="base" /}
+{block name="body"}
+    <div class="otherBanner">
+        <img src="__HOME__/img/n-banner.jpg"/>
+    </div>
+</div>
+<!--忘记密码部分-->
+<div class="wzw_wangj">
+    <form action="{:url('api/Forgot/forgetPasswd')}" method="POST" id="findForm">
+        <div class="wzw_wangj_Auto">
+            <h3>{:lang('bpass1')}</h3>
+            <p>{:lang('bpass2')}</p>
+            <p>{:lang('bpass4')}</p>
+            <p>
+                <input type="email" name="email" id="" value="" class="form-control findpa" />
+                <input type="hidden" name="__token__" value="{$Request.token}" />
+                <input type="hidden" name="zllang" value="{$zllang}" />
+                <button class="btn btn2 " onclick="return findpass()">{:lang('bpass3')}</button>
+            </p>
+        </div>
+    </form>
+    
+</div>
+<script src="__HOME__/js/home-findpass.js"></script>
+{/block}

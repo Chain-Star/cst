@@ -1,0 +1,64 @@
+{extend name="base" /}
+{block name="body"}
+<link rel="stylesheet" type="text/css" href="__HOME__/css/trust.css" />
+
+</div>
+<div class="wzw_xran">
+			
+    <!--content-->
+    <ul>
+        {foreach name="trust_list" item="tl" key="k"}
+        {if $k eq 0}
+        <li class="wzw_bg">{$tl.title}</li>
+        <li class="wzw_xinren">
+           {$tl.content}
+        </li>
+        {/if}
+        {if $k eq 1}
+        <li class="mar-baozhang">
+            <div class="mar-bao"><br /><br />
+                <div class="p2">{$tl.title}</div>	<br />
+                {$tl.content}						
+            </div>					
+        </li>
+        {/if}
+        {if $k eq 2}
+        <li class="wzw-touming">{$tl.title}</li>
+        <li class="wzw-tm">
+                {$tl.content}
+        </li>
+        <li class="mar">
+            
+            <div class="wzw_gt_left">
+                <p class="sp1">{$trust_list.4.title}</p>
+                {$trust_list.4.content}
+            </div>
+            
+            <div class="wzw_gt_right">
+                <p class="sp1">{$trust_list.5.title}</p>
+                {$trust_list.5.content}
+            </div>
+            
+            <div style="clear: both;"></div>
+        </li>
+        {/if}
+        
+        {if $k eq 3}
+        <li class="wzw-touming">{$tl.title}</li>
+        <li class="wzw-zhichi">
+            {$tl.content}
+        </li>
+        
+        {/if}
+        {/foreach}
+        <li class="wzw-bot">
+            <div class="wzw-bot-">
+                <span>{:lang('trust_footer')}</span></div>
+        </li>
+    </ul>
+</div>
+
+<script>
+    $("#carousel-example-generic").addClass(' wzw_box');
+</script>
+{/block}

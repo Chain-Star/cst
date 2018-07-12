@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/yidong-zhuce.css"/>
+		<script src="js/jquery-1.8.2.min.js"></script>
+		<script src="js/rem.js"></script>
+		<script src="js/script.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div class="yidong-zhuce">
+			<div class="yidong-banner">
+				<img src="img/back.png" />
+			</div>
+
+			<div class="yidong-zhuce-next">
+				<div class="next-top">
+					<div class="next-top-">ChainStar区块链项目早期投融资平台，全球首发</div>
+					<div class="next-top-">让投资者获得更多优质项目的早起份额</div>
+					<div class="next-top-">注册限时送糖果</div>
+				</div>
+
+				<form action="" class="next-input" method="post">
+					<span class="input-span1">
+						 <!--<select name="" id="country">
+						 </select>-->
+						 <input type="button"  id="country" value="+86"/>
+						<p><input type="number" placeholder="请输入您手机号码" class="tel" oninput="telfun()" value="" id="zyq_tel"/></p>
+					</span>
+					<span id="span-zhengque4" class="zhengque">
+					</span>
+
+					<span class="input-span1">
+						
+						<p><input type="text" class="yanzhengma"/></p>
+						<input  type="button" class="shuru">
+						<span class="change_yzm">发送验证码</span>
+					</span>
+					<span id="span-zhengque4" class="zhengque">
+					</span>
+
+					<!--密码-->
+					<span class="input-span1">
+						<img src="img/password.png" class="next-input-img"/>
+						<input type="password"  class="next-input1" id="mima" onblur="mima_password()" name="password" placeholder="请输入您的密码"/>
+						<img src="img/bu kejian.png"  id="demo1_img" onclick="hide1ShowPsw()" />
+					</span>
+					<span id="span-zhengque2" class="zhengque">
+					</span>
+					<!--确认密码-->
+					<span class="input-span1">
+						<img src="img/queren pass.png" class="next-input-img"/>
+						<input type="password"  class="next-input1"  id="mima-two" onblur="mima_two_password()" name="password-confirm" placeholder="请确认您的密码"/>
+						<img src="img/bu kejian.png"  id="demo2_img" onclick="hide2ShowPsw()" />
+					</span>
+					<span id="span-zhengque3" class="zhengque">
+					</span>
+
+					<!--邮箱-->
+					<span class="input-span1">
+						<img src="img/email.png" class="next-input-img"/>
+						<input type="email" class="next-input1" id="email" onblur="ck_email()" name="email" placeholder="请填写您的邮箱"/>
+					</span>
+					<span id="span-zhengque1" class="zhengque">
+					</span>
+					<!--钱包地址-->
+					<span class="input-span1">
+						<img src="img/wallet.png" class="next-input-img"/>
+						<input type="text"  class="next-input1" id="qianbao-" onblur="qianbao()" name="purse" placeholder="请输入您的钱包地址"/>
+					</span>
+					<span id="span-zhengque4" class="zhengque">
+					</span>
+
+					<span class="z_yaoqing">
+						<span>邀请码</span>
+					<input type="text" maxlength="6" class="yaoqing" id="yaoqingma" oninput="yaoqing()" name="yaoqingma" />
+					</span>
+					<span id="span-zhengque5" class="zhengque">
+					</span>
+					<span class="input-span2">
+						<input type="button" value="提交"class="next-input2"id="z_submit" onclick="submitFrom();"/>
+					</span>
+
+					<div class="img-checkbox">
+						<img src="img/gou.png" />
+						<span class="input-botton">我同意ChainStar的使用条款和隐私政策</span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="black">
+			<div class="countrySelectList" style="text-align:center;background: white;position:absolute;bottom: 0;left: 0;width: 100%;">
+				<div class="tit">选择国家</div>
+					<ul id="li_click" style="height: 250px;overflow-y: scroll;">
+						<li>中国(+86)</li>
+						<li>阿富汗(+93)</li>
+						<li>阿尔巴尼亚(+355)</li>
+						<li>阿尔及利亚(+213)</li>
+						<li>东萨摩亚(+1684)</li>
+						<li>安道尔(+376)</li>
+						<li>安哥拉(+244)</li>
+						<li>安格拉(+1264)</li>
+						<li>安提瓜和巴布达(+1268)</li>
+						<li>阿根廷(+54)</li>
+						<li>亚美尼亚(+374)</li>
+						<li>阿鲁巴(+297)</li>
+						<li>澳洲(+61)</li>
+						<li>奥地利(+43)</li>
+						<li>阿塞拜疆(+994)</li>
+						<li>巴哈马(+1242)</li>
+						<li>巴林(+973)</li>
+						<li>孟加拉国(+880)</li>
+						<li>巴巴多斯(+1246)</li>
+						<li>白俄罗斯(+375)</li>
+						<li>比利时(+32)</li>
+						<li>伯利兹(+501)</li>
+						<li>贝宁(+229)</li>
+						<li>百慕大(+1441)</li>
+						<li>不丹(+975)</li>
+						<li>玻利维亚(+591)</li>
+						<li>波黑(+387)</li>
+						<li>伯兹瓦纳(+267)</li>
+						<li>巴西(+55)</li>
+						<li>文莱(+673)</li>
+						<li>保加利亚(+359)</li>
+						<li>布基纳法索(+226)</li>
+						<li>布隆迪(+257)</li>
+						<li>柬埔塞(+855)</li>
+						<li>喀麦隆(+237)</li>
+						<li>加拿大(+1)</li>
+						<li>佛得角(+238)</li>
+						<li>开曼群岛(+1345)</li>
+						<li>中非(+236)</li>
+						<li>乍得(+235)</li>
+						<li>智利(+56)</li>
+						<li>圣诞岛(+61)</li>
+						<li>科科斯群岛(+61)</li>
+						<li>哥伦比亚(+57)</li>
+						<li>科摩罗(+269)</li>
+						<li>刚果(+242)</li>
+						<li>库克群岛(+682)</li>
+						<li>哥斯达黎加(+506)</li>
+						<li>克罗地亚(+385)</li>
+						<li>古巴(+53)</li>
+						<li>塞浦路斯(+357)</li>
+						<li>捷克(+420)</li>
+						<li>丹麦(+45)</li>
+						<li>吉布提(+253)</li>
+						<li>津巴布韦(+263)</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+		<script>
+			function yaoqing() {
+				var reg = /^[A-Za-z0-9]+$/;
+				var yaoqing_text = $("#yaoqingma").val();
+
+				if(yaoqing_text.length == 6 && reg.test(yaoqing_text)) {
+					document.getElementById("span-zhengque5").innerHTML = "";
+				} else {
+
+					document.getElementById("span-zhengque5").innerHTML = "<font>格式错误</font>";
+					return false;
+				}
+			}
+
+			function submitFrom() {
+				$.ajax({
+					type: "post",
+					url: "",
+					data: $('').serialize(),
+					async: false,
+					error: function(request) {
+						alert("Connection error");
+
+					},
+					success: function(data) {
+						alert("注册成功");
+
+					}
+				})
+			}
+			
+			//密码框显示隐藏
+			var demoImg = document.getElementById("demo1_img");
+			var demoInput = document.getElementById("mima");
+			var demoImg = document.getElementById("demo2_img");
+			var demoInput2 = document.getElementById("mima-two");
+
+			function hide1ShowPsw() {
+				if(demoInput.type == "password") {
+					demoInput.type = "text";
+					demo1_img.src = "img/kejian.png";
+				} else {
+					demoInput.type = "password";
+					demo1_img.src = "img/bu kejian.png";
+				}
+			}
+
+			function hide2ShowPsw() {
+				if(demoInput2.type == "password") {
+					demoInput2.type = "text";
+					demo2_img.src = "img/kejian.png";
+				} else {
+					demoInput2.type = "password";
+					demo2_img.src = "img/bu kejian.png";
+				}
+			}
+
+			//提交框
+			$(".input-span2").click(function() {
+				$(".input-span2").css("background", "#003366");
+				$("#z_submit").css("color", "#fff");
+			})
+			
+			$("#country").click(function() {
+//				var ping_height=$("html").height();
+//				$("html").animate({scrollTop:ping_height},1000);
+//				$(".black").css("height",ping_height+"px");
+				$("html").css('overflow-y','hidden');
+				$(".black").fadeIn();
+			})
+			$(".black").click(function() {
+				$(".black").fadeOut();
+				$("html").css('overflow-y','scroll');
+			})
+			$("#li_click>li").click(function(){
+				var index=$(this).index();				
+				var htm=$(this).html().split("(") 
+				$(".black").css('display','none');				
+				$("#country").attr("value",$(this).html().split("(")[1].toString().split(")")[0]);
+			})
+			//输入手机号change事件
+			function telfun(){
+				if($("#zyq_tel").val()==""){
+					$(".change_yzm").css("color","#333333");
+				}else{
+					$(".change_yzm").css("color","#003366");
+				}				
+			}
+		</script>
+	</body>
+</html>
