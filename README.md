@@ -1,2 +1,2 @@
 # ChainStar
-ChainStar blockchain service platform is a service platform to help block chain project grow and guide investment vision
+ChainStar is a bulk digital currency trading platform.
