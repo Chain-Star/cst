@@ -1,0 +1,198 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/left.css" />
+{/block}
+
+{block name="body"}
+</div>
+<div style="background-color: #F3F3F3"> 
+	<div class="box">
+		</div>
+		<!--主题部分-->
+		<div class="mainbox">
+			<div class="mainLeft" id="user-left">
+				<div class="mainTop">
+					<img src="__IMAGES__/2.png" />
+				</div>
+				<div class="mainCenter">
+					<div class="maintou" >
+						<!-- <a href="javascript:;" onclick="upload_tx(this)" type="file"><img src="__PUBLIC__{$user.tx_path}" /></a> -->
+							<form id="up_from" enctype='multipart/form-data'>
+								<label for="file"><img id='tx_img' width='120px' src="{if $user.tx_path eq ''}__HOME__/img/crown.png{else}__PUBLIC__{$user.tx_path}{/if}" /></label>
+								<input type="file" name="tx" onchange ="upload_tx(this)" id="file" style="display: none;"/>
+						   </form>
+					</div>
+					<div class="mainText">
+						<p><span>{$user.email}</span></p>
+					</div>
+					<div class="mainImg">
+						<img src="__IMAGES__/bg-line.png" />
+					</div>
+					<div class="mainbottom">
+						<ul class="nav" id="side-menu">
+							<li style="font-size: 18px;color: red;">
+								<a href="javascript:;" id="one" class="cur" target="menuFrame" style="color: #003366;"
+								onclick="return changehtml('{:url('index/user_info/pass')}{$zllang}',this)"  >{:lang('Account_and_password')}</a>
+							</li>
+							<li>
+								<a href="javascript:;" id="two" target="menuFrame" onclick="return changehtml('{:url('index/user_info/record')}{$zllang}',this)">{:lang('Investment_records')}</a>
+							</li>
+							<li>
+								<a href="javascript:;" id="three" target="menuFrame" onclick="return changehtml('{:url('index/user_info/project')}{$zllang}',this)">{:lang('My_project')}</a>
+							</li>
+							<li>
+								<a href="javascript:;" id="four" target="menuFrame" onclick="return changehtml('{:url('index/user_info/help')}{$zllang}',this)">{:lang('Help')}</a>
+							</li>
+							<li class="w_last">
+								<a href="javascript:;" id="five" target="menuFrame" onclick="return changehtml('{:url('index/user_info/msg')}{$zllang}',this)">{:lang('Message')}</a>
+								<p class="w_dw">
+									{if !empty($count)}
+									<a class="w_tsxx">							
+										<span id="count">{$count}</span>
+										<img src="__IMAGES__/bubble-b.png" />	
+									</a>
+									{/if}
+								</p>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			
+			<div id="page_content">
+			<iframe id="menuFrame" name="menuFrame" src="{:url('index/user_info/pass')}" scrolling="no" frameborder="0" width="840px" onload="changeFrameHeight(this);"></iframe>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+{/block}
+{block name="js"}
+<script src="__JS__/whh_personal.js" type="text/javascript" charset="utf-8"></script>
+<script src="__JS__/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+{/block}
+{block name='script'}
+<script type="text/javascript">
+	$(function(){
+		if ({$where}==0) 
+		{
+			$("#one").trigger("click"); 
+		}
+		else if({$where}==1)
+		{
+			$("#two").trigger("click");
+		}
+		else if({$where}==2)
+		{
+			$("#three").trigger("click");
+		}
+		else if({$where}==3)
+		{
+			$("#four").trigger("click");
+		}
+		else if({$where}==4)
+		{
+			$("#five").trigger("click");
+		}
+	})
+function changeFrameHeight(e)
+{
+    // console.log(e);
+    // console.log(document.documentElement.scrollHeight);
+    // console.log(document.documentElement.clientHeight);
+    // console.log(document.documentElement.offsetHeight);
+    // if (document.documentElement.clientHeight==0&&document.documentElement.scrollHeight!=0) 
+    // {
+    //     e.height =document.documentElement.scrollHeight-120;
+    // }
+    // else if(document.documentElement.scrollHeight==0)
+    // {
+    //     e.height =parent.document.documentElement.scrollHeight+120;
+    // }
+    // else
+    // {
+    //     e.height = e.contentWindow.document.body.scrollHeight+50;
+    // } 
+    e.height = e.contentWindow.document.body.scrollHeight+50;
+}
+function sethref(href)
+{
+	window.location.href=href;
+}
+function upload_tx(t)
+{
+	var file = t.files[0];
+	var size = file.size;
+	if(size >= 1*1024*500)
+	{
+		alert('文件大于500KB');
+		return false;
+	}
+	if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') 
+	{
+		alert('请选择图片上传');
+		return false;
+	}
+	var option = {
+		url: "{:url('index/user_info/upload_tx')}",
+		type: "post",
+		dataType: "json",
+		async: true,
+		contentType: "application/json; charset=utf-8",
+		beforeSubmit: function(arr, $from, options) 
+		{
+	
+		},
+		success: function(info) 
+		{
+			if (info.code==1) 
+			{
+				if(info.msg)
+				{
+					$('#tx_img').attr('src','__PUBLIC__'+info.msg);
+				}
+				else
+				{
+					$('#tx_img').attr('src','');
+				}
+			}
+			else
+			{
+				alert(info.msg);
+			}
+			// console.log(info.msg);
+		},
+		error: function() {
+			alert("{:lang('remind1')}");
+		}
+
+	};
+	$("#up_from").ajaxSubmit(option);
+	return false;
+}
+function changehtml(href,t)
+{
+	$("#menuFrame").attr('src',href); 
+	$('t').css('color',"#003366");
+	$.ajax({  
+        url: "{:url('index/user_info/getcount')}",  
+        type: "post",  
+        data: {},  
+        // dataType: "json",   
+        error: function ()  
+        {  
+  			// console.log(form.attr("action"));
+  			alert("{:lang('remind1')}")
+        },
+        success: function (data)  
+        {  
+        	$('#count').html(data);
+        }  
+   });
+	return false;
+}
+
+
+</script>
+{/block}

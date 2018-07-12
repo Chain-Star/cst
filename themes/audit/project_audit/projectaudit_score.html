@@ -1,0 +1,89 @@
+{extend name="base" /}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+
+    <div class="layui-tab layui-tab-brief">
+         <ul class="layui-tab-title">
+            <li class="layui-this">已审核项目列表</li>
+        </ul>
+    <form id='fsearch' class="layui-form layui-form-pane" action="{:url('audit/project_un/index')}"  method="post" style="margin-top: 10px">
+    <input type="hidden" id="limit" name="limit" value="{$Request.param.limit}">
+    <input type=hidden name='currpage' id='currpage' value=1>
+    <table>
+        <tr class="layui-form-item" >
+         <td> 
+            <label class="layui-form-label">项目号</label>
+            <div class="layui-input-inline">
+            <input value="{$Request.param.seachnum}" type="text" name="seachnum" placeholder="项目号查询" autocomplete="off" class="layui-input">
+            </div>
+        </td>
+        <td>    
+            <div class="layui-input-block">
+            <button class="layui-btn" onclick="$(currpage).val(1);">查询</button> 
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </td>
+        </tr>
+        <tr>
+        <td colspan=4 id=pagebar>   </td>
+        </tr>
+    </table>
+</form>
+        <div class="layui-tab-content" style="padding: 0px">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table">
+                    <thead>
+                    <tr>  
+                        <th>项目号</th>
+                        <th>审核人</th>
+                        <th>评分</th>
+                        <th>审核时间</th>
+                        <th>审核结果</th>
+                        <th>项目详情</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach name='audit_list' item='vo'}
+                    <tr>
+                        <td>{$vo.project_number}</td>
+                        <td>{$vo.username}</td>
+                        <td style="color: #ffc003;">
+                            <i class="layui-icon" style="font-size: 30px;">{if $vo.basic_star==1}&#xe6c9;{elseif $vo.basic_star==2}&#xe67a;{else}&#xe67b;{/if}</i>  
+                            <i class="layui-icon" style="font-size: 30px;">{if $vo.team_star==1}&#xe6c9;{elseif $vo.team_star==2}&#xe67a;{else}&#xe67b;{/if}</i>  
+                            <i class="layui-icon" style="font-size: 30px;">{if $vo.book_star==1}&#xe6c9;{elseif $vo.book_star==2}&#xe67a;{else}&#xe67b;{/if}</i>  
+                            <i class="layui-icon" style="font-size: 30px;">{if $vo.plan_star==1}&#xe6c9;{elseif $vo.plan_star==2}&#xe67a;{else}&#xe67b;{/if}</i>  
+                            <i class="layui-icon" style="font-size: 30px;">{if $vo.route_star==1}&#xe6c9;{elseif $vo.route_star==2}&#xe67a;{else}&#xe67b;{/if}</i>                          
+                        </td>
+                        <td>{if empty($vo.audit_time)} {else}{:date('Y/m/d H:i:s',$vo.audit_time)}{/if}</td>
+                        <td>{if $vo.audit_state==1}通过 {else}未通过{/if}</td>
+                        <td>
+                          <a href="{:url('audit/project_un/authmessage',array('pid'=>$vo.project_id))}" class="layui-btn layui-btn-xs">修改评分</a>
+                          </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+ laypage.render({
+    elem: 'pagebar' 
+    ,limit:{$limit}
+    ,curr:{$page}
+    ,count:{$count}
+    ,layout:['count','first','last','prev','page','next','skip']
+    ,jump: function(obj, first){
+        if (!first){
+            $('#currpage').val(obj.curr);           
+            $('#limit').val(obj.limit);         
+            $('#fsearch').submit();
+        }
+    }
+  });
+</script>
+{/block}

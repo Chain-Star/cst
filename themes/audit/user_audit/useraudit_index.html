@@ -1,0 +1,225 @@
+{extend name="base" /}
+{block name="css"}
+<style >
+.pimg {
+    max-width: 200px;
+    max-height: 120px;
+    /*margin: 0 10px 10px 0;*/
+}
+</style>
+{/block}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+
+    <div class="layui-tab layui-tab-brief">
+         <ul class="layui-tab-title">
+            <li class="layui-this">未审核列表</li>
+        </ul>
+    <form id='fsearch' class="layui-form layui-form-pane" action="{:url('audit/user_audit/index')}"  method="post" style="margin-top: 10px">
+    <input type="hidden" id="limit" name="limit" value="{$Request.param.limit}">
+    <input type=hidden name='currpage' id='currpage' value=1>
+    <table>
+        <tr class="layui-form-item" >
+       <td> 
+            <label class="layui-form-label">认证身份</label>
+            <div class="layui-input-inline">
+            <select name="seachname" lay-verify="">
+                <option value="" >请选择要查询的身份</option>
+		 <option value="1" {if $Request.param.seachname==1} selected="selected" {/if}>创业者</option>
+                <option value="1" {if $Request.param.seachname==3} selected="selected" {/if}>投资机构</option>
+                <option value="2" {if $Request.param.seachname==2} selected="selected" {/if}>投资个人</option>
+              </select>
+            </div>
+        </td>
+        <td>    
+            <div class="layui-input-block">
+            <button class="layui-btn" onclick="$(currpage).val(1);">查询</button> 
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </td>
+        </tr>
+        <tr>
+        <td colspan=4 id=pagebar>   </td>
+        </tr>
+    </table>
+</form>
+    <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;"><div id="innerdiv" style="position:absolute;"><img id="bigimg" style="border:5px solid #fff;" src="" /></div></div>  
+        <div class="layui-tab-content" style="padding: 0px">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table">
+                    <thead>
+                    <tr>  
+                        <th>用户邮箱</th>
+                        <th>认证人姓名</th>
+                        <th>认证人电话</th>
+                        <th>国家</th>
+                        <th>认证上传图片(点击放大)</th>
+                        <th>认证身份</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach name='auth_list' item='vo'}
+                    <tr>
+                        <td>{$vo.email}</td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.tel}</td>
+                        <td>{$vo.country}</td>
+                        <td>{if empty($vo.passport_path)}
+                          <img class="pimg" src="__PUBLIC__{$vo.idcard_t}" />
+                          <img class="pimg" src="__PUBLIC__{$vo.idcard_b}" />
+                          {else}
+                          <img class="pimg" src="__PUBLIC__{$vo.passport_path}" />
+                          {/if}
+                      </td>
+                        <td>{if $vo.identity==1}创业者{elseif $vo.identity==2}投资人{else}投资机构{/if}</td>
+                        <td>  
+                            <a href="{:url('audit/user_audit/audit_right',['id'=>$vo['id']])}" class="layui-btn layui-btn-normal layui-btn-mini ajax-right">通过</a>
+                            <a href="{:url('audit/user_audit/audit_wrong',['id'=>$vo['id']])}" class="layui-btn layui-btn-danger layui-btn-mini ajax-wrong">不通过</a></td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+$('.ajax-right').on('click', function()
+{
+    var _href = $(this).attr('href');
+    layer.open(
+    {
+        shade: false,
+        content: '确定通过该用户的审核吗？',
+        btn: ['确定', '取消'],
+        yes: function(index)
+        {
+            $.ajax(
+            {
+                url: _href,
+                data: 'get',
+                success: function(info)
+                {
+                    if (info.code === 1)
+                    {
+                        setTimeout(function()
+                        {
+                            location.href = info.url;
+                        }, 1000);
+                    }
+                    layer.msg(info.msg);
+                }
+            });
+            layer.close(index);
+        }
+    });
+    return false;
+});
+$('.ajax-wrong').on('click', function()
+{
+    var _href = $(this).attr('href');
+    layer.open(
+    {
+        shade: false,
+        content: '确定不通过审核吗？',
+        btn: ['确定', '取消'],
+        yes: function(index)
+        {
+            $.ajax(
+            {
+                url: _href,
+                data: 'get',
+                success: function(info)
+                {
+                    if (info.code === 1)
+                    {
+                        setTimeout(function()
+                        {
+                            location.href = info.url;
+                        }, 1000);
+                    }
+                    layer.msg(info.msg);
+                }
+            });
+            layer.close(index);
+        }
+    });
+    return false;
+});
+ laypage.render({
+    elem: 'pagebar' 
+    ,limit:{$limit}
+    ,curr:{$page}
+    ,count:{$count}
+    ,layout:['count','first','last','prev','page','next','skip']
+    ,jump: function(obj, first){
+        if (!first){
+            $('#currpage').val(obj.curr);           
+            $('#limit').val(obj.limit);         
+            $('#fsearch').submit();
+        }
+    }
+  });
+  $(function(){  
+        $(".pimg").click(function(){  
+            console.log('eee');
+            var _this = $(this);//将当前的pimg元素作为_this传入函数  
+            imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);  
+        });  
+    });  
+  function imgShow(outerdiv, innerdiv, bigimg, _this)
+  {  
+    var src = _this.attr("src");//获取当前点击的pimg元素中的src属性  
+    $(bigimg).attr("src", src);//设置#bigimg元素的src属性  
+  
+        /*获取当前点击图片的真实大小，并显示弹出层及大图*/  
+    $("<img/>").attr("src", src).load(function()
+    {  
+        var windowW = $(window).width();//获取当前窗口宽度  
+        var windowH = $(window).height();//获取当前窗口高度  
+        var realWidth = this.width;//获取图片真实宽度  
+        var realHeight = this.height;//获取图片真实高度  
+        var imgWidth, imgHeight;  
+        var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放  
+          
+        if(realHeight>windowH*scale) 
+        {
+            imgHeight = windowH*scale;//如大于窗口高度，图片高度进行缩放  
+            imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度  
+            if(imgWidth>windowW*scale) 
+            {
+                //如宽度扔大于窗口宽度  
+                imgWidth = windowW*scale;//再对宽度进行缩放  
+            }  
+        }
+        else if(realWidth>windowW*scale) 
+        {
+            //如图片高度合适，判断图片宽度  
+            imgWidth = windowW*scale;//如大于窗口宽度，图片宽度进行缩放  
+            imgHeight = imgWidth/realWidth*realHeight;//等比例缩放高度  
+        }
+        else 
+        {
+            //如果图片真实高度和宽度都符合要求，高宽不变  
+            imgWidth = realWidth;  
+            imgHeight = realHeight;  
+        }
+        $(bigimg).css("width",imgWidth);//以最终的宽度对图片缩放  
+        var w = (windowW-imgWidth)/2;//计算图片与窗口左边距  
+        var h = (windowH-imgHeight)/2;//计算图片与窗口上边距  
+        $(innerdiv).css({"top":h, "left":w});//设置#innerdiv的top和left属性  
+        $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg  
+    });  
+      
+    $(outerdiv).click(function()
+    {
+    //再次点击淡出消失弹出层  
+        $(this).fadeOut("fast");  
+    });  
+}  
+</script>
+{/block}

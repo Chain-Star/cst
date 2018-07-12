@@ -1,0 +1,246 @@
+{extend name="base" /}
+{block name="css"}
+<style >
+.layui-upload-img {
+    max-width: 150px !important;
+    max-height: 200px !important;
+    margin: 10px 0 0 0;
+}
+</style>
+{/block}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class=""><a href="{:url('audit/project_audit/index')}">项目列表</a></li>
+            <li class="layui-this">项目详情</li>
+        </ul>
+        <h1 style="margin-top: 20px">项目号：{$view.item_number}</h1>
+        <hr class="layui-bg-red" style="margin-bottom: 20px">
+       <fieldset class="layui-elem-field" style="width: 80%">
+        <legend>项目基本信息</legend>
+        <div class="layui-field-box" style="padding: 5px">
+          <img class="layui-col-md2 " src="__PUBLIC__{$view.logo_path}" style="margin: 10px;">
+          <span class="layui-col-md4">
+         <span style="margin:5px;"><h2>项目名：{$view.name}</h2></span>
+         <span style="margin:5px;">项目简介：{$view.synopsis}</span>
+         <div style="margin:5px;">官方账号：
+          {foreach name="view.account_url" item="vo"}
+          {if !empty($vo)}
+          <div><a href="http://{$vo}" target="_blank">{$vo|msubstr=0,20,'utf-8',true}</a></div> 
+          {/if}
+          {/foreach}
+         </div>
+          </span>
+           <div class="layui-input-block layui-col-md3">
+              <a href="http://{$view.network_url}" target="_blank" class="layui-btn">官网地址</a>
+              <a href="http://{$view.book_url}" target="_blank" class="layui-btn">白皮书地址</a>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="layui-elem-field" style="width: 80%">
+        <legend>项目信息</legend>
+        <div class="layui-field-box" style="padding: 5px">
+          <div class="layui-col-md6 layui-col-space5">
+            <h3>募集信息</h3>
+            <hr class="layui-bg-blue">
+            <div>token:{$view.token}</div>
+            <div>募集计划:{$view.plan}</div>
+            <div>已募集:0</div>
+            <div>价格:{$view.price}</div>
+            <div style="margin-bottom: 20px">锁仓机制:{$view.locked}</div>
+            <h3>募集时间</h3>
+            <hr class="layui-bg-blue">
+            <div>开始时间:{:date('Y-m-d',$view.start_time)}</div>
+            <div>结束时间:{:date('Y-m-d',$view.end_time)}</div>
+          </div>
+          <div class="layui-col-md6 layui-col-space5">
+            <div class="layui-carousel" id="test1" style="margin-left: 20%">
+            <div carousel-item>
+              {foreach name="view.white_book" item="vo"}
+              {if !empty($vo)}
+              <img src="__PUBLIC__{$vo}">
+              {/if}
+              {/foreach}
+            </div>
+          </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="layui-elem-field" style="width: 80%">
+        <legend>规划信息</legend>
+        <div class="layui-field-box" style="padding: 5px">
+          <div class="layui-col-md12">
+            <div class="layui-col-md7">进度公示地址：
+              <a href="http://{$view.route_url}" target="_blank">{$view.route_url|msubstr=0,20,'utf-8',true}</a>
+              <div>进度介绍：{$view.route_content}</div>
+            </div> 
+            <img class="layui-upload-img layui-col-md5" src="__PUBLIC__{$view.route_path}">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="layui-elem-field" style="width: 80%">
+        <legend>成员信息</legend>
+        <div class="layui-field-box" style="padding: 5px">
+          {foreach name="team" item="vo"}
+          {if !empty($vo)}
+          <div class="layui-col-md12">
+          <img class="layui-upload-img layui-col-md2" src="__PUBLIC__{$vo.tx_path}">
+          <div class="layui-col-md8">
+          <div>姓名:{$vo.firstname}{$vo.lastname}</div>
+          <div>邮箱:{$vo.email}</div>
+          <div>国家：{foreach name="country_list" item="v"} {if $v.id==$vo.country_id}{$v.cn}{/if}{/foreach}</div>
+          <div>社交账号：
+            {foreach name="vo.account_url" item="v"}
+          {if !empty($vo)}
+          <div><a href="http://{$v}" target="_blank">{$v|msubstr=0,20,'utf-8',true}</a></div> 
+          {/if}
+          {/foreach}
+          </div>
+          </div>
+          </div>
+          <div style="margin-bottom: 20px;margin-top: 5px"> {$vo.content}</div>
+         {/if}
+          {/foreach}
+        </div>
+      </fieldset>
+       <fieldset class="layui-elem-field" style="width: 80%">
+        <legend>白皮书</legend>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show" style="margin-bottom: 50px">
+                 <a class="media" target="_blank" href="__PUBLIC__{$view.book_pdf_path}"></a> 
+            </div>
+        </div>
+        </fieldset>
+        {if empty($view.book_pdf_path_en)}
+        <fieldset class="layui-elem-field" style="width: 80%">
+        <legend>英文白皮书</legend>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show" style="margin-bottom: 50px">
+                 <a class="media" target="_blank" href="__PUBLIC__{$view.book_pdf_path_en}"></a> 
+            </div>
+        </div>
+        </fieldset>
+        {/if}
+ <form class="layui-form form-container" action="{:url('audit/project_audit/save')}" method="post">
+<div class="layui-card" style="width: 80%">
+  <div class="layui-card-header">详细评分</div>
+  <div class="layui-card-body">
+     <div class="layui-form">
+          <div class="layui-input-inline">
+          <label class="layui-form-label">评分1：</label>
+          <input type="radio" name="basic_star" value="0" title='不评分' checked="checked">
+          <input type="radio" name="basic_star" value="1" title='半分'>
+          <input type="radio" name="basic_star" value="2" title='满分' > 
+          </div>
+          <div class="layui-input-block">
+              <textarea name="basic_content" placeholder="请输入点评" class="layui-textarea"></textarea>
+          </div>
+          <div class="layui-input-block">
+              <textarea name="basic_content_en" placeholder="请输入 英文点评" class="layui-textarea"></textarea>
+          </div>
+      </div>
+      <div class="layui-form">
+          <div class="layui-input-inline">
+          <label class="layui-form-label">评分2：</label>
+          <input type="radio" name="team_star" value="0" title='不评分' checked="checked">
+          <input type="radio" name="team_star" value="1" title='半分'>
+          <input type="radio" name="team_star" value="2" title='满分' > 
+          </div>
+          <div class="layui-input-block">
+              <textarea name="team_content" placeholder="请输入点评" class="layui-textarea"></textarea>
+          </div>
+          <div class="layui-input-block">
+              <textarea name="team_content_en" placeholder="请输入 英文点评" class="layui-textarea"></textarea>
+          </div>
+      </div> 
+      <div class="layui-form">
+          <div class="layui-input-inline">
+          <label class="layui-form-label">评分3：</label>
+          <input type="radio" name="route_star" value="0" title='不评分' checked="checked">
+          <input type="radio" name="route_star" value="1" title='半分'>
+          <input type="radio" name="route_star" value="2" title='满分' > 
+          </div>
+          <div class="layui-input-block">
+              <textarea name="route_content" placeholder="请输入点评"  class="layui-textarea"></textarea>
+          </div>
+          <div class="layui-input-block">
+              <textarea name="route_content_en" placeholder="请输入 英文点评"  class="layui-textarea"></textarea>
+          </div>
+      </div> 
+      <div class="layui-form">
+          <div class="layui-input-inline">
+          <label class="layui-form-label">评分4：</label>
+          <input type="radio" name="plan_star" value="0" title='不评分' checked="checked">
+          <input type="radio" name="plan_star" value="1" title='半分'>
+          <input type="radio" name="plan_star" value="2" title='满分' > 
+          </div>
+          <div class="layui-input-block">
+              <textarea name="plan_content" placeholder="请输入点评" class="layui-textarea"></textarea>
+          </div>
+          <div class="layui-input-block">
+              <textarea name="plan_content_en" placeholder="请输入 英文点评" class="layui-textarea"></textarea>
+          </div>
+      </div> 
+      <div class="layui-form">
+          <div class="layui-input-inline">
+          <label class="layui-form-label">评分5：</label>
+          <input type="radio" name="book_star" value="0" title='不评分' checked="checked">
+          <input type="radio" name="book_star" value="1" title='半分'>
+          <input type="radio" name="book_star" value="2" title='满分' > 
+          </div>
+          <div class="layui-input-block">
+              <textarea name="book_content" placeholder="请输入点评" class="layui-textarea"></textarea>
+          </div>
+          <div class="layui-input-block">
+              <textarea name="book_content_en" placeholder="请输入 英文点评" class="layui-textarea"></textarea>
+          </div>
+      </div>  
+  </div>
+</div>
+<div class="layui-form" style="margin-top: 20px;margin-bottom: 20px">
+  <div class="layui-input-inline">
+    <label class="layui-form-label">审核结果</label>
+    <input type="radio" name="audit_state" value="1" title='通过' checked="checked">
+    <input type="radio" name="audit_state" value="2" title='不通过' >
+    </div>
+</div>
+    <div class="layui-form" style="width:80%;margin-bottom: 20px" >
+      <label class="layui-form-label">中转地址</label>
+      <div class="layui-input-block">
+      <input type="text" name="purse_address" value="" placeholder="如果通过审核，必须填写中转钱包地址" class="layui-input">
+       </div>
+    </div>
+<div class="layui-form-item">
+    <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="*">提交</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+</div>
+ <input type="hidden" name="pid" value="{$view.id}" />
+ <input type="hidden" name="project_number" value="{$view.item_number}" />
+</form>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script>
+$(function() {    
+        $('a.media').media({width:'100%', height:1000});    
+    });
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '300px' //设置容器宽度
+    ,height: '400px' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+</script>
+{/block}

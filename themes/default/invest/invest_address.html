@@ -1,0 +1,356 @@
+{extend name="base" /} {block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/zhifu.css" /> {/block} {block name="body"}
+</div>
+<div id="z_zhichi_center">
+	<div class="z_zhichi_center_left">
+		<input type="checkbox" class="z_queren_yiyue" name="z-checkbox" disabled="disabled" /><span id="z_queren_yiyue">{:lang('support1')}</span><br />
+		<input type="checkbox" class="z_queren_jine" name="z-checkbox" disabled="disabled" /><span id="z_queren_jine">{:lang('support2')}</span><br />
+		<input type="checkbox" class="z_queren_fengxian" name="z-checkbox" disabled="disabled" /><span id="z_queren_fengxian">{:lang('support3')}</span><br />
+		<input type="checkbox" class="z_queren_zhifu" name="z-checkbox" disabled="disabled" /><span id="z_queren_zhifu">{:lang('support4')}</span><br />
+		<input type="checkbox" class="z_queren_success" name="z-checkbox" disabled="disabled" /><span id="z_queren_success">{:lang('support5')}</span>
+	</div>
+	<div class="z_zhichi_center_right">
+		<div class="z_xiangmuxinxi">
+			<span>{:lang('support6')}</span>
+		</div>
+
+		<div class="z_xiangmu">
+			<div class="z_xiangmu1">
+				<div class="z_jia">
+					<div class="z_xiangmu_logo">
+						<img src="{if !empty($view.logo_path)}__PUBLIC__{$view.logo_path}{/if}" />
+						<div class="z_xiangmu_jiutian">
+							<span class="z_jiu1">{$view.name}</span><br />
+						</div>
+					</div>
+				</div>
+				<div class="z_tiao"></div>
+
+				<div class="z_xiangmu_lingpai">
+					<div class="z_xiangmu_lingpai_ling">
+						<span>{:lang('support7')}: <span class="z_xiangmu_ling">{$view.token}</span></span><br />
+						<span>{:lang('support8')}: <span class="z_xiangmu_ling">ETH</span></span>
+					</div>
+					<div class="z_xiangmu_lingpai_ling1">
+						<span class="z_mujuan">{:lang('support9')}: <span class="z_xiangmu_ling">{$view.sum}{$view.token}</span></span><br />
+						<span class="z_mujuan1">{:lang('support10')}: <span class="z_xiangmu_ling">{$view.plan} ETH</span></span>
+					</div>
+					<div class="z_xiangmu_lingpai_ling1">
+						<span class="z_mujuan">{:lang('support11')}: <span class="z_xiangmu_ling">{$view.actual}{$view.token}</span></span><br />
+						<span class="z_mujuan1 mujuan3">{:lang('support12')}: <span class="z_xiangmu_ling">{$view.price}</span></span>
+					</div>
+					<br /><br />
+					<span class="z_mujuan1 mujuan4">{:lang('support13')}: <span class="z_xiangmu_ling">{$view.start_time}-{$view.end_time}</span></span><br />
+					<div class="z_suocang">{:lang('support14')}:</div>
+					<div class="z_suocang_right"><span>{$view.locked}</span></div>
+					<div class="z_xiangmu2">
+						<input type="checkbox" class="z_yiyue" />&nbsp;<span class="z_me">{:lang('support15')}</span>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="z_xiangmuxinxi xiangmuxinxi1"><span>{:lang('support16')}</span></div>
+		<div class="z_zhichijine">
+			
+			<div class="z_zhichijine_nei">
+				<div class="z_zhichijine_nei-">
+					<span>{:lang('support17')}<input type="number" class="text" id="zytext" value="" placeholder="{:lang('support44')}" oninput="jisuan(this)" onpropertychange="jisuan(this)" />&nbsp;<span class="z_zhichijine_nei1">ETH</span></span>
+				</div>
+				<div class="z_zhichijine_nei-1">
+					<span class="z_zong">{:lang('support18')}<span class="z_zhichijine_nei1 nei lx_now" id='now'>0.00ETH <img src="__IMAGES__/help icon.png" alt=""  class="z_yujishouru_img1"/></span></span>
+				</div>
+				<div class="z_zhichijine_nei-1">
+					<span class="z_zong">{:lang('support19')}<span class="z_zhichijine_nei1 nei lx_end" id='end'>0.00{$view.token} <img src="__IMAGES__/help icon.png" class="z_yujishouru_img2"/></span></span>
+				</div>
+
+			</div>
+
+			<div class="z_zhichijine_nei">
+				<div class="z_yujishouru">
+					<span class="z_zuidi">{:lang('support20')}0.50ETH</span>
+				</div>
+				<div class="z_yujishouru1">
+					<div class="con-ret"></div>
+					<div class="con">{:lang('support21')}</div>
+				</div>
+				<div class="z_yujishouru2">
+					<div class="con-ret"></div>
+					<div class="con">{:lang('support22')}</div>
+				</div>
+			</div>
+			<div class="z_queren">
+				<input type="checkbox" class="checkbox" />
+				<span class="z_queren_nei">{:lang('support23')}</span>
+			</div>
+		</div>
+
+		<div class="z_xiangmuxinxi xiangmuxinxi1"><span>{:lang('support24')}</span></div>
+		<div class="z_fengxiantishi">
+			<div class="wzw_inp">
+				<div class="wzw_left"><input type="checkbox" class="z_jieshou_three" id="z-checkbox1"/></div>
+				<div class="wzw_right wzw_right1">{:lang('support25')}</div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="wzw_inp">
+				<div class="wzw_left"><input type="checkbox" class="z_jieshou_three"  id="z-checkbox2"/></div>
+				<div class="wzw_right wzw_right2">{:lang('support26')}</div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="wzw_inp">
+				<div class="wzw_left"><input type="checkbox" class="z_jieshou_three"  id="z-checkbox3"/></div>
+				<div class="wzw_right wzw_right3">{:lang('support27')}</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="z_anniu">
+			<div class="z_return" onclick="window.location.href='{:url('index/Invest/index')}'">{:lang('support28')}</div>
+			<div class="z_success" onclick="queren()">{:lang('support29')}</div>
+		</div>
+	</div>
+</div>
+
+<div class="z_success_tijiao">
+	<div class="tankuangbox">
+		<div class="close1"><img src="__IMAGES__/icon.png" /></div>	
+		<div class="z_quxiang">{:lang('support30')}<span>"{$view.name}"</span>{:lang('support31')}</div>
+		<span class="z_quxiang_jine">{:lang('support32')}</span><br />
+		<span class="z_zhichijine_100"><span class="lx_now"></span></span><br />
+		<span class="z_jinequxiang">{:lang('support33')}</span><br />
+		<span class="z_quxiangren">{$view.purse_address}</span>
+		<div class="z_shangjia"><img src="{if !empty($qrname)}__PUBLIC__{$qrname}{/if}" /></div>
+		<div class="z_zhuanru">{:lang('support34')}<span class="z_zhuanru_span"><span class="lx_now">100.00</span></span>
+		</div>
+		<div class="z_eyizhifu">
+			<img src="__IMAGES__/caveat.png" />
+			<span>{:lang('support36')}</span>
+		</div>
+		<div class="z_eyizhifu">
+			<img src="__IMAGES__/caveat.png"/>
+			<span>{:lang('support45')}</span>
+		</div>
+		<div class="z_zhifu">{:lang('support35')}</div>
+	</div>
+</div>
+
+<div class="z_success_zhifu">
+	<div class="tankuangbox1">
+		<div class="z_zhifu_success">
+			<span>{:lang('support37')}</span>
+		</div>
+		<div class="z_tankuang_logo">
+			<img src="{if !empty($view.logo_path)}__PUBLIC__{$view.logo_path}{/if}" />
+		</div>
+		<span class="z_jiutian">{$view.name}</span>
+		<div class="z_play">
+			<div class="z_play_li">
+				<div class="z_play_left"><span class="z_play_left_li">{:lang('support38')}</span></div>
+				<div class="z_play_right"><span class="z_play_right_li">{$view.sum} ETH</span></div>
+			</div>
+			<div class="z_play_li">
+				<div class="z_play_left"><span class="z_play_left_li">{:lang('support39')}</span></div>
+				<div class="z_play_right"><span class="z_play_right_li">{$view.raise} ETH</span></div>
+			</div>
+			<div class="z_play_li">
+				<div class="z_play_left"><span class="z_play_left_li">{:lang('support43')}</span></div>
+				<div class="z_play_right"><span class="z_play_right_li lx_now" id='last_num'> </span></div>
+			</div>
+			<div class="z_play_li">
+				<div class="z_play_left"><span class="z_play_left_li">{:lang('support40')}</span></div>
+				<div class="z_play_right"><span class="z_play_right_li lx_end"></span></div>
+			</div>
+			<div class="z_play_li">
+				<div class="z_play_left"><span class="z_play_left_li">{:lang('support41')}</span></div>
+				<div class="z_play_right"><span class="z_play_right_li">{$view.start_time}-{$view.end_time}</span></div>
+			</div>
+		</div>
+		<div class="z_zhifu_bottom">
+			<div class="z_me_center">
+				<a href="{:url('index/UserInfo/index',['where'=>1])}{$zllang}">{:lang('support42')}</a>
+			</div>
+			<div class="z_return_first">
+				<a href="{:url('index/Index/index')}{$zllang}">{:lang('back_index')}</a>
+			</div>
+		</div>
+	</div>
+</div>
+{/block} {block name='script'}
+<script type="text/javascript">
+	function jisuan(t) {
+		var tt = $(t).val();
+		$('.lx_now').html(tt + "ETH");
+		$('#ss').html(tt + "ETH");
+		$('.lx_end').html((Number(tt) * '{$view.bi}') + '{$view.token}');
+
+	}
+
+	//确认支持弹框
+	$(".z_success").click(function() {
+		var inputtext=$('#zytext').val();
+		if($('.z_yiyue').is(':checked') == false) {
+			return false;
+		}
+		if (inputtext=="") {
+			alert("{:lang('zinvest1')}");
+			return false;						
+		}
+		if(parseFloat(inputtext)<0.5){
+			alert("{:lang('zinvest2')}0.5");
+			return false;
+		}
+		if($('.checkbox').is(':checked') == false) {
+			return false;
+		}
+		if($('#z-checkbox1').is(':checked') == false) {
+			return false;
+		}
+		if($('#z-checkbox2').is(':checked') == false) {
+			return false;
+		}
+		if($('#z-checkbox3').is(':checked') == false) {
+			return false;
+		}
+		if($('#z_success').attr('disabled', false)) {
+			$(".z_success_tijiao").css('display', 'block');
+		}
+		$('.z_queren_zhifu').prop('checked', 'checked');
+		$('#z_queren_zhifu').css('color', '#003366');
+	})
+	//确认支持弹框——取消
+	$(".close1").click(function() {
+		$(".z_success_tijiao").stop(true, true).fadeOut(300);
+		$(".z_success_zhifu").stop(true, true).fadeOut(300);
+		$('.z_queren_zhifu').removeProp('checked');
+		$('#z_queren_zhifu').css('color', '#999');
+	})
+	//确认支付弹框
+	$(".z_zhifu").click(function() {
+		var last_num = $('#last_num').html();
+		$.ajax({
+				url: '{:url("index/invest/the_record")}',
+				type: 'post',
+				data: {
+					'pid': '{$view.id}',
+					'purse_address': '{$view.purse_address}',
+					'last_num': last_num
+				},
+			})
+			.done(function(info) {
+				if(info.code == 1) {
+					$(".z_success_tijiao").stop(true, true).fadeToggle(300);
+					$(".z_success_zhifu").stop(true, true).fadeToggle(300);
+				} else {
+					alert(info.msg);
+					return false;
+				}
+			})
+			.fail(function() {
+				console.log("error");
+			});
+
+	})
+	//总支出
+	$(".z_yujishouru_img1").hover(function() {
+		$(".z_yujishouru1").stop(true, true).fadeToggle(300);
+	})
+	$(".z_yujishouru1").hover(function() {
+		$(".z_yujishouru1").stop(true, true).fadeToggle(300);
+	})
+	//预计收益
+	$(".z_yujishouru_img2").hover(function() {
+		$(".z_yujishouru2").stop(true, true).fadeToggle(300);
+	})
+	$(".z_yujishouru2").hover(function() {
+		$(".z_yujishouru2").stop(true, true).fadeToggle(300);
+	})
+	//checkbox——已阅
+	$('.z_yiyue').on('change', function() {
+		if($(this).is(':checked')) {
+			$('.z_queren_yiyue').prop('checked', 'checked');
+			$('.z_me').css('color', '#003366');
+			$('#z_queren_yiyue').css('color', '#003366');
+		} else {
+			$('.z_queren_yiyue').removeProp('checked');
+			$('#z_queren_yiyue').css('color', '#999999');
+			$('.z_me').css('color', '#999999');
+
+		}
+
+	})
+	//checkbox——确认支付
+	$('.checkbox').on('change', function() {
+		if($(this).is(':checked')) {
+			$('.z_queren_nei').css('color', '#003366');
+			$('.z_queren_jine').prop('checked', 'checked');
+			$('#z_queren_jine').css('color', '#003366');
+		} else {
+			$('.z_queren_jine').removeProp('checked');
+			$('#z_queren_jine').css('color', '#999999');
+			$('.z_queren_nei').css('color', '#999999');
+		}
+
+	})
+	//checkbox——接受
+	$('.z_jieshou_one').on('change', function() {
+		if($(this).is(':checked')) {
+			$('#z_jieshou_one').css('color', '#003366');
+		} else {
+			$('#z_jieshou_one').css('color', '#999999');
+		}
+
+	})
+	$('.z_jieshou_two').on('change', function() {
+		if($(this).is(':checked')) {
+			$('#z_jieshou_two').css('color', '#003366');
+		} else {
+			$('#z_jieshou_two').css('color', '#999999');
+		}
+
+	})
+			$('#z-checkbox1').on('change', function() {
+					if($(this).is(':checked')) {
+						$('.wzw_right1').css('color','#003366');
+					} else {
+						$('.wzw_right1').css('color','#999999');
+					}	
+				})
+				$('#z-checkbox2').on('change', function() {
+					if($(this).is(':checked')) {
+						$('.wzw_right2').css('color','#003366');
+					} else {
+						$('.wzw_right2').css('color','#999999');
+					}	
+				})
+				$('#z-checkbox3').on('change', function() {
+					if($(this).is(':checked')) {
+						$('.wzw_right3').css('color','#003366');
+					} else {
+						$('.wzw_right3').css('color','#999999');
+					}	
+			})
+		$('.z_jieshou_three').on('change', function() {
+			if($('#z-checkbox1').is(':checked') == true && $('#z-checkbox2').is(':checked') == true && $('#z-checkbox3').is(':checked') == true) {
+				$('.z_queren_fengxian').prop('checked', 'checked');
+				$('#z_queren_fengxian').css('color','#003366');
+			} else{
+				$('.z_queren_fengxian').removeProp('checked');
+				$('#z_queren_fengxian').css('color','#999999');
+			}
+		})
+	//支付成功按钮
+	$('.z_zhifu').on('click', function() {
+		$('.z_queren_success').prop('checked', 'checked');
+		$('#z_queren_success').css('color', '#003366');
+
+	})
+	
+			$(".z_suocang_right").mouseenter(function(){
+				$(".z_suocang_right").css("overflow-y","scroll")
+			})
+			$(".z_suocang_right").mouseleave(function(){
+				$(".z_suocang_right").css("overflow-y","hidden")
+			})
+</script>
+{/block}

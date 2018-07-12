@@ -1,0 +1,22 @@
+{extend name="base" /}
+{block name="body"}
+    <div class="otherBanner">
+        <img src="__HOME__/img/n-banner.jpg"/>
+    </div>
+</div>
+<!--忘记密码部分-->
+<div class="wzw_wangj">
+
+        <div class="wzw_wangj_Auto">
+            {if $type eq 'index'}
+            <h3>注册成功！</h3>
+            <p>验证信息已发送到你的注册邮箱，请登录邮箱进行验证</p>
+            {else}
+            <h3>提醒：</h3>
+            <p>{$mail_mess}</p>
+            {/if}
+        </div>
+ 
+    
+</div>
+{/block}

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__CSS__/pwd.css" />
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+		<script src="__JS__/rsa.js"></script>
+	</head>
+
+	<body style="background: #f3f3f3;">
+		<div class="mainbox">
+			<div class="mainRight">
+				<div class="pwdnav">
+					<img src="__IMAGES__/icon1.png" />
+					<span>{:lang('Account_and_password')}</span>
+				</div>
+				<div class="yin">
+					<img src="__IMAGES__/yin.png" />
+				</div>
+				<div style="clear: both;"></div>
+				<!--中间更新信息部分-->
+				<div class="userPwd">
+					<div class="pwdBox">
+						{:lang('Personal_information')}
+					</div>
+					<div class="pwdTab">
+						<div class="w_pwdyn">
+							<p>
+								<img src="__IMAGES__/yhm.png"/>
+							</p>
+						</div>
+						<div class="w_pwdynerr">
+							<p>
+								<img src="__IMAGES__/yhmerr.png"/>
+							</p>
+						</div>
+						<div class="pwdIpt">
+							<div class="pwdone" id="">
+								<p>{:lang('User_name')}</p>
+								<p class="span"><input type="text" class="ipt" id="name" value="{$user.name}" maxlength="200" /></p>
+								<span id="nc"></span>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="pwdtwo">
+								<div class="yhm">
+									<p>{:lang('contactus_mname')}</p>
+									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="{:lang('Not_certified')}" value="{if $auth.audit_state==1}{$auth.name}{/if}" /></span>
+								</div>
+							</div>
+							<div class="pwdtwo" >
+								<div class="yhm" style="margin-left: 30px">
+									<p>{:lang('reg_mobile')}</p>
+									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="" value="{$user.code}{$user.mobile}" /></span>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+							<div class="pwdtwo">
+								<div class="yhm">
+									<p>{:lang('E-mail')}</p>
+									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="{:lang('no_modified')}" value="{$user.email}" /></span>
+								</div>
+								<div class="yhm pwdyhm">
+									<p>{:lang('Telephone_number')}</p>
+									<span class="span">
+										<input type="text" class="ipt" id="" disabled="disabled" value="{if $auth.audit_state==1}{$auth.tel}{/if}"  placeholder="{:lang('Not_certified')}"/>
+									</span>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+
+							<div class="pwdtwo">
+								<div class="yhm">
+									<p>{:lang('icountry')}</p>
+									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="{:lang('Not_certified')}" value="{if $auth.audit_state==1}{if $zllang eq '?lang=en'}{$auth.country_en}{else}{$auth.country}{/if}{/if}" /></span>
+								</div>
+								<div class="yhm pwdyhm">
+									<p>{:lang('Authentication_status')}</p>
+									<span class="span">
+										<input type="text" class="ipt" disabled="disabled"  placeholder="--{:lang('Unauthenticated')}" value="{if $auth.audit_state==1}{if empty($auth.identity)}{elseif $auth.identity==1}{:lang('Verified5')}{elseif $auth.identity==2}{:lang('Verified6')}{else}{:lang('Verified7')}{/if}{/if}" />
+										<span class="click">{if empty($auth)}<a href="javascript:;" onclick="parent.sethref('{:url('index/user_audit/index')}{$zllang}')">{:lang('Click_to_verify')}</a>{elseif $auth.audit_state==0}{:lang('Under_review')}{elseif $auth.audit_state==1}{:lang('verifiedz')}{else}<a href="javascript:;" onclick="parent.sethref('{:url('index/user_audit/index')}{$zllang}')">{:lang('recertification')}</a>{/if}</span>
+
+									</span>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+							<div class="pwdtwo">
+								<div class="yhm">
+									<p>{:lang('Verified8')}</p>
+									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="{:lang('Not_certified')}" value="{if $auth.audit_state==1}{$auth.wallet_token}{/if}" /></span>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+
+						</div>
+					</div>
+					<!--更新按钮部分-->
+					<button class="update passUser" onclick="return thisname(this)">
+					{:lang('password6')}	
+					</button>
+
+					<div class="pwdBox pass">
+						{:lang('index_box_login_passwd')}
+					</div>
+
+					<!--修改密码部分-->
+					<div class="pass_main">
+						<div class="w_xg">
+							<p>
+							  <img src="__IMAGES__/passxiugai.png"/>	
+							</p>
+						</div>
+						<div class="w_err">
+							<p>
+								<img src="__IMAGES__/errxiugai.png"/>
+							</p>						
+						</div>
+						<form method="post" id="myorm" action="{:url('index/user_info/changepass')}" autocomplete="off" class="clearfix nice-validator n-default" novalidate="novalidate">
+							<table class="newPwd-form" style="margin-top:0;margin-left:0;">
+								<tbody>
+
+									<tr class="pass_tr">
+										<th class="th left" align="left">
+											{:lang('password1')}：
+										</th>
+
+									</tr>
+									<tr class="pass_tr">
+										<td class="span1">
+											<input type="password" class="ipt" id="oldPwd" name="oldPwd" maxlength="20" aria-required="true"  maxlength="20" >
+											<input type="hidden" name="rsapass" id="rsapass">
+										</td>
+									</tr>
+									<tr class="pass_tr">
+										<th align="left" class="th">
+											{:lang('password2')}：
+										</th>
+									</tr>
+									<tr class="pass_tr pass">
+										<div>
+											<td class="span1">
+												<input type="password" class="ipt" id="loginPwd" name="loginPwd" maxlength="20" aria-required="true" placeholder="{:lang('Verified35')}" >
+												<span id='tishi' style="display: none;">{:lang('password3')}</span>
+												<input type="hidden" name="newpass" id="newpass">
+											</td>
+
+										</div>
+
+									</tr>
+									<tr class="pass_tr">
+										<th align="left" class="th">
+											{:lang('password4')}：
+										</th>
+									</tr>
+									<tr class="pass_tr">
+										<td class="span1">
+											<input type="password" class="ipt" id="password_confirm" name="password_confirm" maxlength="20" aria-required="true">
+										</td>
+									</tr>
+									<tr class="pass_tr">
+										<td colspan="2">
+											<button id="subMitButton" class="update passBtn" type="submit">{:lang('password5')}</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function thisname(t) {
+			var reg = /^[a-zA-Z\d\_\u2E80-\u9FFF]{0,16}$/;
+			var name = document.getElementById("name");
+			if(name.value == ''){
+				$("#nc").html("昵称不能为空！")
+				return false;
+			}else if(!reg.test($("#name").val())){
+				$("#nc").html("不能含有特殊字号");
+				return false;
+			}else{
+				$("#nc").html("");
+			};
+			$.ajax({
+				type: "post",
+				data: {'name': name.value},
+				url: "{:url('index/user_info/changename')}",
+				async: true,
+				success: function(msg) {
+					if(msg.code == 1) {
+						setTimeout(function() {
+							$(".w_pwdyn").hide();
+						}, 2000)
+						$(".w_pwdyn").show();
+					} 
+					else {
+						setTimeout(function() {
+							$("w_pwdynerr").hide();
+						}, 2000)
+						$("w_pwdynerr").show()
+					}
+				},
+				error: function(msg) {
+					alert("{:lang('remind1')}")
+				}
+			});
+		};
+
+		$("#myorm").submit(function(envent) 
+		{
+			var oldpass = document.getElementById("oldPwd");
+			var rsapass = document.getElementById("rsapass");
+			var pass = document.getElementById("loginPwd");
+			var confirm = document.getElementById("password_confirm");
+			var newpass = document.getElementById("newpass");
+			var time = '{$time}';
+			var rsapubkey = '{$pubkey}';
+			if(confirm.value !== pass.value || confirm.value.length < 8 || pass.value.length < 8) {
+				var tishi = document.getElementById("tishi");
+				tishi.style.display = "block";
+				return false;
+			}
+			if (pass.value.length >20||oldpass.value.length > 20) 
+			{
+				alert("{:lang('p_info_pass')}");
+				return false;
+			}
+			rsapass.value = any_rsa_pass(rsapubkey, time + "_" + oldpass.value);
+			newpass.value = any_rsa_pass(rsapubkey, time + "_" + pass.value);
+			confirm.value = "";
+			pass.value = "";
+			oldpass.value = "";
+			var form = $(this);
+			$.ajax({
+				url: form.attr("action"),
+				type: "post",
+				data: form.serialize(),
+				// dataType: "json",   
+				error: function() {
+					alert("{:lang('remind1')}")
+				},
+				success: function(data) {
+					if(data.code == 1) {
+						setTimeout(function() {
+							$(".w_xg").hide();
+						}, 2000)
+						$(".w_xg").show();
+					} else {
+						setTimeout(function() {
+							$(".w_err").hide();
+						}, 2000)
+						$(".w_err").show()
+					}
+				}
+			});
+			return false;
+		});
+	</script>
+
+</html>

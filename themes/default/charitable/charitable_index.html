@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<title>{$seoz.title}</title>
+		<meta name="keywords" content="{$seoz.keywords}" />
+		<meta name="description" content="{$seoz.description}" />
+		<!--[if lte IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<script src="__HOME__/js/respond.js"></script>
+		<script src="__HOME__/js/html5shiv.min.js"></script>
+		<script src="__HOME__/js/selectivizr-min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="__HOME__/css/z-public.css" />
+	</head>
+	<body>
+		<img src="__HOME__/img/public.jpg" alt="" class="request"/>
+		<div class="z_top">
+			<div class="z_banner">
+				<div class="z_b">
+					<a href="{:url('index/index/index')}"><img src="__HOME__/img/logo-white.png"/></a>
+					<div class="pw">PW</div>
+				</div>
+				<div class="z_b f"><a href="{:url('index/index/index')}">{:lang('back_index')}</a></div>
+				
+				
+			</div>
+			<div class="z_center">
+				<span class="z_ban">{:lang('charitable_title')}</span><br />
+				<div class="two"><span class="z_ban1">{:lang('charitable_title1')}</span><br /></div>
+				<a href="{:url('index/charitable/apply')}{$zllang}"><div class="z_click">{:lang('charitable_click')}</div><br /></a>
+				<span class="z_foot">{:lang('charitable_desc')}</span>
+			</div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,68 @@
+{extend name="base" /}
+{block name="body"}
+<link rel="stylesheet" type="text/css" href="__HOME__/css/feiyong.css" />
+   
+</div>
+<div id="z_feiyong_body">
+        <div id="z_feiyong_one">
+            <img src="__HOME__/img/feiyong-banner.jpg"/>
+            <div class="z_feiyong_chainstar">
+                <div class="z_feiyong_chainstar_top">{:lang('fee_title')}</div>
+                <div class="z_feiyong_chainstar_bt">
+                    <span class="z_quanmian">{:lang('fee_title1')}</span>
+                    <span id="z_feiyong_d">•</span>
+                    <span>{:lang('fee_title2')}</span>
+                    <span id="z_feiyong_d">•</span>
+                    <span>{:lang('fee_title3')}</span>
+                </div>
+            </div>
+        </div>
+        <div id="z_feiyong_two">
+		<div class="z-dingjia">{:lang('fee_title9')}</div>
+		<div class="box1">
+			<div class="box11">
+				<div class="z-qukuailian-chouzi">{:lang('fee_title5')}</div>
+				<div class="z-mianfei1">5%</div>
+				<div class="z-mianfei2">{:lang('fee_title6')}</div>
+			</div>
+			<div class="box-center"></div>
+			<div class="box11">
+				<div class="z-qukuailian-chouzi">{:lang('fee_title7')}</div>
+				<div class="z-mianfei">{:lang('fee_title8')}</div>
+			</div>
+		</div>
+		<div class="box-center-">
+			<div class="box-center-left"></div>
+			<div class="box-center-right"></div>
+		</div>
+		<div class="box1">
+			<div class="box11">
+				<div class="z-qukuailian-chouzi">{:lang('common_initiate_investment')}</div>
+				<div class="z-mianfei">{:lang('fee_title11')}</div>
+			</div>
+			<div class="box-center1"></div>
+			<div class="box11">
+				<div class="z-qukuailian-chouzi">{:lang('fee_title10')}</div>
+				<div class="z-mianfei">{:lang('fee_title8')}</div>
+			</div>
+		</div>
+	</div>
+        
+        <div class="z_feiyong_shuzijiami">				
+            <br /><div class="z_feiyong_pintai_one"><span>{$page.title}</span></div>
+            {$page.content}
+        </div>
+        
+        <div class="z_feiyong_pintai">
+            <div class="z_feiyong_shuzijiami_top"><span>{:lang('fee_title4')}</span></div>
+            <div class="z_feiyong_shuzijiami_bottom">
+                <div class="z-iconc"><img src="__HOME__/img/iconc.png" alt="" /><br /><span class="BTC">BTC</span></div>
+                <div class="z-iconb"><img src="__HOME__/img/icona.png"/><br /><span class="CST">CST</span></div>
+                <div class="z-iconb"><img src="__HOME__/img/iconb.png"/><br /><span class="ETH">USDT</span></div>
+            </div>
+        </div>
+    </div>
+<script>
+    $('#carousel-example-generic').addClass('wzw_box');
+</script>
+{/block}

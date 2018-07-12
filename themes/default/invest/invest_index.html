@@ -1,0 +1,767 @@
+{extend name="base" /} {block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/sqtz.css" />
+{/block} {block name="body"}
+</div>
+<div id="body">
+	<div class="w_start">
+		<div class="w_tzSearch">
+
+			<form action="{:url('index/invest/index',array('seachstate'=>$Request.param.seachstate,'field_id'=>$Request.param.field_id))}{$zllang}" method="post" id="fff">
+				<div class="w_tzIpt">
+					<input type="text" name="seachtest" value="{$Request.param.seachtest}" placeholder="{:lang('search_w')}" />
+				</div>
+				<div class="w_tzSearchimg">
+					<input type="image" src="__IMAGES__/search.png" alt="submit" />
+				</div>
+			</form>
+
+			<div style="clear: both;"></div>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="w_st">
+
+			<div class="w_container">
+
+				<ul>
+					<div class="tab">
+						<p class="w_title"> <img src="__IMAGES__/fenlei.png" />{:lang('proDisplay')} </p>
+						<li class="aa">
+							<a href="{:url('index/invest/index',array('seachstate'=>'hot'))}{$zllang}" class="w_tz" {if $Request.param.seachstate=='hot' }style="color: #ED9C28;" {/if}>{:lang('Investment_heat')}</a>
+						</li>
+						<li class="aa">
+							<a href="{:url('index/invest/index',array('seachstate'=>'count'))}{$zllang}" class="w_tz" {if $Request.param.seachstate=='count' }style="color: #ED9C28;" {/if}>{:lang('Search_fever')}</a>
+						</li>
+						<li class="aa">
+							<a href="{:url('index/invest/index',array('seachstate'=>'bg_time'))}{$zllang}" class="w_tz" {if $Request.param.seachstate=='bg_time' }style="color: #ED9C28;" {/if}>{:lang('Just_passed_the_audit')}</a>
+						</li>
+						<li class="aa">
+							<a href="{:url('index/invest/index',array('seachstate'=>'en_time'))}{$zllang}" class="w_tz" {if $Request.param.seachstate=='en_time' }style="color: #ED9C28;" {/if}>{:lang('draw_to_a_close')}</a>
+						</li>
+						<li class="aa">
+							<a href="{:url('index/invest/index')}{$zllang}" class="w_tz" {if empty($Request.param.seachstate)&&empty($Request.param.field_id)}style="color: #ED9C28;" {/if}>{:lang('All')}</a>
+							<div class="w_tzdj sel">
+								{foreach name='project_list' item='vo'}
+								<div class="w_xm">
+									<input type="hidden" name="four" id="four" value="{$vo.id}" />
+									<div class="posi_ab">
+										<div class="posi_ul">
+											<div class="posi_li1">
+												<div class="posi_li1_left">
+													<img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="posi_img" />
+												</div>
+												<div class="posi_li1_right">
+													<span>{$vo.name}</span>
+													<span>{if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</span>
+												</div>
+											</div>
+											<div class="posi_li2">
+												<p>
+													<span>{:lang('index_stars')}</span> {php} $arr=[]; $arr[]=$vo['basic_star']; $arr[]=$vo['team_star']; $arr[]=$vo['book_star']; $arr[]=$vo['plan_star']; $arr[]=$vo['route_star']; rsort($arr); {/php}
+													<img {if $arr[0]==1} src="__IMAGES__/star1.png" {elseif $arr[0]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+													<img {if $arr[1]==1} src="__IMAGES__/star1.png" {elseif $arr[1]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+													<img {if $arr[2]==1} src="__IMAGES__/star1.png" {elseif $arr[2]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+													<img {if $arr[3]==1} src="__IMAGES__/star1.png" {elseif $arr[3]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+													<img {if $arr[4]==1} src="__IMAGES__/star1.png" {elseif $arr[4]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+												</p>
+											</div>
+											<div class="posi_li3">
+												<p><span class="sp1">TOKEN</span><span class="sp2">{$vo.token}</span></p>
+												<p><span class="sp1">{:lang('index_Total_Issued_Volume')}</span><span class="sp2">{$vo.sum}</span></p>
+												<p><span class="sp1">{:lang('index_Liquidity')}</span><span class="sp2">{$vo.actual}</span></p>
+												<p><span class="sp1">{:lang('index_Fundraising_Object')}</span><span class="sp2">{if $vo.currency eq 2}ETH{/if}</span></p>
+												<p><span class="sp1">{:lang('index_Fundraising_Amount')}</span><span class="sp2">{$vo.plan}</span></p>
+												<p><span class="sp1">{:lang('index_Price_Ratio')}</span><span class="sp2">{$vo.price}</span></p>
+											</div>
+											<div class="posi_li4">
+												<p><span class="sp1">{:lang('index_Fundraising_deadline')}</span><span class="sp2">{:date("d/m/Y",$vo.start_time)}-{:date("d/m/Y",$vo.end_time)}</span></p>
+												<div class="jindutiao">
+													<span class="sp1">{:lang('index_Fundraising_Progress')}</span>
+													<div class="jin_Fu">
+														<div class="jin_1 zlll{$vo.id}" style="width:{:round($vo.raise/$vo.plan*100)}px;"></div>
+													</div>
+												</div>
+												<span class="sp4" style="float: left;margin-left: 147px;">{$vo.raise}/{:round($vo.raise/$vo.plan*100)}%</span>
+												<div style="clear: both;"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								{/foreach}
+								<div style="clear: both;"></div>
+								<div style="margin-left: 17px;">
+									<a href="{:url('index/invest/index',array('seachstate'=>$Request.param.seachstate,'field_id'=>$Request.param.field_id,'seachtest'=>$Request.param.seachtest,'page'=>1))}{$zllang}" class="indexpage">{:lang('news_page_index')}</a>
+									{for start="0" end="$count1"}
+									<a class="{if $page==$i+1}w_tzb{/if}" href="{:url('index/invest/index',array('seachstate'=>$Request.param.seachstate,'field_id'=>$Request.param.field_id,'seachtest'=>$Request.param.seachtest,'page'=>$i+1))}{$zllang}">{$i+1}</a>
+									{/for}
+									<a href="{:url('index/invest/index',array('seachstate'=>$Request.param.seachstate,'field_id'=>$Request.param.field_id,'seachtest'=>$Request.param.seachtest,'page'=>$count1))}{$zllang}" class="lastpage">{:lang('news_page_end')}</a>
+									<div class="w_allye">
+										<div class="w_bo">{:lang('expert_total')} {$count} {:lang('page_tiao')}</div>
+										<div>{:lang('now_page')} {$page} {:lang('page')}</div>
+										<div style="clear: both;"></div>
+									</div>
+									<div style="clear: both;"></div>
+								</div>
+
+							</div>
+							<div style="clear: both;"></div>
+						</li>
+					</div>
+					<div style="clear: both;"></div>
+
+					<div class="w_tzMiddle">
+						<p class="w_title"> <img src="__IMAGES__/fenlei.png" />{:lang('category_pro')} </p>
+						{foreach name='field_list' item='vo'} {if $vo.pid==1||$vo.pid==2}
+						<ul class="w_tzXm">
+							<li class="w_tzLi">
+								{$vo.cn}
+								<img src="__IMAGES__/right blue arrow.png" />
+							</li>
+							<ol class="w_tzOl">
+								{foreach name='field_list' item='v'} {if $vo.id==$v.pid}
+								<li class="w_fun">
+									<a href="{:url('index/invest/index',array('field_id'=>$v.id))}{$zllang}" class="w_tz" {if $Request.param.field_id==$v.id}style="color: #ED9C28;" {/if}>{$v.cn}</a>
+								</li>
+								{/if} {/foreach}
+							</ol>
+						</ul>
+						{/if} {/foreach}
+					</div>
+				</ul>
+
+				<div style="clear: both;"></div>
+
+			</div>
+
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+</div>
+{if $is_invest_show eq 1}
+<div class="wzw_fqxm_Tk" style="display: block;">
+	<div class="wzw_fqxm_Tkmar">
+		<!--标题1-->
+		{:lang('invest_sm')}
+	</div>
+</div>
+{/if} {/block} {block} {block name="js"}
+<script src="__JS__/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(".aa").click(function() {
+		$(this).children(".w_tzdj").show();
+		$(this).siblings("li").children(".w_tzdj").hide();
+		$(".w_fun").children(".w_tzdj").hide();
+		$(".w_fun").children(".w_tz").css("color", "");
+		$(this).children(".w_tz").css("color", "#ED9C28");
+		$(this).siblings("li").children(".w_tz").css("color", "");
+	})
+
+	$(".w_fun").click(function() {
+		$(this).children(".w_tzdj").show();
+		$(this).siblings("li").children(".w_tzdj").hide();
+		$(".aa").children(".w_tzdj").hide();
+		$(this).children(".w_tz").css("color", "#ED9C28");
+		$(this).siblings().children(".w_tz").css("color", "");
+		$(".aa").children(".w_tz").css("color", "")
+	})
+	//		点击
+	$(".w_tzLi").click(function() {
+		var src = $(this).children("img").prop("src");
+		if(src.indexOf('/xia') != -1) {
+			$(this).children("img").prop("src", "__IMAGES__/right blue arrow.png");
+			$(this).next().show()
+		} else {
+			$(this).children("img").prop("src", "__IMAGES__/xia blue arrow.png");
+			$(this).next().hide()
+		}
+	});
+
+	$(".w_xm").click(function() {
+		var num = $(this).find("input").val();
+		$.ajax({
+			type: "post",
+			url: "{:url('index/invest/project_item')}{$zllang}",
+			data: {
+				"pid": num
+			},
+			beforeSubmit:function(){
+				return false
+			},
+			success: function(data1) {
+				if (data1.code==0) 
+				{
+					// alert(data1.msg);
+					clicklogin();//登录弹窗
+				}
+				var data = "";
+				var pinglunStr = "";
+				var chengyuanStr = "";
+				data = JSON.parse(data1);
+				var tu = data.white_book;
+				var tustr = '';
+				var zllang = '{$zllang}';
+				if(zllang == '?lang=en') {
+					data.book_pdf_path = data.book_pdf_path_en;
+				}
+				var zcpro = "{:url('index/invest/sendtoaddress',['pid'=>'p__id'])}{$zllang}";
+				zcpro = zcpro.replace('p__id', data.id);
+				if(data.id == 147)
+				{
+					zcpro = 'javascript:;';
+				}
+				var tityts="";
+				if (data.tity==1) 
+				{
+					zcpro="javascript:;";
+					tityts="{:lang('remind39')}";
+				}
+				for(var i in tu) {
+					  var src="";
+	               			 if (tu[i]!="") 
+	               			 {
+	                 		   src="__PUBLIC__"+tu[i];
+	               			 }
+	                		if (i==0) 
+	                		{
+	                    		tustr+="<div class='active item'><img src='"+src+"'></div>";
+	                		}
+	                		else
+	                		{
+	                		 tustr+="<div class='item'><img src='"+src+"'></div>";
+	                		}
+				}
+				var data2 = data.review;
+				var pinglun_c = "<div class='w_all'>{:lang('boxx1')}" + data.review_cont + "{:lang('boxx2')}</div>" +
+					"<div class='plGy' id='prev'>{:lang('news_page_index')}</div>";
+				var num_c = Math.ceil(data.review_cont / 10);
+				for(var i = 0; i < num_c; i++) {
+					pinglun_c += "<div class='plGy' onclick='get_pinglun(" + num + "," + (i + 1) + ",this)'>" + (i + 1) + "</div>";
+				}
+
+				pinglun_c += "<div class='plGy' id='next'>{:lang('news_page_end')}</div>"
+					+
+					"<div style='clear: both;'></div>";
+
+
+				for(var i in data2) {
+				var src="";
+       				             if (data2[i].tx_path!="") 
+                    				{
+                       				 var src="__PUBLIC__"+data2[i].tx_path;
+        				            }
+						pinglunStr += "<li class='w_plxq'>" +
+						"<div class='w_pick'><img src='" +src+ "'/></div>" +	
+						"<div class='w_plMain'>" +
+						"<p class='w_plTit'>" + data2[i].name + "</p>" +
+						"<p class='w_plnr'>" + data2[i].review_content + "</p>" +
+						"</div>" +
+						"<div class='w_pltime'>" + data2[i].create_time + "</div>" +
+						"<div style='clear: both;'></div>" +
+						"</li>";
+				};
+				var chengyuan = data.team;
+				for(var i in chengyuan) {
+						var src="";
+              				      if (chengyuan[i].tx_path!="") 
+              				      {
+                			        var src="__PUBLIC__"+chengyuan[i].tx_path;
+   				                 }
+      					      chengyuanStr += "<li class='w_tzlist'>" +
+                       				 "<div class='tzdoc'><img src='" +src+ "' /></div>" +	
+						"<div class='tzTxt'>" +
+						"<span class='w_tztt'>" + chengyuan[i].firstname + chengyuan[i].lastname + "</span>" +
+						"<span class='w_tztt w_color999'>" + chengyuan[i].cn + "</span>" +
+						"<p class='w_tzwz'>" + chengyuan[i].content + "</p>" +
+						"</div>" +
+						"<div style='clear: both;'></div>" +
+						"</li>";
+				}
+				var one = ["", "", "", ""];
+				for(var i = 0; i < data.account_url.length; i++) {
+					if(data.account_url[i].indexOf('instagram') != -1) {
+						one[i] = "__IMAGES__/Linkedin.png";
+					} else if(data.account_url[i].indexOf('facebook') != -1) {
+						one[i] = "__IMAGES__/facebook.png";
+					} else if(data.account_url[i].indexOf('twitter') != -1) {
+						one[i] = "__IMAGES__/twitterd.png";
+					} else if(data.account_url[i].indexOf('t.me') != -1){
+						one[i] = "__IMAGES__/dianbao.png";
+					}
+					else
+					{
+						one[i]="";
+					}
+				}
+				var star = ["", "", "", "", ""];
+				var bstar = ["", "", "", "", ""];
+				for(var i = 0; i < data.star.length; i++) {
+					if(data.star[i][1] == 2) {
+						star[i] = "__IMAGES__/small yellow star.png";
+						bstar[i] = "__IMAGES__/big yellow star.png";
+					} else if(data.star[i][1] == 1) {
+						star[i] = "__IMAGES__/banke star.png";
+						bstar[i] = "__IMAGES__/bange big star.png";
+					} else {
+						star[i] = "__IMAGES__/small gray star.png";
+						bstar[i] = "__IMAGES__/big gray star.png";
+					}
+				}
+				var str = "";
+				var dg="";
+				if (data.logo_path!="") 
+				{
+					dg="__PUBLIC__"+data.logo_path;
+				}
+				str += "<div class='w_tzTc' style='display:block;'>" +
+					"<div class='w_tzContent'>" +
+					"<div class='w_tzdw w_tzgb'>" +
+					"<img src='__IMAGES__/close.png'/>" +
+					"</div>" +
+					"<div class='w_tzHeader'>" +
+					"<div class='w_tzImg'>" +
+					"<img src='" + dg+ "'/>" +
+					"</div>" +
+					"<div class='w_tzCenter'>" +
+					"<p class='w_tzxm'>" + data.name + "</p>" +
+					"<p class='w_tzje'>" + data.synopsis + "</p>" +
+					"<div class='w_tzSj'>" +
+					"<img src='__IMAGES__/{:lang('projectzl1')}' />" +
+					"<a href='" + data.account_url[0] + "' target='_blank'><img src='" + one[0] + "'/></a>" +
+					"<a href='" + data.account_url[1] + "' target='_blank'><img src='" + one[1] + "' /></a>" +
+					"<a href='" + data.account_url[2] + "' target='_blank'><img src='" + one[2] + "' /></a>" +
+					"<a href='" + data.account_url[3] + "' target='_blank'><img src='" + one[3] + "' /></a>" +
+					"</div>" +
+					"</div>" +
+					"<div class='w_tzTz'>" +
+					"<a href='" + data.network_url + "' target='_blank'>{:lang('boxx3')}</a>" +
+					"<a href='" + data.book_url + "' target='_blank'>{:lang('White_Paper')}</a>" +
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"<div style='width:810px;'>"+
+					"<div class='w_tzTab'>" +
+					"<ul class='w_tzQul'>" +
+					"<li class='w_tab w_tzQh'>{:lang('content')}</li>" +
+					"<li class='w_tab w_ping'>{:lang('myProject11')}</li>" +
+					"</ul>" +
+					"</div>" +
+					"<div class='w_zc w_zc1'>" +
+					"<a href='"+zcpro+"'>{:lang('boxx7')}</a>" +
+					"<p class='cyno'>{:lang('remind39')}</p>"+
+					"</div>" +
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"<div class='w_cut'>" +
+					"<div class='w_qh'>" +
+					"<div class='w_tzmj'>" +
+					"<div class='w_tzmsg'>" +
+					"<div class='mjTitle'>" +
+					"<span class='w_msg'>{:lang('Raise_information')}</span>" +
+					"<img src='__IMAGES__/dashed.png' />" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"<div class='w_tzcon'>" +
+					"<div class='w_mjxxLeft'>" +
+					"<p>TOKEN</p>" +
+					"<p>{:lang('index_Total_Issued_Volume')}</p>" +
+					"<p>{:lang('index_Liquidity')}</p>" +
+					"<p>{:lang('index_Fundraising_Object')}</p>" +
+					"<p>{:lang('Recruited')}</p>" +
+					"<p>{:lang('index_Price_Ratio')}</p>" +
+					"<p>{:lang('Locking_mechanism')}</p>" +
+					"</div>" +
+					"<div class='w_mjxxRight'>" +
+					"<p>" + data.token + "</p>" +
+					"<p>" + data.sum + "</p>" +
+					"<p>" + data.actual + "</p>" +
+					"<p>" + 'ETH' + "</p>" +
+					"<p>" + data.plan + "</p>" +
+					"<p>" + data.price + "</p>" +
+					"<p class='w_tztxt'>" + data.locked + "</p>" +
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"<div class='mjTitle'>" +
+					"<span class='w_msg'>{:lang('Recruitment_time')}</span>" +
+					"<img src='__IMAGES__/dashed.png' />" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"<div class='w_tzcon'>" +
+					"<div class='w_mjxxLeft'>" +
+					"<p>{:lang('Starting_time')}</p>" +
+					"<p>{:lang('End_time')}</p>" +
+					"</div>" +
+					"<div class='w_mjxxRight'>" +
+					"<p>" + data.start_time + "</p>" +
+					"<p>" + data.end_time + "</p>" +
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"</div>" +
+					"<div class='w_tzpdf'>" +
+					"<div id='myCarousel' class='carousel slide'>" +
+					"<div class='carousel-inner'>" +
+					tustr +
+					"</div>" +
+					"<a class='carousel-control left' href='#myCarousel' data-slide='prev'>&lsaquo;</a>" +
+					"<a class='carousel-control right' href='#myCarousel' data-slide='next'>&rsaquo;</a>" +
+					"</div>" +
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"<div class='mjTitle'>" +
+					"<span class='w_msg'>{:lang('Member_information')}</span>" +
+					"<img src='__IMAGES__/bigdashed.png' />" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"<div class='w_tzdoctor'>" +
+					"<ul class='w_tzboss'>" + chengyuanStr +
+					"</ul>" +
+					"</div>" +
+					"<div class='mjTitle'>" +
+					"<span class='w_msg'>{:lang('White_Paper')}</span>" +
+					"<img src='__IMAGES__/bigdashed.png' />" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"<div class='w_bps'>" +
+					"<a class='media' target='_blank' href='__PUBLIC__" + data.book_pdf_path + "'></a>" +
+					"</div>" +
+					"</div>" +
+					"<div class='w_pl'>" +
+					"<div class='w_plList'>" +
+					"<ul class='w_plName'>" + pinglunStr +
+					"</ul>" +
+					"<div class='w_plForm'></div>" +
+					"</div>" +
+					"<div class='w_plFy'>" +
+					pinglun_c +
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"<div class='w_plSub'>" +
+					"<div class='w_fadeout'>{:lang('boxx4')}</div>" +
+					"<form method='post' id='push_id' action='{:url('index/invest/push_pl')}'>" +
+					"<div style='position:relative;width: 780px;height: 189px;'>" +
+					"<textarea id='area' name='review_content'maxlength = '500' onchange='this.value=this.value.substring(0, 500)' onkeydown='this.value=this.value.substring(0, 500)' onkeyup='this.value=this.value.substring(0, 500)' autocomplete></textarea>" +
+					"<div class='w_icon tp'>" +
+					"<img src='__IMAGES__/comment.png' id='img' />" +
+					"</div>" +
+					"<div id='note' class='note tp'>" +
+					"<font color='#777' style='font-size: 14px;color: #b3b3b3;'>{:lang('boxx5')}</font>" +
+					"</div>" +
+					"</div>" +
+					"<input type='hidden' name='project_id' value='" + num + "'>" +
+					"<button class='w_hptj' type='submit' onclick='return fff()'>{:lang('submit')}</button>" +
+					"</form>" +
+					"</div>" +
+					"</div>" +
+					"</div>" +
+					"<div class='w_look'>" +
+					"<div class='w_lookStar'>{:lang('boxx6')}</div>" +
+					"<div class='w_zc'>" +
+					"<a href='"+zcpro+"'>{:lang('boxx7')}</a>" +
+					"<p class='cyno'>{:lang('remind39')}</p>"+
+					"</div>" +
+					"<div style='clear: both;'></div>" +
+					"</div>" +
+					"</div>" +
+					"<div class='w_tzStart'>" +
+					"<img src='__IMAGES__/close.png' class='w_tzClose' />" +
+					"<div class='w_con'>" +
+					"<div class='w_dw'>" +
+					"<img src='__IMAGES__/xing.jpg' />" +
+					"</div>" +
+					"<p class='w_tzxs'>{:lang('boxx8')}</p>" +
+					"<p class='w_tzck'>{:lang('boxx9')}</p>" +
+					"<div class='w_change'>" +
+					"<ul class='w_big'>" +
+					"<li class='w_bigLi'>" +
+					"<div class='w_tzimg gg'>" +
+					"<img src='" + bstar[0] + "' class='ss'/>" +
+					"</div>" +
+					"<div class='box' style='display:block;'>" +
+					"<em>&#9670;</em>" +
+					"<span>&#9670;</span>" +
+					"<div class='w_tema'>" +
+					"<p class='w_nei'>" + data.star[0][0] + "</p>" +
+					"</div>" +
+					"</div>" +
+					"</li>" +
+					"<li class='w_bigLi'>" +
+					"<div class='w_tzimg'>" +
+					"<img src='" + star[1] + "' />" +
+					"</div>" +
+					"<div class='box'>" +
+					"<em>&#9670;</em>" +
+					"<span>&#9670;</span>" +
+					"<div class='w_tema'>" +
+					"<p class='w_nei'>" + data.star[1][0] + "</p>" +
+					"</div>" +
+					"</div>" +
+					"</li>" +
+					"<li class='w_bigLi'>" +
+					"<div class='w_tzimg'>" +
+					"<img src='" + star[2] + "' />" +
+					"</div>" +
+					"<div class='box'>" +
+					"<em>&#9670;</em>" +
+					"<span>&#9670;</span>" +
+					"<div class='w_tema'>" +
+					"<p class='w_nei'>" + data.star[2][0] + "</p>" +
+					"</div>" +
+					"</div>" +
+					"</li>" +
+					"<li class='w_bigLi'>" +
+					"<div class='w_tzimg'>" +
+					"<img src='" + star[3] + "' />" +
+					"</div>" +
+					"<div class='box'>" +
+					"<em>&#9670;</em>" +
+					"<span>&#9670;</span>" +
+					"<div class='w_tema'>" +
+					"<p class='w_nei'>" + data.star[3][0] + "</p>" +
+					"</div>" +
+					"</div>" +
+					"</li>" +
+					"<li class='w_bigLi'>" +
+					"<div class='w_tzimg'>" +
+					"<img src='" + star[4] + "' />" +
+					"</div>" +
+					"<div class='box'>" +
+					"<em>&#9670;</em>" +
+					"<span>&#9670;</span>" +
+					"<div class='w_tema'>" +
+					"<p class='w_nei'>" + data.star[4][0] + "</p>" +
+					"</div>" +
+					"</div>" +
+					"</li>" +
+					"<div style='clear: both;'></div>" +
+					"</ul>" +
+					"</div>" +
+					"</div>" +
+					"</div>" +
+					"</div>";
+				$("body").append(str);
+				$('a.media').media({
+					width: '100%',
+					height: 1000
+				});
+				fun();
+
+				function fun() {
+					//				设置阴影高度
+					$(".w_tzTc").css("height", 400 + $("\nhtml").height() + "px");
+					//		点击最大关闭整个遮罩消失
+					$(".w_tzgb").click(function() {
+						$('.w_tzTc').detach();
+					})
+					//		内容与评论样式互相切换
+					$(".w_tab").click(function() {
+						$(this).addClass("w_tzQh").siblings().removeClass("w_tzQh");
+					})
+
+					$(".w_tzQh").click(function() {
+						$(".w_qh").css("display", "block");
+						$(".w_pl").css("display", "none")
+					})
+					$(".w_ping").click(function() {
+						$(".w_pl").css("display", "block");
+						$(".w_qh").css("display", "none")
+					})
+
+					$(".w_tztxt").hover(function() {
+						$(".w_tztxt").css("overflow", "auto");
+					}, function() {
+						$(".w_tztxt").css("overflow", "hidden");
+					})
+					//		点击x号图片关闭
+					$(".w_tzClose").click(function() {
+						$(".w_tzStart").css("display", "none");
+						$(".w_chengkai").css("height",0 + "px");
+						$(".w_tzTc").css("height","323%")
+					})
+					//		文本框输入字数最大限制
+					$(".w_plSub").click(function() {
+						$(".tp").hide();
+						$("#area").focus();
+					});
+
+					//		鼠标移入星星时的效果
+					$(".w_tzimg>img").mouseenter(function() {
+						var img = $(".w_tzimg>img").index(this);
+						$(".w_tzimg>img").eq(0).attr("src",star[0])
+						$(this).attr("src", bstar[img]);
+						$(this).parent().parent().children(".box").css("display", "block");
+						$(this).parents(".w_bigLi").siblings().children(".box").css("display", "none")
+					})
+					$(".w_tzimg>img").mouseleave(function() {
+						var img = $(".w_tzimg>img").index(this);
+						$(this).attr("src", star[img]);
+						$(this).parent().parent().children(".box").css("display", "none");
+					})
+					
+					$(".box").hover(function(){
+						$(this).css("display","block");
+					},function(){
+						$(this).css("display","none");
+					})
+					
+					$('.carousel').carousel({
+						interval: false
+					});
+
+					$(".w_lookStar").click(function() {
+						$(".w_tzStart").css("display", "block");
+						$(".w_chengkai").css("height",386 + "px");
+						$(".w_tzTc").css("height","374%");
+						var top = $("html").height() + 386;
+						$("html").animate({
+							scrollTop: top + "px"
+						})
+					});
+					$(".w_xm").click(function() {
+						$(".w_tzTc").css("display", "block");
+					});
+					
+					$(".w_zc").mouseenter(function(){
+						if(data.tity == 1){
+							zcpro="javascript:;";
+							$(".cyno").show()
+						}
+					})
+
+				}
+			}
+		});
+	});
+	$(".w_xm").click(function() {
+		$(".w_tzTc").css("display", "block")
+	})
+
+
+	function get_pinglun(project_id, page, t) {
+		$.ajax({
+			url: "{:url('index/invest/get_pl')}",
+			type: "post",
+			data: {
+				'pid': project_id,
+				'page': page
+			},
+			// dataType: "json",   
+			error: function() {
+				//错误
+				alert("{:lang('remind1')}")
+			},
+			success: function(data) {
+			
+				if(data.code == 1) {
+					//成功
+					var data2 = JSON.parse(data.msg);
+					$('.w_plName').empty();
+					var pinglunStr = "";
+					for(var i in data2) {
+							var src="";
+                    					if (data2[i].tx_path!="") 
+                   					 {
+                        				var src="__PUBLIC__"+data2[i].tx_path;
+                   	 				}
+						pinglunStr += "<li class='w_plxq'>" +
+							"<div class='w_pick'><img src='" + src + "' /></div>" +
+							"<div class='w_plMain'>" +
+							"<p class='w_plTit'>" + data2[i].name + "</p>" +
+							"<p class='w_plnr'>" + data2[i].review_content + "</p>" +
+							"</div>" +
+							"<div class='w_pltime'>" + data2[i].create_time + "</div>" +
+							"<div style='clear: both;'></div>" +
+							"</li>";
+					}
+					$('.w_plName').html(pinglunStr);
+					//点击效果
+					//t
+					$(".plGy").click(function() {
+						$(this).css({
+							"color": "#ff3333"
+						}).siblings().css({
+							"color": ''
+						})
+					})
+				} else {
+					//失败
+					alert("提交失败")
+				}
+			}
+		});
+	}
+	//
+	function fff(t) {
+		if($("#area").val() == '') {
+			alert("{:lang('error_content_empty')}");
+			return false;
+		}
+		var form = $("#push_id");
+		$.ajax({
+			url: "{:url('index/invest/push_pl')}",
+			type: "post",
+			data: form.serialize(),
+			// dataType: "json",   
+			error: function() {
+				//错误
+				alert("{:lang('remind1')}")
+			},
+			success: function(data) {
+				if(data.code == 1) {
+					setTimeout(function() {
+						$(".w_fadeout").hide();
+						$("#area").val("");
+						$(".tp").show()
+					}, 2000)
+					$(".w_fadeout").show();
+				} else {
+					//失败
+					alert("{:lang('remind23')}")
+				}
+			}
+		});
+
+		return false;
+	}
+
+	//				点击我已阅读
+	$(".lab").click(function() {
+		if($(".dxk").attr("checked")) {
+			$(".kqwdxm").css({
+				"background": "#003366",
+				"color": "white"
+			});
+			$(".kqwdxm").removeAttr('disabled');
+		} else {
+			$(".kqwdxm").css({
+				"background": "none",
+				"color": "#003366"
+			});
+			$(".kqwdxm").attr("disabled", "disabled");
+		}
+	});
+	$(".zelabel .kqwdxm").click(function() {
+		$(this).parent().parent().parent().fadeOut();
+	})
+
+	$(".w_tzMiddle").click(function() {
+		if($(".w_xm").length == 4) {
+			$(".w_container").css("min-height", "900px")
+		}
+		if($(".w_xm").length == 5) {
+			$(".w_container").css("min-height", "1350px")
+		}
+		if($(".w_xm").length == 6) {
+			$(".w_container").css("min-height", "1350px")
+		}
+		if($(".w_xm").length == 7) {
+			$(".w_container").css("min-height", "1800px")
+		}
+		if($(".w_xm").length == 8) {
+			$(".w_container").css("min-height", "1800px")
+		}
+	})
+	
+</script>
+{/block}

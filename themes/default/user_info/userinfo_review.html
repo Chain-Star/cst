@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="__CSS__/project.css" />
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+
+	</head>
+
+	<body style="background: #f3f3f3;">
+		<div class="mainbox">
+			<div id="user-left"></div>
+			<div class="mainRight">
+				<div class="pwdnav">
+					<img src="__IMAGES__/icon3.png" />
+					<span>{:lang('common_my_item')}</span>
+				</div>
+				<div class="yin">
+					<img src="__IMAGES__/yin.png" />
+				</div>
+				<div style="clear: both;"></div>			
+
+				<!--评论部分-->
+				<div class="w_pinglun">
+					<div class="proTopq">
+						<p>{:lang('review1')}</p>
+					</div>
+					<div class="pingMain">
+						<ul>
+							{foreach name='review_list' item='vo'}
+							<li>
+								<div class="w_plLeft">
+									<img {if !empty($vo.tx_path)}src="__PUBLIC__{$vo.tx_path}"{/if} />
+								</div>
+								<div class="w_plRight">
+									<div class="w_rigBox">
+										<img src="__IMAGES__/tr.png" class="w_ding" />
+
+										<div class="w_plBox">
+											<div class="w_plName">
+												<p class="w_plbear">{$vo.username}</p>
+												<p class="w_plTime">{:date('Y-m-d',$vo.create_time)}</p>
+											</div>
+											<div style="clear: both;"></div>
+											<hr class="w_plXian">
+											<p>{$vo.review_content}</p>
+											{if $vo.status==1}
+											<button class="w_plBtn w_ccolor">{:lang('review2')}</button>
+											<button class="w_plBtn w_col" onclick="set_review({$vo.id},2,this,{$pid})">{:lang('mes_del')}</button>
+											{elseif $vo.status==2}
+											<button class="w_plBtn w_ccol">{:lang('review3')}</button>
+											{else}
+											<button class="w_plBtn w_color" onclick="set_review({$vo.id},1,this,{$pid})">{:lang('review4')}</button>
+											<button class="w_plBtn w_col" onclick="set_review({$vo.id},2,this,{$pid})">{:lang('mes_del')}</button>
+											{/if}
+										</div>
+
+									</div>
+								</div>
+								<div style="clear: both;"></div>
+							</li>
+							{/foreach}
+						</ul>
+						<!--分页-->
+						<div class="w_proPage">
+							<div class="w_proFirst">
+								<ul class="w_proPages">
+									<a class="w_ys" onclick="return parent.changehtml('{:url('index/user_info/review',array('page'=>1,'pid'=>$pid))}',this)">{:lang('news_page_index')}</a>
+									{for start="0" end="$count1"}
+							    	<a class="w_ys {if $page==$i+1}active{/if}" href="javascript:;" onclick="return parent.changehtml('{:url('index/user_info/review',array('page'=>$i+1,'pid'=>$pid))}',this)">{$i+1}
+							    	</a>
+									{/for}
+									<a class="w_ys"  onclick="return parent.changehtml('{:url('index/user_info/review',array('page'=>$count1,'pid'=>$pid))}',this)">{:lang('news_page_end')}</a>
+								</ul>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="w_proLast">
+								<span>{:lang('expert_total')}{$count}{:lang('page_tiao')}</span>
+								<span>{:lang('page_per')}10{:lang('page_tiao')}</span>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function set_review(id,state,t,pid)
+		{
+			$.ajax({
+				url: "{:url('index/user_info/set_review')}",
+				type: 'post',
+				data: {'id':id,'status':state,'pid':pid},
+			})
+			.done(function(data) 
+			{
+				if (data.code==1) 
+				{
+					if (state==1) 
+					{
+						$(t).removeClass('w_color');
+						$(t).addClass('w_ccolor');
+						$(t).html('已显示');
+					}
+					else
+					{
+						$(t).removeClass('w_col');
+						$(t).addClass('w_ccol');
+						$(t).html('已删除');
+						$(t).prev('.w_plBtn').css('display','none');
+					}
+					
+				}
+				else
+				{
+					//失败
+				}
+			})
+			.fail(function() 
+			{
+				console.log("error");
+			})
+			.always(function() 
+			{
+				// console.log("complete");
+			});
+			
+		}
+	</script>
+
+</html>

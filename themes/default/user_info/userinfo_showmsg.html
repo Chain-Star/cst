@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__CSS__/wenzhang.css" />
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+		<script src="__JS__/whh_personal.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body style="background-color: #F3F3F3">
+		<div class="pwdnav">
+					<img src="__IMAGES__/icon7.png" />
+					<span>{:lang('Message')}</span>
+				</div>
+				<div class="yin">
+					<img src="__IMAGES__/yin.png" />
+				</div>
+				<div style="clear: both;"></div>
+		<div class="w_wen">
+			<div class="header">
+				<p>{if empty($arr[0]['msg_id'])}{$arr[0]['title']}{else}{$arr[0]['msg_title']}{/if}</p>
+				<img src="__IMAGES__/page-t.png"/>
+			</div>
+			<div class="w_wenMain">
+				{if empty($arr[0]['msg_id'])}{:htmlspecialchars_decode($arr[0]['content'])}{else}{:htmlspecialchars_decode($arr[0]['msg_content'])}{/if}
+			</div>
+			<div class="w_PN">
+				{if !empty($arr[1])}
+				<p>{:lang('class_next')}:</p><a href="" onclick="return parent.changehtml('{:url('index/user_info/showmsg',array('msg_id'=>$arr[1]['id']))}{$zllang}',this)">{if empty($arr[1]['msg_id'])}{$arr[1]['title']}{else}{$arr[1]['msg_title']}{/if}</a><br>
+				{/if}
+				{if !empty($arr[2])}
+				<p>{:lang('class_pre')}:</p><a href="" onclick="return parent.changehtml('{:url('index/user_info/showmsg',array('msg_id'=>$arr[2]['id']))}{$zllang}',this)">{if empty($arr[2]['msg_id'])}{$arr[2]['title']}{else}{$arr[2]['msg_title']}{/if}</a>
+				{/if}
+			</div>
+		</div>
+	</body>
+</html>

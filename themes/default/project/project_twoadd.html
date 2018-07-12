@@ -1,0 +1,238 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/fqxm1.css" />
+{/block}
+{block name="body"}
+  </div>
+<div class="wzw_fqxm">
+        <div class="wzw_fqxmAuto">
+          <div class="fqxm-biao">
+              {:lang('my_project')}
+          </div>
+          <div class="wzw_fqxm_left" style="height: 680px;">
+            <form action="" method="post" id="ajax_form">
+               <input type="hidden" name="project_id" value="{$project_id}" />
+              <div class="wzw_inp">
+                <div class="inp_li1 float" style="width: 250px;"><span>{:lang('Route_progresses_Address')}</span><img src="__IMAGES__/Required.png" style="opacity: 0"></div>
+                <div class="inp_li2 float"><input type="text" name="url" class="form-control forEmpty wzw_Jdgsdz" placeholder="http://"/><img src="__IMAGES__/Empty.png" class="empty"/></div>
+                <div class="inp_li3 float" style="width: 420px;"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+            
+              
+              <div class="wzw_inp">
+                <div class="inp_li1 float" style="width: 250px;">
+                  <span>{:lang('Upload_roadmap')}</span><img src="__IMAGES__/Required.png">
+                </div>
+                <div class="inp_li2 float" style="font-size: 16px;color: #003366;width:320px;text-align: left;display: inline-block;">
+                  <div class="wzw_file" id="upBtn">
+                    <input title=" " type="file"  name="route_path" value="" class="upfile wzw_logo" accept="image/*" onchange="ajaxSub()"/>
+                    <img src="__IMAGES__/Upload icon.png"/>
+                  </div>&nbsp;&nbsp;{:lang('Upload_roadmap')}
+                </div>
+                <div class="inp_li3 float" style="width: 275px;"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <div class="wzw_inp" style="height: auto;">
+                <div id="imglist" style="height: auto;margin-left: 250px;">
+                  <img src="" style="max-width: 320px;max-height: 160px;width: auto;height: auto;"/>
+                </div>
+              </div>
+
+              <div class="wzw_inp" style="height: 160px;">
+                <div class="inp_li1 float" style="width: 250px;">
+                  <span style="display: inline-block;width:220px;float: left;">{:lang('pro_sec_des')}</span>
+                  <span style="display: inline-block;height: 63px;float: right;"><img src="__IMAGES__/Required.png" style="margin: 10px 10px;"></span>
+                </div>
+                <div class="inp_li2 float" style="font-size: 16px;color: #003366;text-align: left;">
+                  <textarea name="content" rows="" cols="" maxlength="500" placeholder="{:lang('pro_sec_des')}"></textarea>
+                </div>
+                <div class="inp_li3 float" style="width: 420px;"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <input type="hidden" name='zllang' value="{$zllang}">
+              <input type="hidden" name="__token__" id='token' value="{$Request.token}" />
+            </form>         
+          </div>
+          <div class="mar0">
+            <a href="{:url('index/project/add',array('step'=>1,'project_id'=>$project_id))}{$zllang}"><button class="btn wzw_prev"  style="color: #fff;background: #ccc;height: 44px;width: 120px;border-radius: 10px;font-size:18px;margin: 0 20px;">{:lang('remind35')}</button></a>
+            <a href="javascript:;">
+            	<button class="btn wzw_next wzw_fqxm_Next" style="color: #fff;background: #4fbecb;height: 44px;width: 120px;border-radius: 10px;font-size: 18px;margin: 0 20px;">{:lang('nextpage')}</button>
+						</a>
+          </div>
+          <div class="wzw_fqxm_right">
+            <!--五步布局-->
+            <div class="wzw_fqxm_right_son">
+              <div class="wzw_fqxm_right_son_left">
+                <div>
+                  <img src="__IMAGES__/step 1.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor fqxmbor2"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/step2.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor fqxmbor2"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/step3.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor fqxmbor2"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/gray step 4.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/gray step 5.png" />
+                </div>
+              </div>
+              <div class="wzw_fqxm_right_son_right">
+                  <div class="he1">{:lang('Basic_information')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he1">{:lang('White_Paper')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he1">{:lang('Route_planning')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he2">{:lang('Team_introduction')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he2">{:lang('raising_plan')}</div>
+                  <div class="fqxmbor"></div>
+              </div>
+            </div>
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+{/block}
+{block name="js"}
+<script src="__JS__/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+{/block}
+{block name="script"}
+<script>
+function submitUpload(fromid, url) 
+  {
+    var option = {
+      url: url,
+      type: "post",
+      dataType: "json",
+      async: true,
+      xhr:xhrOnProgress(function(e){
+				var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+				$('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
+			}),
+      beforeSubmit: function(arr, $from, options) {
+      	loading();
+      },
+      success: function(info) {
+        if(info.code === 1) 
+        {
+          window.location.href=info.url;
+        } 
+        else 
+        {
+          loading(info.msg);
+          // console.log(info.msg);
+        }
+      },
+      error: function() {
+        loading("{:lang('remind1')}");
+      }
+
+    };
+    $("#" + fromid).ajaxSubmit(option);
+    return false;
+  }
+//        图片上传限制大小  获得宽高
+        function imgFun(){
+             
+          function showimg(url) {
+            //替换logo地址
+            $("#imglist img").attr("src",url);
+          }
+          function addfile() {
+            var file = this.files[0]; //上传的图片的所有信息
+            //首先判断是否是图片
+            if(!/image\/\w+/.test(file.type)) {
+              alert("{:lang('remind3')}");
+              $(".wzw_logo").val("");
+              return false;
+            }
+            //在此限制图片的大小
+            var imgSize = file.size;
+            //在此处我们限制图片大小为200k
+            if(imgSize > 2000 * 1024) {
+              alert("{:lang('remind37')}");
+//              $(this).val('');
+              $(".wzw_logo").val("");
+              return false;
+            }
+            var objUrl = getObjectURL(this.files[0]);
+            showimg(objUrl)
+            $(this).hide();
+            createfile();
+            $('.upfile').bind('change', addfile);
+          }
+          $('.upfile').bind('change', addfile);
+    
+          function getObjectURL(file) {
+            var url = null;
+            if(window.createObjectURL != undefined) {
+              url = window.createObjectURL(file);
+            } else if(window.URL != undefined) {
+              url = window.URL.createObjectURL(file);
+            } else if(window.webkitURL != undefined) { 
+              url = window.webkitURL.createObjectURL(file);
+            }
+            return url;
+          };
+          function createfile() {
+            $('.upfile:last').siblings(".upfile").remove();
+            $('#upBtn').append("<input type='file' title=' ' name='route_path' value='' class='upfile' accept='image/*'>");
+          }
+        }
+        imgFun();
+        
+//                 input框内的X号获得焦点显示
+        var forEmpty = $(".forEmpty");
+        for(var f = 0; f < forEmpty.length; f++) {
+          $(".forEmpty").eq(f).change(function() {
+            $(this).next().css({
+              "display": "block"
+            }).click(function() {
+              $(this).prev().val("").next().css({
+                "display": "none"
+              });
+            })
+          })
+        };
+        $(".wzw_fqxm_Next").click(function(){
+          //进度公示地址
+          var wzw_Jdgsdz=$(".wzw_Jdgsdz").val();
+          //上传路线图
+          if($("#imglist img").attr("src")==""){
+            $(".wzw_jg").eq(1).addClass("block");
+            $(".wzw_yz").eq(1).html("{:lang('remind')}");
+            return false;
+          }else{
+            $(".wzw_jg").eq(1).removeClass("block").addClass("none");
+            $(".wzw_yz").eq(1).html("");
+          }
+          //如何让人们了解项目进行到了哪一步 验证
+          if($("textarea").eq(0).val()==""){
+            $(".wzw_jg").eq(2).addClass("block");
+            $(".wzw_yz").eq(2).html("{:lang('remind')}");
+            return false;
+          }else{
+            $(".wzw_jg").eq(2).removeClass("block").addClass("none");
+            $(".wzw_yz").eq(2).html("");
+          }
+          return submitUpload('ajax_form',"{:url('index/project/addtwo')}");
+        })
+</script>
+{/block}

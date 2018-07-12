@@ -1,0 +1,394 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/fqxm1.css" />
+{/block}
+
+{block name="body"}
+</div>
+<div class="wzw_fqxm">
+        <div class="wzw_fqxmAuto">
+          <div class="fqxm-biao">
+              {:lang('my_project')}
+          </div>
+          <div class="wzw_fqxm_left" style="height: auto;">
+            <form action="{:url('index/project/addthree')}" method="post" id="ajax_form">
+              <input type="hidden" name="tid" value="{$team.id}" />
+              <input type="hidden" name="project_id" value="{$project_id}" />
+              <div class="wzw_inp">
+                <div class="inp_li1 float"></div>
+                <div class="inp_li2 float" style="height:auto;width:320px;font-size: 16px;color: #003366;width:auto;text-align: left;display: inline-block;">
+                  <div class="wzw_file" id="upBtn" style="width: 320px;height: 100px;">
+                    <div class="wzw_file_son" id="imglist3">
+
+                      <input title=" " type="file" name='tx_path'  class="upfile wzw_logo" accept="image/*" style="width:100px;left: 50%;margin-left: -50px;"/>
+                      {if condition="$team['tx_path'] neq ''"}
+                      <img src="__PUBLIC__{$team.tx_path}">
+                      {else}
+                      <span>{:lang('upload_portrait')}</span>
+                      {/if}
+                    </div>
+                    
+                    <!--<img src="__IMAGES__/logo icon.png" class="touxiang_tihuan"/>-->
+                  </div>
+                </div>
+                <div class="inp_li3 float" style="height:100px;line-height:100px;width: 275px;"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <div class="wzw_inp">
+                <div class="inp_li1 float"><span>{:lang('index_box_register_lname')}</span><img src="__IMAGES__/Required.png"></div>
+                <div class="inp_li2 float"><input type="text" name='firstname' class="form-control forEmpty xmmc" placeholder="{:lang('input_fname')}" value="{$team.firstname}" /><img src="__IMAGES__/Empty.png" class="empty" /></div>
+                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <div class="wzw_inp">
+                <div class="inp_li1 float"><span>{:lang('index_box_register_fname')}</span><img src="__IMAGES__/Required.png"></div>
+                <div class="inp_li2 float"><input type="text" name="lastname" class="form-control forEmpty name4" placeholder="{:lang('input_lname')}" value="{$team.lastname}"/><img src="__IMAGES__/Empty.png" class="empty"/></div>
+                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <div class="wzw_inp">
+                <div class="inp_li1 float"><span>{:lang('Nationality')}</span><img src="__IMAGES__/Required.png"></div>
+                <div class="inp_li2 float"> 
+                  <div id="wzw_gj">
+                    <div class="wzw_xiala"><span class="glyphicon glyphicon-chevron-down"></span></div>     
+                    <select name="country_id">
+                        <option value="">{:lang('select_country')}</option>
+                       {foreach name="country_list" item="vo"}
+                        <option value="{$vo.id}" {if $team.country_id==$vo.id} selected='selected' {/if}>{if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</option>
+                        {/foreach}      
+                    </select>
+                  </div>
+                </div>
+                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <div class="wzw_inp">
+                <div class="inp_li1 float"><span>{:lang('pro_email')}</span><img src="__IMAGES__/Required.png"></div>
+                <div class="inp_li2 float"><input type="email" value="{$team.email}" name="email" class="form-control forEmpty youxiang"/><img src="__IMAGES__/Empty.png" class="empty"/></div>
+                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <div class="wzw_inp" style="height: auto;">
+                <div class="inp_li1 float" style="height: auto;"><span>{:lang('social_home_addr')}</span><img src="__IMAGES__/Required.png"></div>
+                <div class="inp_li2 float addFu" style="height: auto;">
+                  {if !empty($team.account_url)}
+                   {foreach name="$team.account_url" item="vo"}
+                    {if !empty($vo)}
+                    <input type="text" name="account_url[]" value='{$vo}' class="form-control wzw_sjzhsydz" placeholder="http://"/>
+                    {/if}
+                  {/foreach}
+                  {else}
+                   <input type="text" name="account_url[]" class="form-control wzw_sjzhsydz" placeholder="http://"/>
+                  {/if}
+                </div>
+                <div class="inp_li3 float" style="height: auto;"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span><img src="__IMAGES__/add.png" class="addInput"/></div>
+                <div style="clear: both;"></div>
+              </div>
+              <div class="wzw_inp" style="height: 160px;">
+                <div class="inp_li1 float">
+                  <span>{:lang('Team_member')}</span><img src="__IMAGES__/Required.png">
+                </div>
+                <div class="inp_li2 float" style="font-size: 16px;color: #003366;text-align: left;">
+                  <textarea name="content" rows="" class="textare" cols="" required="required" placeholder="{:lang('pro_three_des')}" maxlength="500">{$team.content}</textarea>
+                </div>
+                <div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+                <div style="clear: both;"></div>
+              </div>
+              <input type="hidden" name="zllang" value="{$zllang}">
+              <input type="hidden" name="__token__" id='token' value="{$Request.token}" />
+              <div class="wzw_inp">
+                <div class="inp_li1 float">
+                </div>
+                <div class="inp_li2 float">
+                  <a href="javascript:;">
+                  	<button class="btn wzw_next wzw_fqxm_Next wzw_saveClick" style="color: #fff;background: #4fbecb;height: 44px;width: 120px;border-radius: 10px;font-size: 18px;margin: 0 20px;">{:lang('projectzl2')}</button>
+				</a>   
+                </div>
+                <div class="inp_li3 float"></div>
+                <div style="clear: both;"></div>
+              </div>
+              
+            </form>
+            
+          </div>
+          <div class="mar0">
+           <!--  <a href="fqxm3.html"><img src="__IMAGES__/Previous button.png"/></a>
+            <a href="fqxm5.html"><img src="__IMAGES__/Next button.png"/></a> -->
+          </div>
+          <div class="wzw_fqxm_right">
+            <!--五步布局-->
+            <div class="wzw_fqxm_right_son">
+              <div class="wzw_fqxm_right_son_left">
+                <div>
+                  <img src="__IMAGES__/step 1.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor fqxmbor2"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/step2.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor fqxmbor2"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/step3.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor fqxmbor2"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/step4.png" />
+                </div>
+                <div>
+                  <div class="fqxmbor fqxmbor2"></div>
+                </div>
+                <div>
+                  <img src="__IMAGES__/gray step 5.png" />
+                </div>
+              </div>
+              <div class="wzw_fqxm_right_son_right">
+                  <div class="he1">{:lang('Basic_information')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he1">{:lang('White_Paper')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he1">{:lang('Route_planning')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he1">{:lang('Team_introduction')}</div>
+                  <div class="fqxmbor"></div>
+                  <div class="he2">{:lang('raising_plan')}</div>
+                  <div class="fqxmbor"></div>
+              </div>
+            </div>
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+{/block}
+{block name="js"}
+<script src="__JS__/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+{/block}
+{block name='script'}
+<script type="text/javascript">
+  function submitUpload(fromid, url) 
+  {
+
+    var option = {
+      url: url,
+      type: "post",
+      dataType: "json",
+      async: true,
+      // contentType: "application/json; charset=utf-8",
+      xhr:xhrOnProgress(function(e){
+				var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+				$('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
+			}),
+      beforeSubmit: function(arr, $from, options) {
+		loading();
+      },
+      success: function(info) {
+        if(info.code === 1) 
+        {
+          window.location.href=info.url;
+        } 
+        else 
+        {
+          loading(info.msg);
+          // console.log(info.msg);
+        }
+      },
+      error: function() {
+        loading("{:lang('remind1')}");
+      }
+
+    };
+    $("#" + fromid).ajaxSubmit(option);
+    return false;
+  }
+ //       图片上传限制大小  获得宽高
+        function imgFun(){
+          
+          function showimg(url) {
+            //替换logo地址
+            var addImg="<img src=''>";
+            $("#imglist3").append(addImg);
+            $("#imglist3").children("span").html("");
+            $("#imglist3 img").attr("src",url);
+            $("#imglist3 img").css({"width":"100%","max-height":"100%"});
+            $("#imglist3 img:last").siblings("img").remove();
+          }
+          function addfile() {
+            if (!this.files[0]) 
+            { 
+              alert('werwer');
+              return false;
+            }
+            var file = this.files[0]; //上传的图片的所有信息
+            //首先判断是否是图片
+            if(!/image\/\w+/.test(file.type)) {
+              alert("{:lang('remind3')}");
+              $(".wzw_logo").val("");
+              return false;
+            }
+            //在此限制图片的大小
+            var imgSize = file.size;
+            //在此处我们限制图片大小为200k
+            if(imgSize > 200 * 1024) {
+              alert("{:lang('remind2')}");
+//              $(this).val('');
+              $(".wzw_logo").val("");
+              return false;
+            }
+            var objUrl = getObjectURL(this.files[0]);
+            showimg(objUrl)
+            $(this).hide();
+            createfile();
+            $('.upfile').bind('change', addfile);
+          }
+          $('.upfile').bind('change', addfile);
+    
+          function getObjectURL(file) {
+            var url = null;
+            if(window.createObjectURL != undefined) {
+              url = window.createObjectURL(file);
+            } else if(window.URL != undefined) {
+              url = window.URL.createObjectURL(file);
+            } else if(window.webkitURL != undefined) { 
+              url = window.webkitURL.createObjectURL(file);
+            }
+            return url;
+          };
+          function createfile() {
+            $('.upfile:last').siblings(".upfile").remove();
+            $('#upBtn').append("<input type='file' title=' ' name='tx_path' value='' accept='image/*' class='upfile'>");
+          	
+          }
+        }
+        imgFun();
+      
+//                 input框内的X号获得焦点显示
+        var forEmpty = $(".forEmpty");
+        for(var f = 0; f < forEmpty.length; f++) {
+          $(".forEmpty").eq(f).change(function() {
+            $(this).next().css({
+              "display": "block"
+            }).click(function() {
+              $(this).prev().val("").next().css({
+                "display": "none"
+              });
+            })
+          })
+        };
+                  //添加input
+//      $(".addInput").click(function(){
+//        var $add="<input type='text' class='form-control addInput' account_url[] placeholder='http://'/>";
+//          var Add=$(".addFu");
+//          var fourInput=Add.children("input");
+//          if(fourInput.length<=3){
+//            Add.append($add);
+//          }else{
+//            $(".wzw_yz").eq(5).html("最多只能输入四个地址");  
+//          }
+//      });
+				$(".addInput").click(function(){
+					var $add="<input type='text' name='account_url[]' class='form-control wzw_sjzhsydz' placeholder='http://'/>";
+				    var Add=$(".addFu");
+				   	var fourInput=Add.children("input");
+				    if(fourInput.length<=3){
+				    	Add.append($add);
+//				    	input高度42px  上下外间距各4px
+				    	var beiNumber=fourInput.length*50+8;
+				   		$(".addInput").attr("style","margin-top:"+beiNumber+"px");
+				   		$(".wzw_sjzhsydz").attr("style","margin:8px 0");
+				   		$(".wzw_sjzhsydz").eq(0).attr("style","margin:0px 0");
+				   		$(".wzw_yz").eq(4).attr("style","margin-top:"+beiNumber+"px");
+				    }
+				});
+                //项目所属领域
+                $(".wzw_lyTab>li").click(function(){
+                  $(".wzw_lyTabFu").html($(this).html()+"<span class='glyphicon glyphicon-chevron-down'></span>");
+                });
+                //项目所属地区
+                $(".wzw_dqTab>li").click(function(){
+                  $(".wzw_dqTabFu").html($(this).html()+"<span class='glyphicon glyphicon-chevron-down'></span>");
+                });
+                //点击保存img事件
+                $(".wzw_saveClick").click(function(){
+                  //头像
+                  var touxiangSrc=$("#imglist3 img").attr("src");
+                  if(touxiangSrc==undefined)
+                  {
+                     $(".wzw_jg").eq(0).css("display","inline-block");
+                     $(".wzw_yz").eq(0).html("{:lang('remind7')}");
+                    return false;
+                  }else{
+                     $(".wzw_jg").eq(0).css("display","none");
+                     $(".wzw_yz").eq(0).html("");
+                  }
+                  // 第一个姓
+          var xmmc=$(".xmmc").val();
+          if(xmmc==""){
+            $(".wzw_jg").eq(1).css("display","inline-block");
+            $(".wzw_yz").eq(1).html("{:lang('remind')}");
+            return false;
+          }else{
+            $(".wzw_jg").eq(1).css("display","none");
+            $(".wzw_yz").eq(1).html("");
+          }
+          //第二个名
+          var name4=$(".name4").val();
+          if(name4==""){
+            $(".wzw_jg").eq(2).css("display","inline-block");
+            $(".wzw_yz").eq(2).html("{:lang('remind')}");
+            return false;
+          }else{
+            $(".wzw_jg").eq(2).css("display","none");
+            $(".wzw_yz").eq(2).html("");
+          }
+          //国籍
+          if($("#wzw_gj>select option:selected").text()=="{:lang('remind6')}"){
+            $(".wzw_jg").eq(3).addClass("block");
+            $(".wzw_yz").eq(3).html("{:lang('remind')}");
+            return false;
+          }else{
+            $(".wzw_jg").eq(3).removeClass("block").addClass("none");
+            $(".wzw_yz").eq(3).html("");
+          }
+//          邮箱验证
+          var youxiang=$(".youxiang").val();
+          if(youxiang.indexOf("@")!=-1 && youxiang.indexOf(".")!=-1){
+            $(".wzw_jg").eq(4).removeClass("block").addClass("none");
+            $(".wzw_yz").eq(4).html("");
+//            return false;
+          }else{
+            $(".wzw_jg").eq(4).addClass("block");
+            $(".wzw_yz").eq(4).html("{:lang('email_error')}");
+            return false;
+          }
+//          社交账号首页地止验证
+          if($(".addFu>input").eq(0).val()==""){
+            $(".wzw_jg").eq(5).addClass("block");
+            $(".wzw_yz").eq(5).html("{:lang('remind')}");
+            return false;
+          }else{
+            $(".wzw_jg").eq(5).removeClass("block").addClass("none");
+            $(".wzw_yz").eq(5).html("");
+          }
+          //成员介绍
+          if($(".textare").eq(0).val()==""){
+            $(".wzw_jg").eq(6).css("display","inline-block");
+            $(".wzw_yz").eq(6).html("{:lang('remind')}");
+            return false;
+          }else{
+            $(".wzw_jg").eq(6).css("display","none");
+            $(".wzw_yz").eq(6).html("");
+          }
+          return submitUpload('ajax_form',"{:url('index/project/addthree')}");
+
+                })
+                //点击下拉select获得焦点
+        $(".wzw_xiala").click(function(){
+          $(this).next("select").focus();
+        })
+      </script>
+{/block}

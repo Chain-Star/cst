@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="__CSS__/project.css" />
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+
+	</head>
+
+	<body style="background: #f3f3f3;">
+		<div class="mainbox">
+			<div id="user-left"></div>
+			<div class="mainRight">
+				<div class="pwdnav">
+					<img src="__IMAGES__/icon3.png" />
+					<span>{:lang('My_project')}</span>
+				</div>
+				<div class="yin">
+					<img src="__IMAGES__/yin.png" />
+				</div>
+				<div style="clear: both;"></div>
+				<!--活动项目部分-->
+				<div class="pro">
+					<div class="proTop">
+						<p>{:lang('myProject1')}</p>
+					</div>
+					<!--项目主体部分-->
+					<div class="proMain">
+						<ul class="proUl">
+							{foreach name='project_list' item='vo'}
+							<li style="width: 760px;" class="proli">
+								<div class="proLeft">
+									<img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} style="max-width: 130px;max-height: 130px;" />
+								</div>
+								<div class="proCen">
+									<p class="proxm">
+										<span class="xmmc">{$vo.name}</span> {if $vo.finish_state!=1}
+										<span class="ca">{:lang('myProject2')}</span> {elseif $vo.audit_state==0}
+										<span class="zt" style="background: #f69c00;">{:lang('myProject3')}</span> {elseif $vo.audit_state==1}
+										<span class="zt" style="background: #06c4d2;">{:lang('myProject4')}</span> {elseif $vo.audit_state==2}
+										<span class="zt" style="background: #f00;">{:lang('myProject5')}</span> {/if}
+										<div style="clear: both;"></div>
+									</p>
+
+									<p class="protg">
+										<span>{:lang('myProject6')}</span>
+										<span class="wz">{$user.name}</span>
+									</p>
+									<p class="proID">
+										<span>{:lang('myProject7')}:</span>
+										<span>{$vo.item_number}</span>
+									</p>
+									{if $vo.audit_state>0}
+									<p class="w_proDiss">{:lang('myProject8')}<span>
+										{$vo.count}
+									</span>{:lang('myProject9')}</p>
+									{/if}
+								</div>
+								<div class="proRight">
+									<ul class="probox">
+										<li class="procz">
+											{:lang('record6')}
+											<img src="__IMAGES__/down.png" />
+											<ol class="proOl">
+												{if $vo.audit_state!=1}
+													<button class="prodel">--{:lang('mes_del')}--</button> {if $vo.audit_state==-1||$vo.audit_state==2}													
+													<button class="w_bj" onclick="parent.sethref('{:url('index/project/add',array('project_id'=>$vo.id))}{$zllang}')">{:lang('myProject10')}</button>
+												{/if} {else}
+												<li class="pinglun" onclick="to_view(this)">{:lang('myProject11')}</li>
+												{/if}
+												<input type="hidden" name="pid" value="{:url('index/user_info/review',array('pid'=>$vo.id))}{$zllang}" />
+											</ol>
+										</li>
+										{if $vo.audit_state==-1&&$vo.finish_state==1}
+										<button class="w_tjsh">{:lang('myProject12')}</button>
+										{/if}
+										{if $vo.raise_jindu gt 1 || $vo.raise_jindu eq 1}
+										<button class="sqtb">
+											{:lang('zuserinfo1')}
+										</button>{/if}
+									</ul>
+
+									<!--删除弹窗-->
+									<div class="w_cs">
+										<div class="w_prozz">
+											<p>{:lang('myProject13')}</p>
+											<button class="w_proqx">{:lang('record13')}</button>
+											<button class="w_peoqr" onclick="del_project('{$vo.id}')">{:lang('record14')}</button>
+										</div>
+									</div>
+									<!--提交审核弹框、-->
+									{if $vo.raise_jindu gt 1 || $vo.raise_jindu eq 1}
+									<div class="w_zhe">
+										<div class="w_submittk">
+											<p class="w_tx">{:lang('myProject14')}?</p>
+											<button class="w_qx">{:lang('record13')}</button>
+											<button class="w_qr" onclick="set_state('{$vo.id}')">{:lang('record14')}</button>
+										</div>
+									</div>
+									<!--申请提币弹窗-->
+									<div class="sqtbTc">
+										<div class="w_sqtbk">
+											<p>{:lang('zuserinfo2')}</p>
+											<button class="w_tbqd" onclick="location.reload()">{:lang('record14')}</button>
+										</div>
+									</div>{/if}
+								</div>
+								<div style="clear:both;"></div>
+							</li>
+							<hr class="hr" /> {/foreach}
+							<div style="clear: both;"></div>
+							<!--分页-->
+							<div class="w_proFen">
+								<div class="w_feMain">
+									<div class="w_proFirst">
+										<ul class="w_proPages">
+											<li class="w_ys" onclick="return parent.changehtml('{:url('index/user_info/project',array('page'=>1))}{$zllang}',this)">{:lang('news_page_index')}</li>
+											{for start="0" end="$count1"}
+											<a class="w_ys {if $page==$i+1}active{/if} w_h" href="javascript:;" onclick="return parent.changehtml('{:url('index/user_info/project',array('page'=>$i+1))}{$zllang}',this)">{$i+1}
+											</a>
+											{/for}
+											<li class="w_ys" onclick="return parent.changehtml('{:url('index/user_info/project',array('page'=>$count1))}{$zllang}',this)">{:lang('news_page_end')}</li>
+											<div style="clear: both;"></div>
+										</ul>
+										<div style="clear: both;"></div>
+									</div>
+
+									<div style="clear: both;"></div>
+								</div>
+								<div class="w_proLastt">
+									<span>{:lang('expert_total')}{$count}{:lang('page_tiao')}</span>
+									<span>{:lang('page_per')}10{:lang('page_tiao')}</span>
+								</div>
+								<div style="clear: both;"></div>
+							</div>
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</body>
+	<script src="__JS__/whh_personal.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function to_view(t) {
+			var a = $(t).next('input').val();
+			parent.changehtml(a);
+		}
+
+		function set_state($id) {
+			$.ajax({
+				url: "{:url('index/user_info/set_state')}",
+				type: "post",
+				data: {
+					'id': $id
+				},
+				// dataType: "json",   
+				error: function() {
+					// console.log(form.attr("action"));
+					alert("{:lang('remind1')}")
+				},
+				success: function(data) {
+					if(data.code == 1) {
+						alert(data.msg);
+						parent.changehtml('{:url('index /user_info/project',array('page'=>$page))}', this);
+					} else {
+						alert(data.msg);
+					}
+				}
+			});
+		}
+
+		function del_project($id) {
+			$.ajax({
+				url: "{:url('index/user_info/del_project')}",
+				type: "post",
+				data: {
+					'id': $id
+				},
+				// dataType: "json",   
+				error: function() {
+					// console.log(form.attr("action"));
+					alert("{:lang('remind1')}")
+				},
+				success: function(data) {
+					if(data.code == 1) {
+						alert(data.msg);
+						parent.changehtml('{:url('index /user_info/project',array('page'=>$page))}', this);
+					} else {
+						alert(data.msg);
+					}
+				}
+			});
+		}
+		$(".sqtb").click(function(){
+			$(this).parents(".probox").siblings(".sqtbTc").show();
+			$(".prodel").attr("disabled", true);
+			$(".w_bj").attr("disabled",true)
+			$(".w_tjsh").attr("disabled",true);
+			$(".sqtb").attr("disabled",true);
+		})
+		$(".w_tjsh").click(function() {
+			$(this).parent().siblings(".w_zhe").show();
+			$(".w_tjsh").attr("disabled",true);
+			$(".prodel").attr("disabled",true);
+			$(".w_bj").attr("disabled",true);
+			$(".sqtb").attr("disabled",true);
+		})
+		$(".prodel").click(function() {
+			$(".w_tjsh").unbind('click');
+			$(this).parents(".probox").siblings(".w_cs").show();
+			$(".prodel").attr("disabled", true);
+			$(".w_bj").attr("disabled",true);
+			$(".sqtb").attr("disabled",true);
+			$(".w_tjsh").attr("disabled",true);
+		})
+
+		//		鼠标移入操作效果
+		$(".procz").hover(function() {
+			$(this).children(".proOl").show();
+		}, function() {
+			$(this).children(".proOl").hide();
+		})
+
+		$(".w_proqx").click(function() {
+			$(".prodel").attr("disabled", false);
+			$(".w_bj").attr("disabled",false);
+			$(".sqtb").attr("disabled",false);
+			$(".w_tjsh").attr("disabled",false);
+			$(this).parent().parent().hide();
+			$(".w_tjsh").bind('click', function() {
+				$(this).parent().siblings(".w_zhe").show()
+			});
+			$(this).parents(".w_cs").siblings(".probox").children(".procz").children(".proOl").hide()
+		});
+		$(".w_qx").click(function() {
+			$(this).parents(".w_zhe").hide();
+			$(".prodel").attr("disabled", false);
+			$(".w_bj").attr("disabled",false);
+			$(".sqtb").attr("disabled",false);
+			$(".w_tjsh").attr("disabled",false);
+		})
+		
+	</script>
+
+</html>

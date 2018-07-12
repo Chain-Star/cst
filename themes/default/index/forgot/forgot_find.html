@@ -1,0 +1,38 @@
+{extend name="base" /}
+{block name="body"}
+    <div class="otherBanner">
+        <img src="__HOME__/img/n-banner.jpg"/>
+    </div>
+</div>
+<!--忘记密码部分-->
+<div class="wzw_wangj">
+    <form action="{:url('api/Forgot/update')}" id="updatepForm" method="POST">
+        <div class="wzw_wangj_Auto">
+            {if $mail_mess neq ''}
+            <h3>{$mail_mess}</h3>
+            <p>请重新发送邮件验证</p>
+            {else}
+            <h3>重置密码</h3>
+            <p>重置密码的电子邮箱地址：{$user_id.email}</p>
+            <p>密码****8位以上****</p>
+            <p><input type="password" name="password" value="" class="form-control uppgpa" />
+            <p>确认密码</p>
+            <p>
+                <input type="password" name="rpassword" value="" class="form-control upprpa" />
+                <input type="hidden" name="__token__" value="{$Request.token}" />
+                <input type="hidden" name="fptime" value="{$time}" class="fptime">
+                <input type="hidden" name="fppubkey" value="{$pubkey}" class="fppubkey">
+                <input type="hidden" name="uri" value="{php}echo $_SERVER['REQUEST_URI']{/php}">
+                <input type="hidden" name="userid" value="{$user_id.id}">
+                <button class="btn btn2" onclick="return updatepass()" >SEND</button>
+            </p>
+            {/if}
+        </div>
+    </form>
+    <!-- <script src="__HOME__/js/home-findpass.js"></script> -->
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__HOME__/js/home-findpass.js"></script>
+
+{/block}

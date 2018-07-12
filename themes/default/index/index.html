@@ -1,0 +1,292 @@
+{extend name="base" /}
+{block name="body"}
+
+<!-- Wrapper for slides -->
+<div class="carousel-inner" role="listbox">
+    {foreach name="banner_list" item="bl" key="k"}
+    <div class="item {if $k eq 0}active{/if}">
+        <img {if !empty($bl.img_path)}src="__PUBLIC__{$bl.img_path}"{/if} alt="...">
+    </div>
+    {/foreach}
+</div>
+ <!--页码-->
+ <!--<div class="page">
+     <img src="__HOME__/img/futu.png"/><span class="span1">1</span><span>/</span><span>{$banner_c}</span>
+ </div>-->
+<!-- Controls -->
+<div class="Controls">
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div class="banner_posi" id="hotpro">
+    <a href="javascript:;" class="jigou">{:lang('index_latest_projects')}</a>
+    <a href="javascript:;" class="xiangmu borthree">{:lang('index_popular_projects')}</a>
+</div>
+
+</div>
+
+<!--box3-->
+<div class="box3">
+<div class="box_three" style="display: block;">
+    <ul>
+        {foreach name="hot_project" item="vo"}
+        <li onclick="window.location.href='{:url('index/invest/index')}{$zllang}'">
+            <img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="iconTwo" alt="__PUBLIC__{$vo.logo_path}"/>
+            <div class="posi_ab">
+                <div class="posi_ul">
+                    <div class="posi_li1">
+                        <div class="posi_li1_left">
+                            <img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="posi_img" alt="__PUBLIC__{$vo.logo_path}"/>
+                        </div>
+                        <div class="posi_li1_right">
+                            <span>{$vo.name}</span>
+                            <span>{if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</span>
+                        </div>
+                    </div>
+                    <div class="posi_li2">
+                        <p>
+                                <span>{:lang('index_stars')}</span>
+                                {php} 
+                                    $arr=[];
+                                    $arr[]=$vo['basic_star'];
+                                    $arr[]=$vo['team_star'];
+                                    $arr[]=$vo['book_star'];
+                                    $arr[]=$vo['plan_star'];
+                                    $arr[]=$vo['route_star'];
+                                    rsort($arr);
+                                {/php}
+                                <img {if $arr[0]==1} src="__IMAGES__/star1.png" {elseif $arr[0]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                <img {if $arr[1]==1} src="__IMAGES__/star1.png" {elseif $arr[1]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                <img {if $arr[2]==1} src="__IMAGES__/star1.png" {elseif $arr[2]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                <img {if $arr[3]==1} src="__IMAGES__/star1.png" {elseif $arr[3]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                <img {if $arr[4]==1} src="__IMAGES__/star1.png" {elseif $arr[4]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                
+                        </p>	
+                    </div>
+                    <div class="posi_li3">
+                        <p><span class="sp1">TOKEN</span><span class="sp2">{$vo.token}</span></p>
+                        <p><span class="sp1">{:lang('index_Total_Issued_Volume')}</span><span class="sp2">{$vo.sum}</span></p>
+                        <p><span class="sp1">{:lang('index_Liquidity')}</span><span class="sp2">{$vo.actual}</span></p>
+                        <p><span class="sp1">{:lang('index_Fundraising_Object')}</span><span class="sp2">{if $vo.currency eq 2}ETH{/if}</span></p>
+                        <p><span class="sp1">{:lang('index_Fundraising_Amount')}</span><span class="sp2">{$vo.plan}</span></p>
+                        <p><span class="sp1">{:lang('index_Price_Ratio')}</span><span class="sp2">{$vo.price}</span></p>
+                    </div>
+                    <div class="posi_li4">
+                        <p><span class="sp1">{:lang('index_Fundraising_deadline')}</span><span class="sp2">{:date("d/m/Y",$vo.start_time)}-{:date("d/m/Y",$vo.end_time)}</span></p>
+                        <div class="jindutiao">
+                        	<span class="sp1">{:lang('index_Fundraising_Progress')}</span>
+                        		<div class="jin_Fu">
+									<div class="jin_1 zlll{$vo.id}" style="width:{$vo.scale1}px; z-index: 12;"></div>
+								</div>
+                        	<span class="sp4">{$vo.scale}</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </li>
+        {/foreach}
+    </ul>
+</div>
+<div class="box_three">
+        <ul>
+            {foreach name="new_project" item="vo"}
+            <li onclick="window.location.href='{:url('index/invest/index')}{$zllang}'">
+                <img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="iconTwo" alt="__PUBLIC__{$vo.logo_path}"/>
+                <div class="posi_ab">
+                    <div class="posi_ul">
+                        <div class="posi_li1">
+                            <div class="posi_li1_left">
+                                <img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="posi_img" alt="__PUBLIC__{$vo.logo_path}"/>
+                            </div>
+                            <div class="posi_li1_right">
+                                <span>{$vo.name}</span>
+                                <span>{if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</span>
+                            </div>
+                        </div>
+                        <div class="posi_li2">
+                            <p>
+                                    <span>{:lang('index_stars')}</span>
+                                    {php} 
+                                        $arr=[];
+                                        $arr[]=$vo['basic_star'];
+                                        $arr[]=$vo['team_star'];
+                                        $arr[]=$vo['book_star'];
+                                        $arr[]=$vo['plan_star'];
+                                        $arr[]=$vo['route_star'];
+                                        rsort($arr);
+                                    {/php}
+                                    <img {if $arr[0]==1} src="__IMAGES__/star1.png" {elseif $arr[0]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                    <img {if $arr[1]==1} src="__IMAGES__/star1.png" {elseif $arr[1]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                    <img {if $arr[2]==1} src="__IMAGES__/star1.png" {elseif $arr[2]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                    <img {if $arr[3]==1} src="__IMAGES__/star1.png" {elseif $arr[3]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                    <img {if $arr[4]==1} src="__IMAGES__/star1.png" {elseif $arr[4]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
+                                    
+                            </p>	
+                        </div>
+                        <div class="posi_li3">
+                            <p><span class="sp1">TOKEN</span><span class="sp2">{$vo.token}</span></p>
+                            <p><span class="sp1">{:lang('index_Total_Issued_Volume')}</span><span class="sp2">{$vo.sum}</span></p>
+                            <p><span class="sp1">{:lang('index_Liquidity')}</span><span class="sp2">{$vo.actual}</span></p>
+                            <p><span class="sp1">{:lang('index_Fundraising_Object')}</span><span class="sp2">{$vo.currency}</span></p>
+                            <p><span class="sp1">{:lang('index_Fundraising_Amount')}</span><span class="sp2">{$vo.plan}</span></p>
+                            <p><span class="sp1">{:lang('index_Price_Ratio')}</span><span class="sp2">{$vo.price}</span></p>
+                        </div>
+                        <div class="posi_li4">
+                            <p><span class="sp1">{:lang('index_Fundraising_deadline')}</span><span class="sp2">{:date("d/m/Y",$vo.start_time)}-{:date("d/m/Y",$vo.end_time)}</span></p>
+                            <div class="jindutiao">
+                                <span class="sp1">{:lang('index_Fundraising_Progress')}</span>
+                                    <div class="jin_Fu">
+                                        <div class="jin_1 zlll{$vo.id}" style="width:{$vo.scale1}px; z-index: 12;"></div>
+                                    </div>
+                                <span class="sp4">{$vo.amount}/{$vo.scale}</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {/foreach}
+        </ul>
+    </div>
+
+<div class="box_three_two">
+    <ul>
+        {foreach name="tcategory" item="tc" key="tk"}
+        <li class="box_three_two_li{$tk+1}" onclick="window.location.href='{:url($tc.url)}{$zllang}'" style="cursor: pointer;">
+            <img src="__HOME__/img/squ{$tk+1}-h.png" class="box_three_two_posiimg"/>
+            <img src="__HOME__/img/squ{$tk+1}.png" class="img_chu"/>
+            <div class="box_three_two_posi{if $tk%2 neq 0}2{/if}">
+                <h3>{$tc.category_name}</h3>
+                <p>{$tc.content}</p>
+            </div>
+        </li>
+        {/foreach}
+        
+        <img src="__HOME__/img/square.png" class="zhong"/>
+        <img src="__HOME__/img/logo.png" class="zhong2"/>
+    </ul>
+    
+</div>
+<h6 class="wzw_none_one" style="display: none;">{:lang('index_charity_donation')}</h6>
+<div class="wzw_jia">
+    <div class="wzw_jiason">
+        <ul>
+            <li>
+                <img src="__HOME__/img/index---_03 (1).png"/>
+                <span class="sp1">{:lang('index_More_Safer')}</span>
+                <span class="sp2">{:lang('index_More_Safer_C')}</span>
+            </li>
+            <li>
+                <img src="__HOME__/img/index---_03 (2).png"/>
+                <span class="sp1">{:lang('index_More_Efficient')}</span>
+                <span class="sp2">{:lang('index_More_Efficient_C')}</span>
+            </li>
+            <li>
+                <img src="__HOME__/img/index---_03 (3).png"/>
+                <span class="sp1">{:lang('index_More_Comprehensive')}</span>
+                <span class="sp2">{:lang('index_More_Comprehensive_C')}</span>
+            </li>
+            <div style="clear: both;"></div>
+        </ul>
+    </div>
+</div>
+</div>
+
+<div class="box4">
+<div class="boxZhong">
+    <div class="box4_bt">
+        <p>
+            <img src="__HOME__/img/1h_07.jpg"/>
+            {:lang('index_Hot_news')}
+            <img src="__HOME__/img/1h_09.jpg"/>
+        </p>
+    </div>
+    
+     <div class="wzw_box4_left">
+        {foreach name="news_last" item="nl" key='k'}
+        {if $k eq 0}       
+    	<div class="wzw_box4_left_top" onclick="window.location.href='{$nl.url}{$zllang}'" style="cursor: pointer;">
+    		<div class="wzw_box4_left_top_left">
+    			<img {if !empty($nl.img_path)}src="__PUBLIC__{$nl.img_path}"{/if} class="leftimg"/>
+    			<div class="wzw_box4_left_top_left_posi1">
+    				<span class="sp1">{$nl.create_time|date="M",###}</span>
+    				<span class="sp2">{$nl.create_time|date="d",###}</span>
+    			</div>
+    			<img src="__HOME__/img/opacity1.png" class="wzw_box4_left_top_left_posi2"/>
+            </div>
+    		<div class="wzw_box4_left_top_right">
+    			<div class="wzw_box4_left_top_right_top">
+    				<span class="sp1">{$nl.title}</span>
+    				<span class="sp2">{$nl.keysword}</span>
+    			</div>
+    			<div class="wzw_box4_left_top_right_bottom">
+    				<p>{$nl.create_time|date="Y-m-d",###}<img src="__HOME__/img/index_20.png" class="wzw_more1"/></p>
+    			</div>
+            </div>
+        </div>
+        {/if}
+        {/foreach}
+        {foreach name="news_last" item="nl" key='k'}
+        {if $k eq 1} 
+    	<div class="wzw_box4_left_bottom" onclick="window.location.href='{$nl.url}{$zllang}'" style="cursor: pointer;">
+    		<div class="wzw_box4_left_top_left">
+    			<img {if !empty($nl.img_path)}src="__PUBLIC__{$nl.img_path}"{/if} class="leftimg"/>
+    			<div class="wzw_box4_left_top_left_posi1">
+    				<span class="sp1">{$nl.create_time|date="M",###}</span>
+    				<span class="sp2">{$nl.create_time|date="d",###}</span>
+    			</div>
+    			<img src="__HOME__/img/opacity1.png" class="wzw_box4_left_top_left_posi2"/>
+    		</div>
+    		<div class="wzw_box4_left_top_right">
+    			<div class="wzw_box4_left_top_right_top">
+    				<span class="sp1">{$nl.title}</span>
+    				<span class="sp2">{$nl.keysword}</span>
+    			</div>
+    			<div class="wzw_box4_left_top_right_bottom">
+    				<p>{$nl.create_time|date="Y-m-d",###}<img src="__HOME__/img/index_20.png" class="wzw_more1"/></p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    {/if}
+    {/foreach}
+    {foreach name="news_last" item="nl" key='k'}
+    {if $k eq 2} 
+    <div class="wzw_box4_right" onclick="window.location.href='{$nl.url}{$zllang}'" style="cursor: pointer;">
+    	<div class="wzw_box4_right_top">
+    		<img {if !empty($nl.img_path)}src="__PUBLIC__{$nl.img_path}" {/if}class="leftimg"/>
+    		<div class="wzw_box4_left_top_left_posi1">
+    			<span class="sp1">{$nl.create_time|date="M",###}</span>
+    			<span class="sp2">{$nl.create_time|date="d",###}</span>
+    		</div>
+    		<img src="__HOME__/img/opacity2.png" class="wzw_box4_left_top_left_posi3"/>
+    	</div>
+    	<div class="wzw_box4_right_bottom">
+    		<div class="wzw_box4_right_bottom_top">
+    			<span class="sp1">{$nl.title}</span>
+    			<span class="sp2">{$nl.keysword}</span>
+    		</div>
+    		<div class="wzw_box4_left_top_right_bottom">
+    			<p>{$nl.create_time|date="Y-m-d",###}<img src="__HOME__/img/index_20.png" class="wzw_more1"/></p>
+    		</div>
+    	</div>
+    </div>
+    {/if}{/foreach}
+    <div class="box4_kong"></div>
+    <div class="box4_more">
+        <a href="{:url('index/news/index')}{$zllang}">{:lang('index_news_more')} <img src="__HOME__/img/arrow2.png" height="14px"/></a>
+    </div>
+</div>
+</div>
+{/block}
+{block name="script"}
+<script src="__HOME__/js/home-index.js"></script>
+{/block}

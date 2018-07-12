@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0; }
+  
+.pwdnav {
+	float: left;
+	width: 290px;
+	height: 60px;
+	line-height: 60px;
+	background-color: #e4e5e5;
+	margin-top: 20px;
+}
+
+.pwdnav img {
+	margin-left: 40px;
+	margin-right: 15px;
+}
+
+.pwdnav span {
+	font-size: 18px;
+}
+
+.yin {
+	float: left;
+	display: inline-grid;
+	margin-top: 20px;
+}
+.w_wen {
+  width: 840px;
+  background: white;
+  overflow: hidden; }
+  .w_wen .header {
+    text-align: center; }
+    .w_wen .header p {
+      margin-top: 40px; }
+  .w_wen .w_wenMain {
+    padding: 30px 30px; }
+    .w_wen .w_wenMain p {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+      text-indent: 2em;
+      line-height: 25px; }
+  .w_wen .w_PN {
+    border-top: 1px dashed #ddd;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px; }
+    .w_wen .w_PN p {
+      display: inline-block;
+      margin-top: 30px; }
+    .w_wen .w_PN a {
+      text-decoration: none; }
+
+/*# sourceMappingURL=wenzhang.css.map */

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9"> 
+
+		<!--[if IE 8]>
+		<meta http-equiv="X-UA-Compatible" content="IE=9">
+		<script src="js/respond.js"></script>
+		<script src="js/html5shiv.min.js"></script>
+		<script src="js/selectivizr-min.js"></script>
+		<![endif]-->
+        
+		<link rel="stylesheet" type="text/css" href="css/aboutUs.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<script src="js/jquery-1.8.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<title></title>
+		<style>
+			.header_nav_li4 a:hover{
+			    color: #2253AB !important;
+			}
+			.borthree{
+			    background: rgba(3,54,54,0.5) !important;
+			    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF184235,endColorstr=#BF184235);
+			}
+		</style>
+	</head>
+	<body>
+		<!--登陆弹框-->
+		<div class="wzw_dltk">
+			<div class="wzw_dltk_aoto">
+				<img src="img/wrong.png" class="Close"/>
+				<div class="dltk_padding">
+					<div class="biao">
+						<span>—————————</span>
+						<span class="sp1">log in with email</span>
+						<span>—————————</span>
+					</div>
+					<div class="inp">
+						<input type="email" name="" id="" value="Email" class="form-control dengluemail"/>
+						<input type="text" name="" id="" value="Password" class="form-control denglumima"/>
+						<label>
+							<input type="checkbox" name="" id="" value="" class="fux"/>
+							Remember me
+						</label>
+						<a href="wjmm.html">Forgot password？</a>
+						<div style="clear: both;"></div>
+						<button class="btn dengl">登陆</button>
+						<button class="btn zhuc">注册</button>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="other">
+						<span>您还可以使用以下方式进行登录</span>
+						<p><img src="img/f.png"/><img src="img/t.png"/></p>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--注册弹框-->
+		<div class="wzw_zctk">
+			<div class="wzw_zctk_aoto">
+				<img src="img/wrong.png" class="Close"/>
+				<div class="zctk_padding">
+					<div class="biao">
+						<span>————————————</span>
+						<span class="sp1">注册</span>
+						<span>————————————</span>
+					</div>
+					<div class="zc_inp">
+						<input type="text" name="" id="" value="First Name" class="form-control"/>
+						<input type="text" name="" id="" value="Last Name" class="form-control"/>
+						<input type="email" name="" id="" value="Email" class="form-control"/>
+						<input type="text" name="" id="" value="Password" class="form-control"/>
+					</div>
+					<label>
+						<input type="checkbox" name="" id="" value="" class="fux"/>
+						帮我申请每周时事通讯
+					</label>
+					<div style="clear: both;"></div>
+					<button class="btn zcBtn">CREATE AN ACCOUNT</button>
+					<p class="sp1">我同意ChainStar的<a href="fwtk.html">使用条款</a>和<a href="#">隐私政策</a></p>
+					<div class="other2">
+						<a href="#" class="a1">已经有一个账户吗？</a>
+						<a href="#" class="a2">登陆</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="box">
+			<!--头部导航-->
+			<div class="header">
+				<div class="header_nav">
+					<ul>
+						<li class="header_nav_li1">
+							<a href="index.html">
+								<img src="img/logo.png" />
+							</a>
+						</li>
+						<li class="header_nav_li2">
+							<p>
+								<label>
+									<a href="javascript:;" class="faxianClick">发现</a>
+									<img src="img/deploy.png" />
+								</label>
+							</p>
+						</li>
+						<li class="header_nav_li3">
+							<input type="text" name="" id="search" class="form-control" />
+							<img src="img/search.png" />
+						</li>
+						<li class="header_nav_li4">
+							<a href="#">发起投资</a>
+							<a href="#">发起项目</a>
+						</li>
+						<li class="header_nav_li5">
+							<button class="btn header_nav_li5_btn1">登陆</button>
+							<button class="btn header_nav_li5_btn2">注册</button>
+							<!--<div class="btn-group geren">
+								<button class="btn btn-default btn-lg dropdown-toggle touxaing" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img src="img/crown.png"/> <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">投资记录</a></li>
+									<li><a href="#">我的项目</a></li>
+									<li><a href="#">投资记录</a></li>
+									<li><a href="#">帮助</a></li>
+								</ul>
+							</div>-->
+						</li>
+						<li class="header_nav_li6">
+							<div class="btn-group yuyan yuyan2">
+								<button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 中文简体 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">中文简体</a></li>
+									<li><a href="#">日文</a></li>
+									<li><a href="#">韩文</a></li>
+									<li><a href="#">English</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+//				首页点击登陆弹框
+				$(".header_nav_li5_btn1").click(function(){
+						$(".wzw_dltk").fadeToggle();
+						$('body').css({ 
+				            "overflow-x":"hidden",
+				            "overflow-y":"hidden"       
+				        });
+				         inp=$(".inp input");
+				        for(var j=0;j<inp.length;j++){
+				        	inp.eq(j).css({"color":"gray"});
+				        	inp.eq(j).focus(function(){
+				        		if($(this).val()=="Email" || $(this).val()=="Password"){
+				        			$(this).val("");
+				        		}
+				        	})
+				        }
+				});
+//				 注册框点击x号关闭
+                $(".Close").click(function(){
+				     $(this).parent().parent().fadeOut();
+				        $('body').css({ 
+					        "overflow-x":"auto",
+					        "overflow-y":"auto"       
+					    });
+				});
+//				点击注册弹框
+                $(".header_nav_li5_btn2").click(function(){
+                	$(".wzw_zctk").fadeToggle();
+                	$('body').css({ 
+				            "overflow-x":"hidden",
+				            "overflow-y":"hidden"       
+				        });
+				        var inP=$(".zc_inp>input");
+				        for(var n=0;n<inP.length;n++){
+				        	inP.eq(n).css({"color":"gray"});
+				        	inP.eq(n).focus(function(){
+				        		if($(this).val()=="Email" || $(this).val()=="Password" || $(this).val()=="First Name" || $(this).val()=="Last Name"){
+				        			$(this).val("");
+				        		}
+				        	})
+				        }
+                })
+//              首页登陆验证
+               $(".dengl").click(function(){
+               	   var Email=$(".dengluemail").val();
+               	   var PassWord=$(".denglumima").val();
+               	   if(Email=="123@qq.com" && PassWord=="123"){
+               	   	$(".wzw_dltk").stop(true,true).fadeOut();
+               	   	$(".header_nav_li5").html("<div class='btn-group geren'>"
+               	   	+"<button class='btn btn-default btn-lg dropdown-toggle touxaing' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
+						+"<img src='img/crown.png'/> <span class='caret'></span>"
+					+"</button>"
+					+"<ul class='dropdown-menu'>"
+						+"<li><a href='#'>投资记录</a></li>"
+						+"<li><a href='#'>我的项目</a></li>"
+						+"<li><a href='#'>投资记录</a></li>"
+						+"<li><a href='#'>帮助</a></li>"
+					+"</ul>"
+               	   	+"</div>");
+               	   };
+               	   $('body').css({ 
+					        "overflow-x":"auto",
+					        "overflow-y":"auto"       
+					    });
+               });
+			</script>
+			<!--banner-->
+			<div id="carousel-example-generic" class="carousel slide wzw_box" data-ride="carousel"> 
+                 <!--第二部分banner-->
+				<div class="wzw_banner">
+					<img src="img/banner2.jpg"/>
+					<div class="wzw_bannerbiao">
+						<span class="wzw_sp1">——————</span><span class="wzw_sp2">关于我们</span><span class="wzw_sp1">——————</span>
+					</div>
+				</div>
+				<!--导航发现Click部分-->
+				<div class="faxianClickShow">
+					<div class="ShowAuto">
+						<div class="ImgHover">
+							<ul>
+								<li class="ImgHoverbor">
+									<span class="sp1">发起项目</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">发起投资</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">公益捐赠</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">投资课堂</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li class="wzw_clickT">
+									<span class="sp1">Chain Star Recommend</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+								<li>
+									<span class="sp1">新闻资讯</span>
+									<div class="muhuImg_posi">
+										<img src="img/hover-b.png"/>
+									</div>
+									<div class="border_bottom"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="showTwo">
+							<div class="showTwo_right">
+								<a href="#">底层技术及基础设施</a>
+								<a href="#">通用应用及技术扩展</a>
+								<a href="#">金融</a>
+								<a href="#">数字货币</a>
+								<a href="#">娱乐</a>
+								<a href="#">社交</a>
+								<a href="#">供应链管理</a>
+								<a href="#">物联网</a>
+								<a href="#">医疗</a>
+								<a href="#">能源服务</a>
+								<a href="#">公益</a>
+								<a href="#">法律服务</a>
+								<a href="#">其他</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--导航发现Click事件-->
+			<script type="text/javascript">
+//				点击导航发现功能
+//				$(".faxianClick").click(function(){
+//					$(".faxianClickShow").stop(true,true).slideToggle(500);
+//				})
+//				发现里面6个li的 鼠标hover效果
+                $(".ImgHover>ul>li").hover(function(){
+                	var index=$(this).index();
+                    $(".ImgHover>ul>li").eq(index).attr("style","border: 4px solid #06c5d2;");
+                    $(".ImgHover>ul>li").children(".muhuImg_posi").eq(index).css({"display":"block"});
+                    $(".ImgHover>ul>li").children("span").eq(index).css({"margin-top":"-10px"});
+                    $(".ImgHover>ul>li").children(".border_bottom").eq(index).css({"display":"none"});
+                },function(){
+                	var index=$(this).index();
+                    $(".ImgHover>ul>li").eq(index).removeAttr("style","border: 4px solid #06c5d2;");
+                    $(".ImgHover>ul>li").children(".muhuImg_posi").eq(index).css({"display":"none"});
+                    $(".ImgHover>ul>li").children("span").eq(index).css({"margin-top":"0"});
+                    $(".ImgHover>ul>li").children(".border_bottom").eq(index).css({"display":"block"});
+                })
+                //				首页轮播
+				$('.carousel').carousel({
+					interval: 3000,
+				})
+                $(".wzw_clickT").click(function(){
+                	$(".xiangmu").addClass("borthree");
+                    $(".jigou").removeClass("borthree");
+                	$(".box_three").eq(0).stop(true,true).fadeIn(500);
+                	$(".box_three").eq(1).stop(true,true).fadeOut(20);
+                });
+                //				点击导航发现功能
+				$(".header_nav_li2").hover(function(){
+					$(".faxianClickShow").stop(true,true).slideDown(500);
+				},function(){
+					$(".header_nav_li2").click(function(){
+						$(".faxianClickShow").stop(true,true).slideUp(500);
+					})
+				})
+//              轮播左右按钮实现页码显示
+                function banner(){
+	                	var i=1;
+	                $(".right").click(function(){
+	                	i++;
+	                	$(".span1").html(i);
+	                	if(i>5){
+	                		i=1;
+	                		$(".span1").html(i);
+	                	}
+	                })
+	                $(".left").click(function(){
+	                	i--;
+	                	$(".span1").html(i);
+	                	if(i<1){
+	                		i=5;
+	                		$(".span1").html(i);
+	                	}
+	                })
+                }
+                banner();
+                
+			</script>
+			<div class="wzw_box">
+			
+			<!--第三部分li-->
+			<div class="wzw_about">
+				<div class="wzw_aboutAuto">
+                    <ul>
+                        <li>
+                        	<h3>Chain Star是什么？</h3>
+                        	<p>是什么
+ChainStar区块链服务平台，一个帮助区块链项目成长和引导投资目光的服务平台。ChainStar非常重视区块链技术给世界带来的革命性进步，我们认识到，每一个优秀的区块链项目都在改变人们的生活方式和工作方式，一个全新的区块链技术诞生都在改进社会的生产方式和运行方式，因此ChainStar决心去发掘那些真正能够带来变革的区块链项目并帮助他们成长，同时ChainStar希望让投资者的注意力集中在真正值得关注的区块链项目上，让资金尽可能找到有价值的流动方向。ChainStar的目标是成为帮助区块链技术变革社会的关键枢纽。</p>
+                        </li>
+                        <li>
+                        	<h3>Chain Star如何做？</h3>
+                        	<p>ChainStar将会挖掘并审核优秀的、有潜力的、有决心的区块链项目，这些项目在通过审核后将被公式在ChainStar平台上，并且表达出项目的发展意愿以供能够帮助它的人们参考。投资者在ChainStar上可以直观地看到这些项目和项目有关的真实信息，投资者可以依据ChainStar平台提供的Star value系统以及自身对项目的调查和认知作为投资参考。</p>
+                        </li>
+                        <li>
+                        	<img src="img/about1.jpg"/>
+                        </li>
+                        <li>
+                        	<h3> Star value系统</h3>
+                        	<p>ChainStar平台为了让投资者更加真实透明地认知一个项目、提高平台上每个项目的可靠度做了一系列的努力，最重要的就是推出Star value系统。</p>
+                        	<p>Star value系统是ChainStar平台对每一个项目审核流程的报告，告知所有人ChainStar审核了项目的哪些内容以及如何审核的过程。</p>
+                        </li>
+                        <li>
+                        	<h3>团队成员审查</h3>
+                        	<p>ChainStar认为区块链项目的核心是团队成员，所以对团队成员的审核是重中之重，ChainStar尽全力确保每一个项目的团队成员都是真实可靠的，我们要求项目发起者在提交成员信息的时候提供更多用于展示之外的私人信息，依据这些信息ChainStar将联系到每一位团队成员进行访问和记录，以此来确保这个团队具有高度的共识性、统一性和团结性。</p>
+                        </li>
+                        <li>
+                        	<h3>白皮书评审</h3>
+                        	<p>白皮书是每个区块链项目的成长关键，起到项目公示、创造共识、获取帮助的作用，ChainStar平台拥有一个全球范围的区块链专家评审团队，成员是区块链行业内资深的创业者/机构、投资者/机构、研究员等等，他们将对每一份提交到ChainStar平台的白皮书进行评审和指导建议，帮助ChainStar平台过滤掉那些不诚实、不成熟和不符合逻辑的项目。对于本来能够通过评审但白皮书撰写不规范或内容表达不清楚的项目，专家评审团将提出合理的修改建议和忠告，帮助创业者增加再次审核的通过率。</p>
+                        </li>
+                        <li>
+                        	<h3>令牌及令牌经济学评估</h3>
+                        	<p>对于每一套创业者和他的团队所设计的令牌系统，ChainStar的专家评审团队都会慎重对待，以怀疑的态度来评审，尽量确保每一套令牌系统都禁得起各种困难的检验。在区块链项目的发展历程中，出现了很多虚假的项目，利用诱人的令牌系统或带有欺诈性质的商业计划骗取大量资金，所以ChainStar平台和专家评审团将会谨慎对待每一套令牌系统，提出任何可能出现欺骗行为的设想，尽可能地验证每套令牌系统的可靠性并对潜在风险做出提示。</p>
+                        </li>
+                        <li>
+                        	<img src="img/about2.jpg"/>
+                        </li>
+                        <li>
+                        	<h3>社区和媒体观察</h3>
+                        	<p>区块链项目的社区是体现其共识性的主要区域，ChainStar平台对项目所属的每个社区都会进行参与和观察，依此来判断社区对项目的共识程度和舆论声音是否基本统一。通过对项目媒体新闻历史的追踪也是我们参考项目共识性的重要因素，对于社区和媒体声音不稳定的项目，ChainStar平台会慎重考虑。</p>
+                        </li>
+                        <li>
+                        	<h3>实地考察</h3>
+                        	<p>对于那些积极的、有潜力的、迫切需要获得帮助的创业团队，ChainStar平台乐于去到其项目团队所在地，进行更加贴近、深入的了解和探讨，更透明地观察和见证团队的成长环境，这一过程将被平台记录并公示，这将是一种全新的、更有效、更友好的创业体验，ChainStar欢迎那些有自信的团队发起邀请，这将极大增加项目的审核通过率和获取帮助的几率。</p>
+                        </li>
+                        <div>根据这一系列的观察审核，Star value系统赋予每一个项目最高五颗星级别的标识，完美通过一项审核内容就会获得一颗星级标识，通过但有潜在风险的项目可获得半颗星级标识，这些星级标识形成了一个项目可靠程度的参考，但不具备投资建议功能，仅作为参考使用。</div>
+                    </ul>
+				</div>
+			</div>
+		</div>
+			<!--底部-->
+			<div class="footer">
+				<div class="foot">
+					<div class="foot_left">
+						<table>
+							<tr>
+								<th>发现</th>
+								<th>帮助</th>
+								<th>说明</th>
+								<th>语言</th>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">发起投资</a>
+								</td>
+								<td>
+									<a href="AboutUs.html">关于我们</a>
+								</td>
+								<td>
+									<a href="FeiYong.html">费用说明</a>
+								</td>
+								<td rowspan="7" class="enyuyan">
+									<div class="btn-group yuyan">
+										<button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    中文简体 <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+										  <li><a href="#">中文简体</a></li>
+										  <li><a href="#">日文</a></li>
+										  <li><a href="#">韩文</a></li>
+										  <li><a href="#">English</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">发起项目</a>
+								</td>
+								<td>
+									<a href="team.html">团队介绍</a>
+								</td>
+								<td>
+									<a href="FAQ.html">FAQ</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">公益捐赠</a>
+								</td>
+								<td>
+									<a href="zixun.html">热门资讯</a>
+								</td>
+								<td>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">投资课堂</a>
+								</td>
+								<td>
+									<a href="xrheaq.html">信任和安全</a>
+								</td>
+								<td>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">项目推荐</a>
+								</td>
+								<td>
+									<a href="#">联系我们</a>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">投资机构</a>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">投资个人</a>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						
+					</div>
+					<div class="foot_right">
+						<p class="p1"><img src="img/logo.png"/></p>
+						<p class="p2">chainstar.com</p>
+						<p class="p3">400-1123-4567</p>
+						<p class="p4">周一到周日(9:00-18:00)</p>
+					</div>
+				</div>
+				<div class="foot2">
+					<div class="foot2_zhong">
+						<div class="footImgOne">
+							<img src="img/icon.png"/>
+						</div>
+						<div class="footImgTwo">
+							<img src="img/icon2.png"/>
+						</div>
+						<div class="footThree">
+							<a href="#">使用条款</a>
+							<a href="#">隐私政策</a>
+							<a href="#">ChainStar政策</a>
+							<a href="#">合作条款</a>
+						</div>
+						<div class="footFour">
+							<p>
+								<img src="img/icon3.png"/>
+								<img src="img/icon4.png"/>
+								<img src="img/icon5.png"/>
+								<img src="img/icon6.png"/>
+								<span>©chain star公司保留所有权利</span>
+							</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--footer点击语言切换-->
+			<script type="text/javascript">
+				$(".yuyan li").click(function(ev){
+					ev.preventDefault();
+					$(".yuyan li").parent("ul").prev("button").html($(this).html()+"<span class='caret'></span>")
+				})
+			</script>
+			<!--返回顶部-->
+			<div class="back">
+				<img src="img/up.png"/>
+			</div>
+			<!--返回顶部js代码-->
+			<script type="text/javascript">
+				function back(){
+					$(".back").click(function(){
+						$("body,html").animate({
+							scrollTop:0,
+						},500);
+	                })
+				};
+                back();
+				var inter=setInterval(function(){
+					 var htmlTop=$("body,html").scrollTop();
+					if(htmlTop>500){
+						$(".back").fadeIn();
+					}else{
+						$(".back").fadeOut();
+					};
+				},20);
+			</script>
+		
+		
+	</body>
+</html>

@@ -1,0 +1,108 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/fqxm1.css" />
+{/block}
+
+{block name="body"}
+</div>
+<!--中间部分-->
+            <div class="wzw_fqxm">
+                <div class="wzw_fqxmAuto">
+                    <div class="fqxm-biao">
+                            {:lang('my_project')}
+                    </div>
+                    <div class="wzw_fqxm_left" style="height: auto;">
+                        <form action="" method="post" id="ajax_form">
+                            <div class="wzw_inp teamlist4">
+                                 {foreach name='team_list' item='vo'}
+                                <div class="wzw_li4">
+                                    <div class="wzw_li4_left">
+                                        <div class="wzw_li4_leftimg">
+                                            <img {if !empty($vo.tx_path)}src="__PUBLIC__{$vo.tx_path}"{/if} />
+                                        </div>                          
+                                            <span class="sp1">{$vo.firstname} {$vo.lastname}</span>
+                                            <span class="sp2">
+                                            {foreach name='country_list' item='v'}   
+                                            {if $vo.country_id==$v.id}{$v.cn}
+                                            {/if}
+                                            {/foreach}
+                                            </span>
+                                    </div>
+                                    <div class="wzw_li4_right" style="word-wrap: break-word;overflow-y: scroll;overflow-x: hidden;">
+                                       {$vo.content}
+                                </div>
+                                <div class="wzw_li4_right2">
+                                        <a href="{:url('index/project/addteam',array('project_id'=>$project_id,'tid'=>$vo.id))}{$zllang}">
+                                            <img src="__IMAGES__/xiugai.png"/>
+                                        </a>
+                                        <a href="{:url('index/project/deleteteam',array('tid'=>$vo.id))}" class="wzw_remove">
+                                            <img src="__IMAGES__/remove.png"/>
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                               {/foreach}
+                                <div class="href_click" style="width: 300px;"><a href="{:url('index/project/addteam',array('project_id'=>$project_id))}{$zllang}"><img src="__IMAGES__/Add member.png"/>{:lang('add_team')}</a></div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                    <div class="mar0">
+                        <a href="{:url('index/project/add',array('step'=>2,'project_id'=>$project_id))}{$zllang}">
+                        	<button class="btn wzw_prev"  style="color: #fff;background: #ccc;height: 44px;width: 120px;border-radius: 10px;font-size:18px;margin: 0 20px;">{:lang('remind35')}</button>
+                        </a>
+                        <a href="{:url('index/project/add',array('step'=>4,'project_id'=>$project_id))}{$zllang}">
+                        	<button class="btn wzw_next" style="color: #fff;background: #4fbecb;height: 44px;width: 120px;border-radius: 10px;font-size: 18px;margin: 0 20px;">{:lang('nextpage')}</button>
+                        </a>
+                    </div>
+                    <div class="wzw_fqxm_right">
+                        <!--五步布局-->
+                        <div class="wzw_fqxm_right_son">
+                            <div class="wzw_fqxm_right_son_left">
+                                <div>
+                                    <img src="__IMAGES__/step 1.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                    <img src="__IMAGES__/step2.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                    <img src="__IMAGES__/step3.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                    <img src="__IMAGES__/step4.png" />
+                                </div>
+                                <div>
+                                    <div class="fqxmbor fqxmbor2"></div>
+                                </div>
+                                <div>
+                                    <img src="__IMAGES__/gray step 5.png" />
+                                </div>
+                            </div>
+                            <div class="wzw_fqxm_right_son_right">
+                                    <div class="he1">{:lang('Basic_information')}</div>
+                                    <div class="fqxmbor"></div>
+                                    <div class="he1">{:lang('White_Paper')}</div>
+                                    <div class="fqxmbor"></div>
+                                    <div class="he1">{:lang('Route_planning')}</div>
+                                    <div class="fqxmbor"></div>
+                                    <div class="he1">{:lang('Team_introduction')}</div>
+                                    <div class="fqxmbor"></div>
+                                    <div class="he2">{:lang('raising_plan')}</div>
+                                    <div class="fqxmbor"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+{/block}

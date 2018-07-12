@@ -1,0 +1,78 @@
+{extend name='class_base' /}
+{block name="class_body"}
+<!--投资专家-->
+<div id="z_touzizhuanjia">
+    <div id="z_none">
+        <span id="z_none1">{:lang('expert_title')}</span>
+        <div id="z_none2">
+            <span class="z_none2_one"><img src="__HOME__/img/prev.png" alt="" /></span>
+            <span><img src="__HOME__/img/next.png" alt="" /></span>
+        </div>
+        <img src="__HOME__/img/title-b.png" />
+
+        <!--第一页-->
+        <div class="z_people first">
+            <!--shang-->
+            <div class="z_peo">
+                <!--nei-->
+                {foreach name="expert_list" item="el" key="k"}
+                {if $k lt 4}
+                <div class="nei">
+                    <div class="z_img">
+                        <img {if !empty($el.avatar_img)}src="__PUBLIC__{$el.avatar_img}"{/if} alt="{$el.avatar_img}" />
+                    </div>
+                    <div class="z_zi">
+                        <span class="ple">
+                            <div class="hua">
+                            {$el.description}
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                {/if}
+                {/foreach}                
+            </div>
+
+            <!--xia-->
+            <div class="z_peo">
+                <!--nei-->
+                {foreach name="expert_list" item="el" key="k"}
+                {if $k gt 3}
+                <div class="nei">
+                    <div class="z_img">
+                        <img {if !empty($el.avatar_img)}src="__PUBLIC__{$el.avatar_img}"{/if} alt="" />
+                    </div>
+                    <div class="z_zi">
+                        <span class="ple">
+                            <div class="hua">
+                            {$el.description}
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                {/if}
+                {/foreach}
+            </div>
+        </div>
+
+        <!--分页切换-->
+        <div class="z_qiehuan">
+            <div class="z_left">
+                <span id="">
+                    {:lang('expert_total')}{$count} {:lang('page_tiao')}&nbsp;&nbsp;{:lang('page_per')}{$limit}{:lang('page_tiao')}
+                </span>
+            </div>
+            <div class="z_right">
+                <a {if $page neq 1} href="{:url('index/expert/index', ['currpage'=>1])}{$zllang}"{/if} >
+                <div class="z_shou ai">{:lang('news_page_index')}</div></a>
+                {for start='0' end="$page_count"}
+                <a {if $page neq $i+1} href="{:url('index/expert/index', ['currpage'=>$i+1])}{$zllang}"{/if} >
+                <div class="z_yi ai {if $page eq $i+1}on{/if}">{$i+1}</div></a>
+                {/for}
+                <a {if $page neq $page_count} href="{:url('index/expert/index', ['currpage'=>$page_count])}{$zllang}"{/if} >
+                <div class="z_end ai">{:lang('news_page_end')}</div></a>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

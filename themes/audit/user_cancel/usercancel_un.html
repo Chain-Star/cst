@@ -1,0 +1,94 @@
+{extend name="base" /}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+
+    <div class="layui-tab layui-tab-brief">
+         <ul class="layui-tab-title">
+            <li class="layui-this">未审核列表</li>
+        </ul>
+    <form id='fsearch' class="layui-form layui-form-pane" action="{:url('audit/user_audit/index')}"  method="post" style="margin-top: 10px">
+    <input type="hidden" id="limit" name="limit" value="{$Request.param.limit}">
+    <input type=hidden name='currpage' id='currpage' value=1>
+    <table>
+        <tr class="layui-form-item" >
+       <td> 
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+             <input value="{$Request.param.seachname}" type="text" name="seachname" placeholder="用户邮箱查询" autocomplete="off" class="layui-input">
+            </div>
+        </td>
+        <td>    
+            <div class="layui-input-block">
+            <button class="layui-btn" onclick="$(currpage).val(1);">查询</button> 
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </td>
+        </tr>
+        <tr>
+        <td colspan=4 id=pagebar>   </td>
+        </tr>
+    </table>
+</form>
+    <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;"><div id="innerdiv" style="position:absolute;"><img id="bigimg" style="border:5px solid #fff;" src="" /></div></div>  
+        <div class="layui-tab-content" style="padding: 0px">
+            <div class="layui-tab-item layui-show">
+                <table class="layui-table">
+                    <thead>
+                    <tr>  
+                        <th>用户邮箱</th>
+                        <th>项目号</th>
+                        <th>项目名称</th>
+                        <th>投资金额</th>
+                        <th>币种</th>
+                        <th>购买时间</th>
+                        <th>取消时间</th>
+                        <th>订单号</th>
+                        <th>钱包地址</th>
+                        <th>审核人</th>                        
+                        <th>审核时间</th>                        
+                        <th>审核结果</th>                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach name='tran_list' item='vo'}
+                    <tr>
+                        <td>{$vo.email}</td>
+                        <td>{$vo.item_number}</td>
+                        <td>{$vo.project_name}</td>
+                        <td>{$vo.amount}</td>
+                        <td>{if $vo.currency==1}BTC{elseif $vo.currency==2}CTN{else}NNS{/if}</td>
+                        <td>{:date("Y-m-d H:i:s",$vo.log_time)}</td>
+                        <td>{:date("Y-m-d H:i:s",$vo.cancel_time)}</td>
+                        <td style="word-break:break-all;">{$vo.order}</td>
+                        <td style="word-break:break-all;">{$vo.start_path}</td>
+                        <td>{$vo.username}</td>
+                        <td>{:date("Y-m-d H:i:s",$vo.audit_time)}</td>
+                        <td>{if $vo.state==97}未通过{elseif $vo.state==98}正在退款{elseif $vo.state==96}已退款{/if}</td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+ laypage.render({
+    elem: 'pagebar' 
+    ,limit:{$limit}
+    ,curr:{$page}
+    ,count:{$count}
+    ,layout:['count','first','last','prev','page','next','skip']
+    ,jump: function(obj, first){
+        if (!first){
+            $('#currpage').val(obj.curr);           
+            $('#limit').val(obj.limit);         
+            $('#fsearch').submit();
+        }
+    }
+  }); 
+</script>
+{/block}

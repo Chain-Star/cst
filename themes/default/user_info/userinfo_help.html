@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__CSS__/help.css" />
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+	</head>
+
+	<body style="background: #f3f3f3;">
+		<!--最大div-->
+		<div class="mainbox">
+			<!--左边导航部分-->
+			<div id="user_left"></div>
+			<!--右边帮助部分-->
+			<div class="mainRight">
+				<!--头部提示部分-->
+				<div class="pwdnav">
+					<img src="__IMAGES__/icon5.png" />
+					<span>{:lang('Help')}</span>
+				</div>
+				<div class="yin">
+					<img src="__IMAGES__/yin.png" />
+				</div>
+				<div style="clear: both;"></div>
+				<!--具体内容-->
+				<div class="helpBox">
+					<div class="help_text">
+						<p class="hptxt hp1">{:lang('help_title')}</p>
+						<p class="hptxt">{:lang('help_des')}</p>
+						<p class="hptxt hp1">{:lang('help_des1')}</p>
+						<!--文本框布局-->
+						<form method="post" id="myorm" action="{:url('index/user_info/inhelp')}">
+							<div style="position:relative;width: 780px;height: 189px;">
+								<div class="sub"><p>您的问题已提交！</p></div>
+								<textarea id="area" name="content" onfocus="document.getElementById('note').style.display='none'" onblur="if(value=='')document.getElementById('note').style.display='block'"></textarea>
+								<div id="note" class="note">
+									<font color="#777" style="font-size: 12px;">{:lang('help_des2')}</font>
+								</div>
+
+							</div>
+							<p class="yx">
+								{:lang('help_des3')}
+								<a href="mailto:{:lang('help_des4')}">{:lang('help_des4')}</a>
+							</p>
+							<!--按钮部分-->
+							<button class="hptj" type="submit" >{:lang('submit')}</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="__JS__/whh_personal.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			document.getElementById('area').onkeydown = function() {
+				if(this.value.length >= 500)
+					event.returnValue = false;
+			}
+		}
+		$("#myorm").submit(function (envent)  
+		{  
+		    var form = $(this);  
+		    $.ajax({  
+		        url: form.attr("action"),  
+		        type: "post",  
+		        data: form.serialize(),  
+		        // dataType: "json",   
+		        error: function ()  
+		        {  
+		  			// console.log(form.attr("action"));
+		  			alert("提交失败！")
+		        },
+		        success: function (data)  
+		        {  
+		           setTimeout(function() {
+						$(".sub").hide();
+						$("#area").val("") ;
+					}, 2000)
+					$(".sub").show();
+		        }  
+		    });
+		    return false;  
+		});  
+	</script>
+
+</html>

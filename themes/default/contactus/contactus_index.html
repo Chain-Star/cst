@@ -1,0 +1,45 @@
+{extend name="base" /}
+{block name="body"}
+<link rel="stylesheet" type="text/css" href="__HOME__/css/lianxiwomen.css" />
+</div>
+		
+<div id="z_lianxi_center">
+    <div class="z_lianxi_center_top">
+        <div class="z_zhuti">{:lang('contactus_title')}</div>
+    </div>
+    <div class="z_lianxi_center_button">
+        <div class="z_lianxi_button_left">
+            <!--<div class="z_lianxi_left_shang">
+                <div class="z_lianxi_one"><span>{:lang('contactus_name')}</span></div>
+                <div class="z_lianxi_two"><span>{:lang('contactus_addr')}</span></div>
+                <div class="z_lianxi_three"><span>{:lang('email')}:303875558813@qq.com</span></div>
+                <div class="z_lianxi_three"><span>{:lang('tel')}：0311-66556699</span></div>
+            </div>-->
+            <div class="z_lianxi_left_xia">
+                <a href="https://www.facebook.com/chainstar.cs" target="_blank"><div class="z_tubiao_one three"><img src="__HOME__/img/z-facebook.png"/></div></a>
+				<a href="https://twitter.com/WenbiaoY" target="_blank"><div class="z_tubiao_two three"><img src="__HOME__/img/z-twitter.png" /></div></a>
+				<a href="https://t.me/ChainStarT" target="_blank"><div class="z_tubiao_two three"><img src="__HOME__/img/z-dianbao.png" /></div></a>
+				<a href="https://www.instagram.com/ChainStar.IS/" target="_blank"><div class="z_tubiao_two three"><img src="__HOME__/img/z-lingying.png"/></div></a>
+            </div>
+        </div>
+        <div class="z_lianxi_button_right">
+            <div class="z_lianxi_right_top">
+                <span>{:lang('contactus_mess')}</span>
+            </div>
+            <div class="z_lianxi_right_bottom">
+                <form id="contactform" action="{:url('index/contactus/submit')}" method="post">
+                    <input type="text" name="username" placeholder="{:lang('contactus_mname')}" />
+                    <input type="email" name="email" placeholder="{:lang('email')}" />
+                    <input type="tel" name="tel" placeholder="{:lang('tel')}" /><br /><br />
+                    <textarea name="content" maxlength="500" warp="virtual" placeholder="{:lang('content')}"></textarea><br />
+                    <input type="hidden" name="__token__" value="{$Request.token}">
+                    <input type="button" name="" id="z_submit" value="{:lang('submit')}" onclick="return contactsub();" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="contactjs"}
+<script src="__HOME__/js/home-contact.js"></script>
+{/block}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="__CSS__/xiaoxi.css" />
+		<script src="__JS__/respond.min.js"></script>
+		<script src="__JS__/html5shiv.min.js"></script>
+		<script src="__JS__/selectivizr-min.js"></script>
+		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
+		<script src="__JS__/whh_personal.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body style="background-color: #F3F3F3">
+		<div class="mainbox">
+			<div class="mainRight">
+				<!--消息头部部分-->
+				<div class="pwdnav">
+					<img src="__IMAGES__/icon7.png" />
+					<span>{:lang('Message')}</span>
+				</div>
+				<div class="yin">
+					<img src="__IMAGES__/yin.png" />
+				</div>
+				<div style="clear: both;"></div>
+				<!--主题消息部分-->
+				<div class="w_news">
+					<ul class="w_newsUl">
+						{foreach name='msg_list' item='vo'}
+						<li>
+							<div class="w_xx">
+								{if empty($vo.unread)}
+								<img src="__IMAGES__/point.png" />
+								{else}
+								<img src="__IMAGES__/list-b.png" />
+								{/if}
+								<a href="#"onclick="return parent.changehtml('{:url('index/user_info/showmsg',array('msg_id'=>$vo.id))}{$zllang}',this)">{if $vo.msg_id==0}{$vo.title}{else}{$vo.msg_title}{/if}</a>
+							</div>
+							<div class="w_zt">
+								<a href="" class="w_see" onclick="return parent.changehtml('{:url('index/user_info/showmsg',array('msg_id'=>$vo.id))}{$zllang}',this)">{:lang('mes_ck')}</a>
+								{if empty($vo.unread)}
+								<span class="w_see">{:lang('mes_wd')}</span>
+								{/if}
+								<button class="w_shanchu">{:lang('mes_del')}</button>
+								<div class="w_cs">
+										<div class="w_prozz">
+											<p>确认删除信息？</p>
+											<button class="w_proqx">取消</button>
+											<button class="w_peoqr" onclick="del_msg(this,'{$vo.id}')">确认</button>
+										</div>
+								</div>
+							</div>
+							<div style="clear: both;"></div>
+						</li>
+						{/foreach}
+					</ul>
+					<div class="w_proPage">
+							<div class="w_proFirst">
+								<ul class="w_proPages">
+									<li class="w_ys" onclick="return parent.changehtml('{:url('index/user_info/msg',array('page'=>1))}{$zllang}',this)">{:lang('news_page_index')}</li>
+									{for start="0" end="$count1"}
+							    	<a class="w_ys {if $page==$i+1}active{/if}" href="javascript:;" onclick="return parent.changehtml('{:url('index/user_info/msg',array('page'=>$i+1))}{$zllang}',this)">{$i+1}
+							    	</a>
+									{/for}
+									<li class="w_ys"  onclick="return parent.changehtml('{:url('index/user_info/msg',array('page'=>$count1))}{$zllang}',this)">{:lang('news_page_end')}</li>
+								</ul>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="w_proLast">
+								<span>{:lang('expert_total')}{$count}{:lang('page_tiao')}</span>
+								<span>{:lang('page_per')}10{:lang('page_tiao')}</span>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+				</div>
+				<!--分页-->
+
+			</div>
+		</div>
+
+		<div id="page_content">
+		<!-- 	<iframe id="menuFramee" src="touzi.html" scrolling="no" frameborder="0" width="840px" height="100%" onload="this.height=100">
+            </iframe> -->
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(".w_shanchu").click(function(){
+		$(this).siblings(".w_cs").show();
+//		$(this).parents("li").siblings("li").children(".w_zt").children(".w_cs").hide()
+		$('.w_shanchu').attr("disabled",true)
+	})
+	$(".w_proqx").click(function(){
+		$(this).parent().parent().hide();
+		$('.w_shanchu').attr("disabled",false)
+	})
+	$(".w_proqr").click(function(){
+		$('.w_shanchu').attr("disabled",false)
+	})
+	function del_msg(t,mid)
+	{
+		$.ajax({
+			url: '{:url("index/user_info/del_msg")}',
+			type: 'post',
+			data: {'mid':mid},
+		})
+		.done(function(info) {
+			$(t).parent().parent().hide();
+			if (info.code==1) 
+			{
+				return parent.changehtml('{:url('index/user_info/msg',array('page'=>$Request.param.page))}{$zllang}',t);
+			}
+			else
+			{
+				alert(info.msg);
+			}
+		
+		})
+		.fail(function() {
+			alert("{:lang('remind1')}");
+		});
+		
+	}
+</script>

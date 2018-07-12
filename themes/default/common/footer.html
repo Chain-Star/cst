@@ -1,0 +1,83 @@
+<div class="footer">
+        <div class="foot">
+            <div class="foot_left">
+                <table>
+                    <tr>
+                        {foreach name="toplist" item="tl"}
+                        <th>{$tl.category_name}</th>
+                        {/foreach}
+                    </tr>
+                    <tr>
+                        {foreach name="fplist" item="fl" key="kk"}
+                        <td rowspan="7" {if $fl.id eq 19} class="enyuyan"{/if}>
+                            {if $fl.id eq 19}
+                            
+                            <div id="parent2lang">
+                                    <select>
+                                        <!-- <option value="">{:lang('common_language')}</option> -->
+                                        {foreach name="language" item="lan"}
+                                        <option value="{$lan.url}"  {if $langid eq $lan.id}selected{/if}>{$lan.category_name}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                            {else}
+                                {foreach name="fl.son" item='so'}
+                                <a href="{:url($so.url)}{$zllang}">{$so.category_name}</a>
+                                {/foreach}
+                                {if $fl.id eq 2}<div style="height:60px;"></div>{/if}
+                                {if $fl.id eq 10}<div style="height:120px;"></div>{/if}
+                                {if $fl.id eq 16}<div style="height: 150px;"></div>{/if}
+                            {/if}
+                            
+                        </td>
+                        {/foreach}
+                        
+                    </tr>
+                </table>
+                
+            </div>
+            <div class="foot_right">
+                <p class="p1"><a href="{:url('index/index/index')}"><img src="__HOME__/img/logo.png"/></a></p>
+                <p class="p5">cst.ph</p>
+                <p class="p2">
+                	<a href="https://www.facebook.com/chainstar.cs" target="_blank"><img src="__HOME__/img/f1.png"/></a>
+                	<a href="https://twitter.com/WenbiaoY" target="_blank"><img src="__HOME__/img/t1.png"/></a>
+                </p>
+                <p class="p3">
+                	<a href="https://t.me/ChainStarT" target="_blank"><img src="__HOME__/img/y1.png" width="40px" height="40px"/></a>
+                	<a href="https://www.instagram.com/ChainStar.IS/" target="_blank"><img src="__HOME__/img/i1.png"/></a>
+                </p>
+            </div>
+        </div>
+        <div class="foot2">
+            <div class="foot2_zhong">
+                <div class="footThree">
+                    <a href="{:url('index/terms/index',['id'=>1])}{$zllang}">{:lang('footer_Terms_Use')}</a>
+                    <a href="{:url('index/terms/index',['id'=>3])}{$zllang}">{:lang('footer_Privacy_Policy')}</a>
+                    <!--<a href="{:url('index/terms/index',['id'=>4])}">{:lang('footer_Chain_Polocy')}</a>-->
+                    <!--<a href="{:url('index/terms/index',['id'=>5])}">{:lang('footer_Terms_cooperation')}</a>-->
+                </div>
+                <div class="footFour">
+                    <p>
+                       	<a href="https://www.facebook.com/chainstar.cs"><img src="__HOME__/img/icon3.png"/></a>
+                        <a href="https://twitter.com/WenbiaoY"><img src="__HOME__/img/icon4.png"/></a>
+                        <a href="https://t.me/ChainStarT"><img src="__HOME__/img/icon5.png" height="19px"/></a>
+                        <a href="https://www.instagram.com/ChainStar.IS/"><img src="__HOME__/img/icon6.png"/></a>
+                        <span>{:lang('footer_all_right')}</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!--共用的loading提示框-->
+	<div class="wzw_shadowBox">
+		<div class="wzw_shadow_loading">
+			<div class="wzw_shadow_rela">
+				<div class="wzw_shadow_posiab" style="display: none">×</div>
+				<img src="__HOME__/img/5-121204194113-50.gif"/>
+				<p>{:lang('remind38')}</p>
+			</div>
+		</div>
+	</div>

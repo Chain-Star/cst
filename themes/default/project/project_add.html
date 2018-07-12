@@ -1,0 +1,548 @@
+{extend name="base" /}
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="__CSS__/fqxm1.css" />
+{/block}
+
+{block name="body"}
+</div>
+<div class="wzw_fqxm">
+				<div class="wzw_fqxmAuto">
+					<div class="fqxm-biao">
+						{:lang('my_project')}
+					</div>
+					<div class="wzw_fqxm_left">
+						<form action="{:url('index/project/save')}" id="ajax_form"  method="post">
+								<!--第二遍-->
+							<div class="wzw_inp">
+								<div class="inp_li1 float"><span>{:lang('project_name')}</span><img src="__IMAGES__/Required.png"></div>
+								<div class="inp_li2 float"><input type="text" required="required" name="name" class="form-control forEmpty xmmc"/><img src="__IMAGES__/Empty.png" class="empty"/></div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp">
+								<div class="inp_li1 float"><span>{:lang('Your_mailbox')}</span><img src="__IMAGES__/Required.png"></div>
+								<div class="inp_li2 float"><input type="email" required="required" name="email" class="form-control forEmpty youxiang"/><img src="__IMAGES__/Empty.png" class="empty"/></div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp">
+								<div class="inp_li1 float"><span>{:lang('Official_website')}</span><img src="__IMAGES__/Required.png"></div>
+								<div class="inp_li2 float"><input type="text" required="required" name="network_url" class="form-control forEmpty wzw_gfwz" placeholder="http://"/><img src="__IMAGES__/Empty.png" class="empty"/></div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp">
+								<div class="inp_li1 float"><span>{:lang('White_Paper_address')}</span><img src="__IMAGES__/Required.png"></div>
+								<div class="inp_li2 float"><input type="text" required="required" name="book_url" class="form-control forEmpty wzw_bpsdz" placeholder="http://"/><img src="__IMAGES__/Empty.png" class="empty"/></div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp" style="height: auto;">
+								<div class="inp_li1 float" style="height: auto;"><span>{:lang('social_address')}</span><img src="__IMAGES__/Required.png"></div>
+								<div class="inp_li2 float addFu" style="height: auto;"><input type="text" class="form-control wzw_sjzhsydz" required="required" name="account_url[]" placeholder="http://" style="margin: 0;"/></div>
+								<div class="inp_li3 float" style="height: auto;"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span><img src="__IMAGES__/add.png" class="addInput"/></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp">
+								<div class="inp_li1 float"><span>{:lang('Project_area')}</span><img src="__IMAGES__/Required.png"></div>
+								<div class="inp_li2 float">
+									<div id="wzw_xmssly">
+										<div class="wzw_xiala"><span class="glyphicon glyphicon-chevron-down"></span></div>
+										<select name="field_id"  style="overflow-x: hidden;-ms-overflow-x: hidden;">
+												<option value="" style="color: #999">{:lang('select_project_area')}</option>
+												{foreach name="field_list" item="vo"}
+												{if $vo.id!=1&&$vo.id!=2}
+				                                <option value="{$vo.id}" style="color: #333">{neq name="vo.level" value="2"}|{php}for($i=2;$i<$vo['level'];$i++){echo ' ----';}{/php}{/neq} {if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</option>
+				                                {/if}
+				                                {/foreach}
+										</select>
+									</div>
+								</div> 
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div> 
+							<div class="wzw_inp">
+								<div class="inp_li1 float"><span>{:lang('project_district')}</span><img src="__IMAGES__/Required.png"></div>
+								<div class="inp_li2 float">
+									<div id="wzw_xmszdq">
+										<div class="wzw_xiala"><span class="glyphicon glyphicon-chevron-down"></span></div>
+										<select name="country_id">
+										    {foreach name="country_list" item="vo"}
+			                                <option value="{$vo.id}" {if $vo.short=='CHN'} selected='selected' {/if}>{if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</option>
+			                                {/foreach}
+										</select>
+									</div>
+								</div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp">
+								<div class="inp_li1 float">
+									<span>{:lang('project_logo')}</span><img src="__IMAGES__/Required.png">
+								</div>
+								<div class="inp_li2 float" style="height:auto;font-size: 12px;color: #003366;text-align: left;display: inline-block;line-height: 42px;">
+									<div class="wzw_file" id="upBtn">
+										<input title=" " type="file" name="logo_path" value="" class="upfile wzw_logo" accept="image/x-png"/>
+										<img src="__IMAGES__/logo icon.png"/>
+									</div>&nbsp;&nbsp;{:lang('logo_desc')}
+								</div>
+								<div class="inp_li3 float" style="width: 275px;"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp" style="height: auto;">
+								<div id="imglist" style="height: auto;">
+									<img src="" style='display:none'/>
+								</div>
+							</div>
+							<div class="wzw_inp">
+								<div class="inp_li1 float">
+									<span>{:lang('Upload_White_Paper')}</span><img src="__IMAGES__/Required.png">
+								</div>
+								<div class="inp_li2 float" style="font-size: 16px;color: #003366;text-align: left;">
+									<div class="wzw_file" id="upBtn2">
+										<input type="file" title=" " name="book_pdf_path" id="file2" value="" class="upfile2 wzw_bpsInp" accept="application/pdf"/>
+										<img src="__IMAGES__/Upload icon.png"/>
+									</div>&nbsp;&nbsp;{:lang('Upload_White_Paper1')}
+								</div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp" style="height: auto;">
+								<div id="imglist2" style="height: auto;"></div>
+							</div>
+							<div class="wzw_inp">
+								<div class="inp_li1 float">
+									<span>{:lang('Upload_White_Paper')}</span><img src="__IMAGES__/Required.png">
+								</div>
+								<div class="inp_li2 float" style="font-size: 16px;color: #003366;text-align: left;">
+									<div class="wzw_file" id="upBtn3">
+										<input type="file" title=" " name="book_pdf_path_en" id="file3" value="" class="upfile3 wzw_bpsInp" accept="application/pdf"/>
+										<img src="__IMAGES__/Upload icon.png"/>
+									</div>&nbsp;&nbsp;{:lang('Upload_White_Paper2')}
+								</div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<div class="wzw_inp" style="height: auto;">
+								<div id="imglist3" style="height: auto;margin-left: 220px;"></div>
+							</div>
+							<div class="wzw_inp" style="height: 160px;">
+								<div class="inp_li1 float">
+									<span>{:lang('Project_introduction')}</span><img src="__IMAGES__/Required.png">
+								</div>
+								<div class="inp_li2 float" style="font-size: 16px;color: #003366;text-align: left;">
+									<textarea name="synopsis" rows="" class="textare" cols="" required="required" placeholder="{:lang('project_des')}" maxlength="30"></textarea>
+								</div>
+								<div class="inp_li3 float"><img src="__IMAGES__/caveat.png" class="wzw_jg"/><span class="wzw_yz"></span></div>
+								<div style="clear: both;"></div>
+							</div>
+							<input type="hidden" name="zllang" value="{$zllang}">
+							<input type="hidden" name="__token__" id='token' value="{$Request.token}" />
+							<div class="wzw_inp">
+								<div class="inp_li1 float"></div>
+								<div class="inp_li2 float">
+									<a href="javascript:;" class="wzw_return" >
+										<button class="btn wzw_next" style="color: #fff;background: #4fbecb;height: 44px;width: 120px;border-radius: 10px;font-size: 18px;">{:lang('nextpage')}</button>									
+									</a></div>
+								<div class="inp_li3 float"></div>
+								<div style="clear: both;"></div>
+							</div>
+						</form>
+						
+					</div>
+					<div class="wzw_fqxm_right">
+						<!--五步布局-->
+						<div class="wzw_fqxm_right_son">
+							<div class="wzw_fqxm_right_son_left">
+								<div>
+									<img src="__IMAGES__/step 1.png" />
+								</div>
+								<div>
+									<div class="fqxmbor fqxmbor2"></div>
+								</div>
+								<div>
+									<img src="__IMAGES__/gray step 2.png" />
+								</div>
+								<div>
+									<div class="fqxmbor"></div>
+								</div>
+								<div>
+									<img src="__IMAGES__/gray step 3.png" />
+								</div>
+								<div>
+									<div class="fqxmbor"></div>
+								</div>
+								<div>
+									<img src="__IMAGES__/gray step 4.png" />
+								</div>
+								<div>
+									<div class="fqxmbor"></div>
+								</div>
+								<div>
+									<img src="__IMAGES__/gray step 5.png" />
+								</div>
+							</div>
+							<div class="wzw_fqxm_right_son_right">
+								<div class="he1">{:lang('Basic_information')}</div>
+								<div class="fqxmbor"></div>
+								<div class="he2">{:lang('White_Paper')}</div>
+								<div class="fqxmbor"></div>
+								<div class="he2">{:lang('Route_planning')}</div>
+								<div class="fqxmbor"></div>
+								<div class="he2">{:lang('Team_introduction')}</div>
+								<div class="fqxmbor"></div>
+								<div class="he2">{:lang('raising_plan')}</div>
+								<div class="fqxmbor"></div>
+							</div>
+						</div>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+			<!--发起项目弹框-->
+			<div class="wzw_fqxm_Tk">
+				<div class="wzw_fqxm_Tkmar Hei_auto" style="height: auto;">
+					{:lang('project_instructions')}
+				</div>
+			</div>
+{/block}
+{block name="js"}
+<script src="__JS__/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+{/block}
+{block name='script'}
+<script type="text/javascript">
+	$(".Tkbiao1").css("height","auto");
+	function submitUpload(fromid, url) 
+	{
+		var option = {
+			url: url,
+			type: "post",
+			dataType: "json",
+			async: true,
+			contentType: "application/json; charset=utf-8",
+			xhr:xhrOnProgress(function(e){
+				var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+				$('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
+			}),
+			beforeSubmit: function(arr, $from, options) {
+				loading();
+			},
+			success: function(info) {
+				if(info.code === 1) 
+				{
+					 window.location.href=info.url;
+				} 
+				else 
+				{
+					loading(info.msg);
+					// alert(info.msg)
+				}
+			},
+			error: function() {
+				loading("{:lang('remind1')}");
+			}
+
+		};
+		$("#" + fromid).ajaxSubmit(option);
+		return false;
+	}
+//图片上传限制大小  获得宽高
+	function imgFun(){
+
+		function showimg(url) {			
+			var img = '<img src="' + url + '"/>';
+			$('#imglist').empty();
+			$('#imglist').append(img);
+		}
+		function addfile() {
+			var file = this.files[0]; //上传的图片的所有信息
+            //判断是否是png
+			var imgtype = this.files[0].name.toLowerCase().split('.');						
+			if(imgtype.pop()!=="png"){
+				alert("{:lang('remind4')}")
+				$(".wzw_logo").val("");
+				return false;
+			}
+			//首先判断是否是图片
+			if(!/image\/\w+/.test(file.type)) {
+				alert("{:lang('remind3')}");
+				$(".wzw_logo").val("");
+				return false;
+			}
+			//在此限制图片的大小
+			var imgSize = file.size;
+			//在此处我们限制图片大小为200k
+			if(imgSize > 200 * 1024) {
+				alert("{:lang('remind2')}");
+				$(".wzw_logo").val("");
+				return false;
+			}
+			var objUrl = getObjectURL(this.files[0]);
+			showimg(objUrl)
+			$(this).hide();
+			createfile();
+			$('.upfile').bind('change', addfile);
+		}
+		$('.upfile').bind('change', addfile);
+
+		function getObjectURL(file) {
+			var url = null;
+			if(window.createObjectURL != undefined) {
+				url = window.createObjectURL(file);
+			} else if(window.URL != undefined) {
+				url = window.URL.createObjectURL(file);
+			} else if(window.webkitURL != undefined) { 
+				url = window.webkitURL.createObjectURL(file);
+			}
+			return url;
+		};
+		function createfile() {
+			$('.upfile:last').siblings(".upfile").remove();
+			$('#upBtn').append("<input type='file' title=' '   name='logo_path' value='' class='upfile'  accept='image/x-png'>");
+		}
+	}
+	imgFun();
+	function bpsFun(){
+		function createfile() {
+			$('.upfile2:last').siblings(".upfile2").remove();
+			$('#upBtn2').append("<input type='file' title=' ' value=''  name='book_pdf_path' class='upfile2 wzw_bpsInp' accept='application/pdf'>");
+		}
+		function addfile() {
+			var file = this.files[0];
+            //判断是否是pdf
+			$('#imglist2').html(file.name);
+			bpstype = this.files[0].name.toLowerCase().split('.');
+			if(bpstype.pop()!="pdf"){
+				alert("{:lang('Upload_White_Paper1')}");
+				$(".upfile2").val("");
+				return false;
+			}
+			if(bpstype.pop()="pdf"){
+				//限制pdf大小
+				var fileSize = file.size
+				var imgSize = fileSize;
+					if(imgSize > 1024*1024*30) {
+						alert("{:lang('remind2')}");
+						$(".upfile2").val("");
+						return false;
+					}
+				var objUrl = getObjectURL(this.files[0]);
+				// showimg(objUrl);
+				$(this).hide();
+				// console.log(imgSize);
+					//限制PDF大小为30M
+				createfile();
+				$('.upfile2').bind('change', addfile);
+			}
+		}
+		$('.upfile2').bind('change', addfile);
+		function getObjectURL(file) {
+			var url = null;
+			if(window.createObjectURL != undefined) {
+				url = window.createObjectURL(file);
+			} else if(window.URL != undefined) {
+				url = window.URL.createObjectURL(file);
+			} else if(window.webkitURL != undefined) { 
+				url = window.webkitURL.createObjectURL(file);
+			}
+			return url;
+		};
+	}
+	bpsFun();
+	
+	function bpsFun2(){
+		function createfile() {
+			$('.upfile3:last').siblings(".upfile3").remove();
+			$('#upBtn3').append("<input type='file' title=' '  name='book_pdf_path_en' class='upfile3'  accept='application/pdf'>");
+		}
+
+		function addfile() {
+			var file = this.files[0];
+			//判断是否是pdf
+			$('#imglist3').html(file.name);
+			var bpstype = this.files[0].name.toLowerCase().split('.');			
+			if(bpstype.pop()!="pdf"){
+				alert("{:lang('Upload_White_Paper1')}");
+				return false;
+			}
+			//在此限制图片的大小
+			var imgSize = file.size;
+			if(imgSize > 1024*1024*30) {
+					alert("{:lang('remind2')}");
+					$(".upfile3").val("");
+					return false;
+				}
+			var objUrl = getObjectURL(this.files[0]);
+			// showimg(objUrl);
+			$(this).hide();
+			createfile();
+			$('.upfile3').bind('change', addfile);
+		}
+		$('.upfile3').bind('change', addfile);
+		function getObjectURL(file) {
+			var url = null;
+			if(window.createObjectURL != undefined) {
+				url = window.createObjectURL(file);
+			} else if(window.URL != undefined) {
+				url = window.URL.createObjectURL(file);
+			} else if(window.webkitURL != undefined) { 
+				url = window.webkitURL.createObjectURL(file);
+			}
+			return url;
+		};
+	}
+	bpsFun2();
+//设置阴影高度
+	$(".wzw_fqxm_Tk").css("height",10+$("html").height()+"px");
+//点击我已阅读
+	$(".lab").click(function(){
+		if($(".dxk").attr("checked")){
+			$(".kqwdxm").css({"background":"#003366","color":"white"});
+			$(".kqwdxm").removeAttr('disabled');			
+		}else{
+			$(".kqwdxm").css({"background":"none","color":"#003366"});
+			$(".kqwdxm").attr("disabled","disabled");
+		}
+	});
+	$(".kqwdxm").click(function(){
+		$(this).parent().parent().parent().fadeOut();
+	});
+	//input框内的X号获得焦点显示
+	var forEmpty = $(".forEmpty");
+	for(var f = 0; f < forEmpty.length; f++) {
+		$(".forEmpty").eq(f).change(function() {
+			$(this).next().css({
+				"display": "block"
+			}).click(function() {
+				$(this).prev().val("").next().css({
+					"display": "none"
+				});
+			})
+		})
+	};
+	//点击下一步验证
+     $(".wzw_next").click(function(){
+
+		//项目名称验证
+		var xmmc=$(".xmmc").val();
+		if(xmmc==""){
+			$(".wzw_jg").eq(0).addClass("block");
+			$(".wzw_yz").eq(0).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(0).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(0).html("");
+		}
+		//邮箱验证
+		var youxiang=$(".youxiang").val();
+		if(youxiang.indexOf("@")!=-1 && youxiang.indexOf(".")!=-1){
+			$(".wzw_jg").eq(1).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(1).html("");
+		}else{
+			$(".wzw_jg").eq(1).addClass("block");
+			$(".wzw_yz").eq(1).html("{:lang('email_error')}");
+			return false;
+		}
+		//官方网站
+		if($(".wzw_gfwz").eq(0).val()==""){
+			$(".wzw_jg").eq(2).addClass("block");
+			$(".wzw_yz").eq(2).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(2).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(2).html("");
+		}
+		//白皮书地址
+		if($(".wzw_bpsdz").eq(0).val()==""){
+			$(".wzw_jg").eq(3).addClass("block");
+			$(".wzw_yz").eq(3).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(3).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(3).html("");
+		}
+		//官方社交账号地止验证
+		if($(".addFu>input").eq(0).val()==""){
+			$(".wzw_jg").eq(4).addClass("block");
+			$(".wzw_yz").eq(4).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(4).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(4).html("");
+		}
+		//项目所属领域
+		if($("#wzw_xmssly>select option:selected").val()==""){
+			$(".wzw_jg").eq(5).addClass("block");
+			$(".wzw_yz").eq(5).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(5).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(5).html("");
+		}
+		//项目所属地区
+		if($("#wzw_xmszdq>select option:selected").val()==""){
+			$(".wzw_jg").eq(6).addClass("block");
+			$(".wzw_yz").eq(6).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(6).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(6).html("");
+		}
+		//项目LoGo
+		if($("#imglist img").attr("src")==""){
+			$(".wzw_jg").eq(7).addClass("block");
+			$(".wzw_yz").eq(7).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(7).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(7).html("");
+		}
+		//项目白皮书
+		var cn_bpstext=$("#imglist2").text();
+		if($("#imglist2").text()==""||cn_bpstext.toLowerCase().split(".")[1]!="pdf"){
+				$(".wzw_jg").eq(8).addClass("block");
+				$(".wzw_yz").eq(8).html("{:lang('remind')}");
+				return false;
+			}else{
+				$(".wzw_jg").eq(8).removeClass("block").addClass("none");
+				$(".wzw_yz").eq(8).html("");
+			}
+			//项目白皮书
+			var en_bpstext=$("#imglist3").text();
+		if($("#imglist3").text()==""||en_bpstext.toLowerCase().split(".")[1]!="pdf"){
+				$(".wzw_jg").eq(9).addClass("block");
+				$(".wzw_yz").eq(9).html("{:lang('remind')}");
+				return false;
+			}else{
+				$(".wzw_jg").eq(9).removeClass("block").addClass("none");
+				$(".wzw_yz").eq(9).html("");
+			}
+		//项目简介验证
+		if($(".textare").eq(0).val()==""){
+			$(".wzw_jg").eq(10).addClass("block");
+			$(".wzw_yz").eq(10).html("{:lang('remind')}");
+			return false;
+		}else{
+			$(".wzw_jg").eq(10).removeClass("block").addClass("none");
+			$(".wzw_yz").eq(10).html("");
+		}
+		return submitUpload('ajax_form',"{:url('index/project/save')}");
+
+    });
+      //添加input
+	$(".addInput").click(function(){
+		var $add="<input type='text' name='account_url[]' class='form-control wzw_sjzhsydz' placeholder='http://'/>";
+	    var Add=$(".addFu");
+	   	var fourInput=Add.children("input");
+	    if(fourInput.length<=3){
+	    	Add.append($add);
+			//input高度42px  上下外间距各4px
+	    	var beiNumber=fourInput.length*50+8;
+	   		$(".addInput").attr("style","margin-top:"+beiNumber+"px");
+	   		$(".wzw_sjzhsydz").attr("style","margin:8px 0");
+	   		$(".wzw_sjzhsydz").eq(0).attr("style","margin:0px 0");
+	   		$(".wzw_yz").eq(4).attr("style","margin-top:"+beiNumber+"px");
+	    }
+	});
+</script>
+{/block}
