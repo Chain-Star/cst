@@ -1470,4 +1470,10 @@ a {
 .wzw_more1{
 	margin:0 5px;
 }
+.padding_attr{
+	height: 200px;
+	padding: 20px 5px !important;
+	line-height: 30px !important;
+	overflow: hidden;
+}
 /*# sourceMappingURL=style.css.map */
