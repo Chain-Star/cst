@@ -108,7 +108,7 @@
       async: true,
       contentType: "application/json; charset=utf-8",
       xhr:xhrOnProgress(function(e){
-				var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+				var percent = parseInt(100*(e.loaded / e.total))+'%';//计算百分比
 				$('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
 			}),
       beforeSubmit: function(arr, $from, options) {
@@ -150,6 +150,17 @@
 				return false;
 					}
 				$(".wzw_bps_remove").click(function(){
+					var index=$(".wzw_bps_remove");
+					for(var i=0;i<index.length;i++){
+						if(index[i]==this){
+						
+							var inpIndex=$(".upfile");
+							inpIndex[i].remove();
+							console.log(inpIndex[i]);
+						}
+//						console.log(index[i]);
+//						console.log(this);
+					}
 				$(this).parent().parent().remove("li");
 			})
           }

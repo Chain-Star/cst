@@ -59,4 +59,13 @@
 </div>
 </div>
 <script src="__HOME__/js/home-news.js"></script>
+<script type="text/javascript">
+	 if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+						$(".wzw_box .wzw_zixun .wzw_zixunAuto ul li a .wzw_zixunli_right2").css("display","block");
+						$(".wzw_box .wzw_zixun .wzw_zixunAuto ul li a .wzw_zixunli_right").css("display","block")
+						$(".wzw_box .wzw_zixun .wzw_zixunAuto").css("padding","0px 15px")
+					} else {
+						console.log('PC端');
+					}
+</script>
 {/block}

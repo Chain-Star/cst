@@ -81,3 +81,32 @@
 			</div>
 		</div>
 	</div>
+	<!--共用的弹框背景阴影-->
+	<div class="wzw_public_tk_bg"></div>
+	<!--共用的弹框-->
+	<div class="wzw_public_tk" style="min-height: 360px;height: auto;">
+		<div class="wzw_public_tk_close"><img src="__HOME__/img/wrong.png" class="wzw_public_close"/></div>
+		<div class="clear"></div>
+		<div class="wzw_public_form">
+			
+		</div>
+	</div>
+	<script>
+		//公用弹框函数
+		function publictk(){
+			$(document).ready(function (){
+			    var html_height=$("body").height();
+				$(".wzw_public_tk_bg").css("height",html_height).slideDown();
+				$(".wzw_public_tk").slideDown();
+			});
+		}
+		//消失共用弹框
+		function clearpublictk(){
+			$(".wzw_public_tk").fadeOut();
+			$(".wzw_public_tk_bg").fadeOut();
+		}
+		//点击共用的弹框里面X号
+		$(".wzw_public_close").click(function(){
+			clearpublictk();
+		})
+	</script>

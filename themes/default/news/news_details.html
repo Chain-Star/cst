@@ -1,6 +1,16 @@
 {extend name="base" /}
 {block name="body"}
 <link rel="stylesheet" type="text/css" href="__HOME__/css/zixun.css" />
+<style>
+	/*2018年7月23日14:57:45*/
+.wzw_zixunXiangqingAuto{
+	width: 1200px;
+	margin: 0 auto;
+}
+.wzw_zixunXiangqing{
+	background: #f6f6f6;
+}
+</style>
 <!--第二部分banner-->
     <div class="wzw_banner">
         <img src="__HOME__/img/banner_zixun.jpg"/>
@@ -12,9 +22,8 @@
 
 <div class="wzw_box">	
 <!--第三部分li-->
-
-<div class="wzw_zixunXiangqing">
-	<div class="wzw_zixunXiangqing_left">
+<div class="wzw_zixunXiangqing" style="background: #f6f6f6;">
+	<div class="wzw_zixunXiangqingAuto">
 		<div class="wzw_zixunXiangqing_left800">
 			<div class="wzw_zixunXiangqing_bt">
 				{$article.title}
@@ -32,8 +41,6 @@
 				</a>
 			</h6>
 		</div>
-	</div>
-	<div class="wzw_zixunXiangqing_right">
 		<div class="wzw_zixunXiangqing_right400">
 			<div class="wzw_zixunXiangqing_rightBt">
 				{:lang('news_details_relevant')}
@@ -44,30 +51,9 @@
 			
 		
 		</div>
+		<div style="clear: both;"></div>
 	</div>
-	<div style="clear: both;"></div>
 </div>
-<script>
-	window.onload=function(){
-		//获取屏幕宽度
-		var wid= document.body.clientWidth;
-		var leftWid=(wid-1200)/2;
-		//获取资讯详情页面所有的图的高的总和
-		var imgClass=$(".wzw_zixunXiangqing_left800 img");
-		var imgHei=0;
-		for(var i=0;i<imgClass.length;i++){
-			imgHei+=imgClass[i].height;
-		}
-		//获取.wzw_zixunXiangqing的高度
-		var hei=$(".wzw_zixunXiangqing").height();
-		//设置左边的宽度设置左边的高度
-		$(".wzw_zixunXiangqing_left").css({"width":leftWid+800+"px","height":"auto"});
-		//设置右边的宽度设置右边的高度
-		$(".wzw_zixunXiangqing_right").css({"width":leftWid+400+"px","height":hei+"px"});
-		
-	}
-	
-</script>
 </div>
 <script src="__HOME__/js/home-news.js"></script>
 {/block}

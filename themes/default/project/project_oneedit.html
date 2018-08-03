@@ -114,7 +114,7 @@
       async: true,
       // contentType: "application/json; charset=utf-8",
       xhr:xhrOnProgress(function(e){
-				var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+				var percent = parseInt(100*(e.loaded / e.total))+'%';//计算百分比
 				$('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
 			}),
       beforeSubmit: function(arr, $from, options) {
@@ -150,7 +150,7 @@
     
           function showimg(url) {
             //替换logo地址
-           var addimg="<li style='line-height:240px;border:1px solid #cccccc;text-align:center;overflow:hidden;'><img src="+url+" class='classImg' style='max-width:100%;width:auto;height:auto;'><div class='wzw_add_posi' style='line-height:0;top:10px;'><img src='__IMAGES__/close.png' class='wzw_bps_remove'></div></li>";
+           var addimg="<li style='line-height:240px;border:1px solid #cccccc;text-align:center;overflow:hidden;'><img src="+url+" class='classImg' style='max-width:100%;width:auto;height:auto;'><div class='wzw_add_posi' style='line-height:0;top:10px;'><img src='__IMAGES__/close.png' class='wzw_bps_remove edit_upfile'></div></li>";
 			if($("#imglist2 li").length<=19){
 				$("#imglist2 ul").append(addimg);
 			}else{
@@ -206,7 +206,15 @@
         
 
         function closeRemove(){
-          $(".wzw_bps_remove").click(function(){
+          	$(".wzw_bps_remove").click(function(){
+          		var index=$(".edit_upfile");
+					for(var i=0;i<index.length;i++){
+						if(index[i]==this){
+							var inpIndex=$(".upfile");
+							inpIndex[i].remove();
+							console.log(inpIndex[i]);
+						}
+					}
                 $(this).parent().parent().remove("li");
             })
         }

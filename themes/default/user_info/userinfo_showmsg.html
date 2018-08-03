@@ -36,5 +36,33 @@
 				{/if}
 			</div>
 		</div>
+		<script type="text/javascript">
+			getcount();
+			function getcount()
+			{
+				$.ajax({  
+			        url: "{:url('index/user_info/getcount')}",  
+			        type: "post",
+			        async:'false',    
+			        error: function ()  
+			        {  
+			  			// console.log(form.attr("action"));
+			  			alert("{:lang('remind1')}")
+			        },
+			        success: function (data)  
+			        {  
+			        	var count=parent.document.getElementById('count');
+			        	if (data==0) 
+			        	{
+			        		$(count).parent(".w_tsxx").remove();
+			        	}
+			        	else
+			        	{
+			        		$(count).html(data);
+			        	}
+			        }  
+			   	});
+			}
+		</script>
 	</body>
 </html>

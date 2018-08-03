@@ -11,7 +11,23 @@
 		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
 		<script src="__JS__/rsa.js"></script>
 	</head>
-
+	<style>
+		.revise_telphone{
+			position: absolute;
+			top: 50%;
+			margin-top: 4px;
+			cursor: pointer;
+			right: 5px;
+			font-size: 13px;
+			color: #05c6d2;
+		}
+		.revise_telphone:hover{
+			cursor: pointer;
+		}
+		.wzw_revise{
+			position: relative;
+		}
+	</style>
 	<body style="background: #f3f3f3;">
 		<div class="mainbox">
 			<div class="mainRight">
@@ -52,29 +68,27 @@
 									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="{:lang('Not_certified')}" value="{if $auth.audit_state==1}{$auth.name}{/if}" /></span>
 								</div>
 							</div>
-							<div class="pwdtwo" >
-								<div class="yhm" style="margin-left: 30px">
-									<p>{:lang('reg_mobile')}</p>
-									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="" value="{$user.code}{$user.mobile}" /></span>
-								</div>
-							</div>
+							
 							<div style="clear: both;"></div>
 							<div class="pwdtwo">
 								<div class="yhm">
 									<p>{:lang('E-mail')}</p>
 									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="{:lang('no_modified')}" value="{$user.email}" /></span>
 								</div>
-								<div class="yhm pwdyhm">
+								<div class="yhm pwdyhm wzw_revise">
 									<p>{:lang('Telephone_number')}</p>
 									<span class="span">
-										<input type="text" class="ipt" id="" disabled="disabled" value="{if $auth.audit_state==1}{$auth.tel}{/if}"  placeholder="{:lang('Not_certified')}"/>
+										<input type="text" class="ipt" id="" disabled="disabled" value="+{$user.code} {$user.mobile}"  placeholder="{:lang('Not_certified')}"/>
+									</span>
+									<span class="revise_telphone" onclick="revisetelfun()">
+										修改手机号
 									</span>
 								</div>
 							</div>
 							<div style="clear: both;"></div>
 
 							<div class="pwdtwo">
-								<div class="yhm">
+								<div class="yhm ">
 									<p>{:lang('icountry')}</p>
 									<span class="span"><input type="text" class="ipt" disabled="disabled"  placeholder="{:lang('Not_certified')}" value="{if $auth.audit_state==1}{if $zllang eq '?lang=en'}{$auth.country_en}{else}{$auth.country}{/if}{/if}" /></span>
 								</div>
@@ -171,6 +185,7 @@
 						</form>
 					</div>
 				</div>
+				</div>
 
 			</div>
 		</div>
@@ -262,6 +277,263 @@
 			});
 			return false;
 		});
-	</script>
+
+		//修改手机号弹框内容
+		function revisetelfun(){
+			var tk_form=parent.document.body.children[3].children[6].children[2];
+			var str1="<option value=''>请选择区号</option>";
+			 {foreach name="country_codes" item="vo"}
+			 	str1+="<option value='"+{$vo.area_code}+"'>"+"{$vo.cn}(+{$vo.area_code})"+"</option>";
+				{/foreach}
+			
+				
+			tk_form.innerHTML="<form action='#' methods='post' id='change_mobile' class='wzw_form_box'>"
+									+"<span style='margin:20px 0;display:inline-block;'>修改手机号</span>"
+									+"<div class='wzw_revise_tel_tab'>"
+										+"<ul class='wzw_revise_tel_tab_ul'>"
+											+"<li style='display:block;'>"
+												+"<p style='text-align:left;padding:10px 0 0;'>我们将会给您手机 "+"{$user.code} {$user.mobile}"+" 的手机号发送验证码</p>"
+												+"<p style='height:34px;'><input type='button' class='wzw_pass_fsyzm btn' style='cursor: pointer;background:#fff;width:110px;border-top-right-radius:0px;border-bottom-right-radius:0px;border:1px solid #ddd;' value='发送验证码'>"
+												+"<input type='type' value='' id='oldcode' name='oldcode' placeholder='请输入验证码' class='wzw_revisetel_inp wzw_revise_inp1' maxlength='6' style='width:330px;border-top-left-radius:0px;border-bottom-left-radius:0px;display:inline-block;'></p>"
+												+"<span class='error_cont_number error_cont' style='float:left;margin:10px 0;'></span>"
+												+"<div style='clear:both;'></div>"
+												+"<input type='button' class='wzw_oldtel_next_btn form-control' style='float:left;margin:10px 0;' value='下一步'>"
+												+"<div style='clear:both;'></div>"
+											+"</li>"
+											+"<li>"
+												+"<select id='wzw_revise_quhao'  name='country_code' style='color:#333'>"
+													+str1
+												+"</select>"
+												+"<input type='text' class='form-control' placeholder='请输入手机号' maxlength='20' id='newmobile' name='newmobile' style='margin:10px 0 0'>"
+												+"<span class='error_cont_number error_cont' style='display:none;float:left;margin:10px 0;'></span>"
+												+"<div style='clear:both;height:0px;'></div>"
+												+"<p style='height:36px;margin:0 0 10px'><input type='button' class='wzw_pass_fsyzm btn' style='cursor: pointer;background:#fff;width:110px;border-top-right-radius:0px;border-bottom-right-radius:0px;border:1px solid #ddd;' value='发送验证码'>"
+												+"<input type='type' value=''id='newcode' name='newcode' placeholder='请输入验证码' class='wzw_revisetel_inp wzw_revise_inp1' maxlength='6' style='width:330px;border-top-left-radius:0px;border-bottom-left-radius:0px;display:inline-block;'></p>"
+												+"<span class='error_cont_number error_cont' style='display:none;float:left;margin:10px 0;'></span>"
+												+"<div style='clear:both;height:0px;'></div>"
+												+"<input type='submit' class='btn wzw_form_submit' value='提交' style='margin:10px 0;'>"
+											+"</li>"
+										+"</ul>"
+									+"</div>"
+								+"</form>";
+
+		
+	
+			//老手机号发送验证码按钮
+			var fsyzm_btn=tk_form.children[0].children[1].children[0].children[0].children[1].children[0];
+			//老手机号输入验证码
+			var wzw_revisetel_inp=tk_form.children[0].children[1].children[0].children[0].children[1].children[1];
+			//老手机号输入验证码数字验证
+			var sp1=tk_form.children[0].children[1].children[0].children[0].children[2];
+			//老手机号验证码输入框内容判断
+			wzw_revisetel_inp.oninput=function(){
+				if(Number($(this).val())){
+					sp1.innerHTML="";
+				}else{
+					sp1.innerHTML="请输入数字";
+				}
+			}
+			fsyzm_btn.onclick=function(){
+				if (!$(this).attr("disabled")) 
+				{
+					$.ajax({
+						url: '{:url("index/user_info/setcode")}',
+						type: 'post',
+					})
+					.done(function(info) 
+					{
+						if (info.code==1) 
+						{
+							alert(info.msg);
+						}
+					})
+					.fail(function() {
+						alert("{:lang('remind1')}")
+					});
+					
+				}
+				$(this).attr("disabled","disabled");
+				var i=120;
+				var timer=setInterval(function(){
+					i--;
+					fsyzm_btn.value="重新发送"+i+"s";
+					if(i==0){
+						clearInterval(timer);
+						fsyzm_btn.value="发送验证码";
+						fsyzm_btn.removeAttribute("disabled");
+						return i=120;
+					}
+				},1000);
+			}
+			//点击下一步事件
+			tk_form.children[0].children[1].children[0].children[0].children[4].onclick=function()
+			{
+				if(!wzw_revisetel_inp.value||wzw_revisetel_inp.value.length<6)
+				{
+					alert('请填写手机验证码');
+					return false;
+				}
+				var aa=$(this);
+				$.ajax({
+					url: '{:url("index/user_info/check_mobile")}',
+					type: 'post',
+					data: {'code': wzw_revisetel_inp.value},
+				})
+				.done(function(data) 
+				{
+					if (data.code==1) 
+					{
+						aa.parent().hide();
+						aa.parent().next().show();
+						// alert(data.msg);
+					}
+					else
+					{
+						alert(data.msg);
+					}
+				})
+				.fail(function() {
+					alert("{:lang('remind1')}");
+				});
+			
+			}
+			//新手机号输入框内容判断
+			var new_inptel=tk_form.children[0].children[1].children[0].children[1].children[1];
+		    var sp2=tk_form.children[0].children[1].children[0].children[1].children[2];
+		    var sp3=tk_form.children[0].children[1].children[0].children[1].children[5];
+		    //新手机号发送验证码按钮
+			var new_fsyzm_btn=tk_form.children[0].children[1].children[0].children[1].children[4].children[0];
+			var new_yzm=tk_form.children[0].children[1].children[0].children[1].children[4].children[1];
+			new_inptel.oninput=function(){
+				if(Number($(this).val())){
+					sp2.innerHTML="";
+				}else{
+					sp2.style.display="block";
+					sp2.innerHTML="请输入数字";
+				}
+			}
+	
+			new_yzm.oninput=function(){
+				if(Number($(this).val())){
+					sp3.innerHTML="";
+				}else{
+					sp3.style.display="block";
+					sp3.innerHTML="请输入数字";
+				}
+			}
+			new_fsyzm_btn.onclick=function(){
+				if (!$(this).attr("disabled")) 
+				{
+					var select=parent.document.getElementById('wzw_revise_quhao');
+					var selected=$(select).find("option:selected");
+					if (!selected.val()) 
+					{
+						alert('请选择区号');
+						return false;
+					}
+					if (!new_inptel.value) 
+					{
+						alert('手机号为空');
+						return false;
+					}	
+
+					$.ajax({
+						url: '{:url("index/user_info/setcode")}',
+						type: 'post',
+						data:{"mobile":new_inptel.value,"code":selected.val()}
+					})
+					.done(function(info) 
+					{
+						if (info.code!=1) 
+						{
+							alert(info.msg);
+							return false;
+						}
+					})
+					.fail(function() {
+						alert("{:lang('remind1')}");
+						return false;
+					});
+				}
+				$(this).attr("disabled","disabled");
+				var i=120;
+				var timer=setInterval(function(){
+					i--;
+					new_fsyzm_btn.value="重新发送"+i+"s";
+					if(i==0){
+						clearInterval(timer);
+						new_fsyzm_btn.value="发送验证码";
+						new_fsyzm_btn.removeAttribute("disabled");
+						return i=120;
+					}
+				},1000);
+
+			}
+			$(parent.document.getElementById('change_mobile')).submit(function(envent) 
+			{
+				var form = $(this);
+				var newcode=form.find('#newcode').val();
+				var oldcode=form.find('#oldcode').val();
+				var newmobile=form.find('#newmobile').val();
+				var select=parent.document.getElementById('wzw_revise_quhao');
+				var selected=$(select).find("option:selected");
+				if (!selected.val()) 
+				{
+					alert('请选择区号');
+					return false;
+				}
+				if (!newmobile) 
+				{
+					alert('更换电话不能为空');
+					return false;
+				}
+				if (!oldcode) 
+				{
+					alert('原手机号验证码不能空');
+					return false;
+				}
+				if (!newcode) 
+				{
+					alert('手机验证码不能为空');
+					return false;
+				}
+				if(oldcode.length!=6||newcode.length!=6)
+				{
+					alert('手机验证码必须是6位');
+					return false;
+				}
+				
+				$.ajax({
+					url: '{:url("index/user_info/change_mobile")}',
+					type: "post",
+					data: form.serialize(),
+					// dataType: "json",   
+					error: function() {
+						alert("{:lang('remind1')}")
+					},
+					success: function(data) 
+					{
+						if(data.code == 1) 
+						{
+							alert('修改成功');
+							window.location.reload();
+							parent.clearpublictk();
+						} 
+						else 
+						{
+							alert(data.msg);
+						}
+					}
+				});
+				return false;
+			});
+		}
+
+	   //修改手机号
+	$(".revise_telphone").click(function(){
+		revisetelfun();
+		parent.publictk();
+	}) 
+    </script>
 
 </html>

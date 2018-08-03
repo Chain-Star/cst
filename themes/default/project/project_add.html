@@ -221,7 +221,7 @@
 			async: true,
 			contentType: "application/json; charset=utf-8",
 			xhr:xhrOnProgress(function(e){
-				var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+				var percent = parseInt(100*(e.loaded / e.total))+'%';//计算百分比
 				$('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
 			}),
 			beforeSubmit: function(arr, $from, options) {
@@ -544,5 +544,16 @@
 	   		$(".wzw_yz").eq(4).attr("style","margin-top:"+beiNumber+"px");
 	    }
 	});
+	
+	
+	
+	if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+						$(".wzw_fqxm_Tk").css({
+							"min-width":"1200px",
+			                "max-width":"2400px",
+			                "height":"122%"});
+					} else {
+						console.log('PC端');
+					}
 </script>
 {/block}

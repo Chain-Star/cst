@@ -38,13 +38,16 @@
 								<a href="javascript:;" id="two" target="menuFrame" onclick="return changehtml('{:url('index/user_info/record')}{$zllang}',this)">{:lang('Investment_records')}</a>
 							</li>
 							<li>
-								<a href="javascript:;" id="three" target="menuFrame" onclick="return changehtml('{:url('index/user_info/project')}{$zllang}',this)">{:lang('My_project')}</a>
+								<a href="javascript:;" id="three" target="menuFrame" onclick="return changehtml('{:url('index/user_info/wallet')}{$zllang}',this)">{:lang('My_wallet')}</a>
 							</li>
 							<li>
-								<a href="javascript:;" id="four" target="menuFrame" onclick="return changehtml('{:url('index/user_info/help')}{$zllang}',this)">{:lang('Help')}</a>
+								<a href="javascript:;" id="four" target="menuFrame" onclick="return changehtml('{:url('index/user_info/project')}{$zllang}',this)">{:lang('My_project')}</a>
+							</li>
+							<li>
+								<a href="javascript:;" id="five" target="menuFrame" onclick="return changehtml('{:url('index/user_info/help')}{$zllang}',this)">{:lang('Help')}</a>
 							</li>
 							<li class="w_last">
-								<a href="javascript:;" id="five" target="menuFrame" onclick="return changehtml('{:url('index/user_info/msg')}{$zllang}',this)">{:lang('Message')}</a>
+								<a href="javascript:;" id="six" target="menuFrame" onclick="return changehtml('{:url('index/user_info/msg')}{$zllang}',this)">{:lang('Message')}</a>
 								<p class="w_dw">
 									{if !empty($count)}
 									<a class="w_tsxx">							
@@ -54,7 +57,9 @@
 									{/if}
 								</p>
 							</li>
-
+							<li style="display: none;">
+								<a href="javascript:;" id="seven" target="menuFrame" onclick="return changehtml('{:url('index/OldUserAddMobile/index')}{$zllang}',this)">{:lang('Account_and_password')}</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -62,7 +67,7 @@
 			</div>
 			
 			<div id="page_content">
-			<iframe id="menuFrame" name="menuFrame" src="{:url('index/user_info/pass')}" scrolling="no" frameborder="0" width="840px" onload="changeFrameHeight(this);"></iframe>
+			<iframe id="menuFrame" name="menuFrame" src="{:url('index/user_info/pass')}?time={:time()}{mt_rand(100,999)}" scrolling="no" frameborder="0" width="840px" onload="changeFrameHeight(this);"></iframe>
 			</div>
 			<div style="clear: both;"></div>
 		</div>
@@ -95,6 +100,17 @@
 		{
 			$("#five").trigger("click");
 		}
+		else if({$where}==5)
+		{
+			$("#six").trigger("click");
+		}
+		// 增加手机号 add Codes by zhanglu on 20180728 16:22
+		else if({$where}==6)
+		{
+			$("#seven").trigger("click");
+			$('#side-menu li a').removeAttr('onclick');
+		}
+		// 增加手机号 _end
 	})
 function changeFrameHeight(e)
 {
@@ -173,13 +189,26 @@ function upload_tx(t)
 }
 function changehtml(href,t)
 {
-	$("#menuFrame").attr('src',href); 
+	var language = '{$zllang}';
+	if(language == '')
+	{
+		$("#menuFrame").attr('src',href+"?time="+new Date().getTime());
+	}
+	else
+	{
+		$("#menuFrame").attr('src',href+"&time="+new Date().getTime());
+	}
+	
 	$('t').css('color',"#003366");
+	
+	return false;
+}
+function getcount()
+{
 	$.ajax({  
         url: "{:url('index/user_info/getcount')}",  
-        type: "post",  
-        data: {},  
-        // dataType: "json",   
+        type: "post",
+        async:'false',    
         error: function ()  
         {  
   			// console.log(form.attr("action"));
@@ -189,10 +218,55 @@ function changehtml(href,t)
         {  
         	$('#count').html(data);
         }  
-   });
-	return false;
+   	});
 }
+	//钱包设置 安全交易码
+	function inpfun(id,url){
+		str="<form action='"+url+"' id='"+id+"' autocomplete='off' novalidate='novalidate' method='post'><div class='revise_tel_biaoti'>您还没有设置交易安全密码，为了保证您的账号财产安全，请设置交易安全密码，设置后不可更改，如有问题请咨询客服</div>"
+		+"<input type='password' value='' id='rsacode' name='rsacode' placeholder='请输入您的安全码' class='wzw_revisetel' maxlength='6' oninput='oninputiffun()'>"
+		+"<span class='error_cont'>请输入6位数字格式</span>"
+		+"<input type='password' value='' placeholder='请确认您的安全码' class='wzw_revisetel' maxlength='6' oninput='oninputiffun1()'>"
+		+"<span class='error_cont'>请输入6位数字格式</span>"
+		+"<button class='wzw_submit_btn btn' style='display:block;margin-top:10px;width:100%;'>提交</button>"
+		+"<form>";
+		$(".wzw_public_form").html(str);
+	}
 
-
+	function oninputiffun(){
+		var val=$(".wzw_revisetel").eq(0).val();
+		var val_two=$(".wzw_revisetel").eq(1).val();
+		if(val.length<=6){
+			$(".error_cont").eq(0).html("请输入6位数字格式");
+		}else{
+			$(".error_cont").eq(0).html("长度过长");
+		}
+		if(val.length===6 && val_two.length===6 && Number(val)==Number(val_two)){
+			$(".wzw_submit_btn").removeAttr("disabled");
+		}else{
+			$(".wzw_submit_btn").attr("disabled","disabled");
+		}
+		
+	}
+	function oninputiffun1(){
+		var val=$(".wzw_revisetel").eq(0).val();
+		var val_two=$(".wzw_revisetel").eq(1).val();
+		if(val_two.length<=6){
+			$(".error_cont").eq(1).html("请输入6位数字格式");
+		}else{
+			$(".error_cont").eq(1).html("长度过长");
+		}
+		if(val.length===6 && val_two.length===6 && Number(val)==Number(val_two)){
+			$(".wzw_submit_btn").removeAttr("disabled");
+		}else{
+			$(".wzw_submit_btn").attr("disabled","disabled");
+		}
+	}
+	
+	
+	if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+						$(".wzw_public_tk").css("top","35%")
+					} else {
+						console.log('PC端');
+					}
 </script>
 {/block}

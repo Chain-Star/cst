@@ -11,9 +11,248 @@
 		<script src="__JS__/html5shiv.min.js"></script>
 		<script src="__JS__/selectivizr-min.js"></script>
 		<script src="__HOME__/js/jquery-1.8.2.min.js"></script>
-
 	</head>
-
+	<style>
+		.wzw-clear{
+			clear: both;
+		}
+		.wzw_purse{
+			width: 760px;
+			height: 100px;
+			background: #fff;
+			padding: 40px;
+		}
+		ul{
+			padding: 0;
+			margin: 0;
+		}
+		.wzw_purse>ul{
+			border-bottom: 2px solid #fff;
+		}
+		.wzw_purse>ul>li{
+			width: 212px;
+			height: 50px;
+			cursor: pointer;
+			line-height: 50px;
+			font-size: 16px;
+			color: #333;
+			text-align: center;
+			float: left;
+		}
+		.wzw_purse_li_bor{
+			border-top: 2px solid #003366;
+			background: #f3f3f3;
+		}
+		.purse_tab>ul>li{
+			background: #f3f3f3;
+			padding: 0 60px 30px;
+			display: none;
+		}
+		.purse_tab>ul>li>div{
+			width: 630px;
+			margin: 0 auto;
+		}
+		/*余额*/
+		.wzw_purse_li_one{
+			height: 60px;
+			line-height: 60px;
+			padding: 0 30px;
+			border-bottom: 1px solid #ddd;
+			color: #003366;
+			font-size: 16px;
+		}
+		.wzw_purse_li_one>.span1{
+			float: left;
+		}
+		.wzw_purse_li_one>.span2{
+			float: right;
+		}
+		.wzw_purse_li_two{
+			height: 54px;
+			font-size: 14px;
+			color: #333;
+			padding: 30px 30px 10px;
+		}
+		.wzw_purse2_box{
+			width: 630px;
+			margin: 0 auto;
+		}
+		.wzw_purse2_box_one_left{
+			width: 100px;
+			text-align: right;
+			font-size: 14px;
+			color: #333;
+			float: left;
+			height: 56px;
+			line-height: 56px;
+		}
+		.wzw_purse2_box_two{
+			/*border: 1px solid #ddd;*/
+		}
+		.wzw_purse2_box_two_left{
+			width: 100px;
+			text-align: right;
+			float: left;
+			height: 33px;
+			font-size: 14px;
+			color: #333;
+			line-height: 33px;
+		}
+		.wzw_purse2_box_one_right{
+			width: 500px;
+			color: #003366;
+			font-size: 16px;
+			float: left;
+			margin-left: 30px;
+			height: 56px;
+			line-height: 56px;
+			position: relative;
+		}
+		.wzw_purse2_box_two_right{
+			width: 500px;
+			color: #666;
+			font-size: 12px;
+			float: left;
+			margin-left: 30px;
+			height: 33px;
+			line-height: 33px;
+		}
+		.wzw_purse2_box_two>div{
+			float: left;
+		}
+		.wzw_purse2_box_two_right_cont{
+			float: left;
+		}
+		.purse_small_img{
+			float: right;
+			position: relative;
+		}
+		.purse_small_img>img{
+			cursor: pointer;
+			height:17px;
+			margin: 8px 0;
+		}
+		.hover_codeimg{
+			position: absolute;
+			text-align: center;
+			top: 33px;
+			right: 0;
+			display: none;
+		}
+		.wzw_pack>li{
+			list-style: disc;
+			font-size: 11px;
+			color: #333;
+		}
+		.wzw_purse2_box_one_right>input{
+			width: 100%;
+			height: 34px;
+			font-size: 12px;
+			color: #666;
+			line-height: 54px;
+		}
+		.wzw_purse2_box_one_right>span{
+			position: absolute;
+			right: 0;
+			top: 0;
+			display: block;
+			height: 56px;
+			line-height: 56px;
+			font-size: 12px;
+			color: #666;
+		}
+		.fs-yzm{
+			position: absolute;
+			right: 0;
+			top: 0;
+			display: block;
+			height:38px;
+			line-height: 38px;
+			margin:10.5px 0;
+			font-size: 12px;
+			background: none;
+			border: none;
+			color: #003366;
+			cursor: pointer;
+		}
+		.wzw_for_li{
+			margin: 0 30px;
+			color: #333;
+			font-size: 14px;
+		}
+		.wzw_for_li>li{
+			border-bottom: 1px dotted #333;
+			height: 50px;
+			line-height: 50px;
+			position: relative;
+			width: 100%;
+		}
+		.wzw_for_li>li>span{
+			display: inline-block;
+			width: 138px;
+		}
+		/*.wzw_for_li>li>.span2{
+			margin-left: 130px;
+		}*/
+		.wzw_for_li>li>.span3{
+			color: #003366;
+			cursor: pointer;
+		}
+		.wzw_caozuo{
+			margin:30px;
+		}
+		.wzw_caozuo_left{
+			float: left;
+		}
+		.wzw_caozuo_left>button{
+			height: 25px;
+		}
+		.wzw_caozuo_right{
+			float: right;
+		}
+		.wzw_caozuo_right>span{
+			color: #666;
+			font-size: 11px;
+		}
+		/*点击详情弹框*/
+		.wzw_xiang_toggle{
+			width: 100%;
+			background: #fff;
+			position: absolute;
+			display: none;
+			z-index: 999;
+			top: 0;
+		}
+		.wzw_xiang_toggle>ul>.xiang_li_one>span{
+			display: inline-block;
+			width:189px;
+			float: left;
+			background: #ddd;
+			border-right: 1px solid #fff;
+			text-align: center;
+		}
+		.xiang_li_for{
+			border-bottom: 1px solid #eee;
+		}
+		.xiang_li_for>span{
+			width: 143px;
+			display: inline-block;
+			float: left;
+			word-wrap: break-word;
+			border-right: 1px solid #eee;
+			padding: 30px 23px;
+		}
+		.wzw_xiang_close{
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			z-index: 9999;
+			cursor: pointer;
+		}
+		.relative{
+			position: relative;
+		}
+	</style>
 	<body style="background: #f3f3f3;">
 		<div class="mainbox">
 			<div id="user-left"></div>
@@ -69,7 +308,7 @@
 											{:lang('record6')}
 											<img src="__IMAGES__/down.png" />
 											<ol class="proOl">
-												{if $vo.audit_state!=1}
+												{if $vo.audit_state!=1&&$vo.audit_state<90}
 													<button class="prodel">--{:lang('mes_del')}--</button> {if $vo.audit_state==-1||$vo.audit_state==2}													
 													<button class="w_bj" onclick="parent.sethref('{:url('index/project/add',array('project_id'=>$vo.id))}{$zllang}')">{:lang('myProject10')}</button>
 												{/if} {else}
@@ -78,13 +317,20 @@
 												<input type="hidden" name="pid" value="{:url('index/user_info/review',array('pid'=>$vo.id))}{$zllang}" />
 											</ol>
 										</li>
-										{if $vo.audit_state==-1&&$vo.finish_state==1}
+										{if ($vo.audit_state==-1||$vo.audit_state==2)&&$vo.finish_state==1}
 										<button class="w_tjsh">{:lang('myProject12')}</button>
 										{/if}
-										{if $vo.raise_jindu gt 1 || $vo.raise_jindu eq 1}
+										{if ($vo.raise_jindu gt 1 || $vo.raise_jindu eq 1)&&$vo.audit_state==1}
 										<button class="sqtb">
 											{:lang('zuserinfo1')}
-										</button>{/if}
+										</button>
+										{elseif $vo.audit_state==99}
+											<div>正在申请提币中</div>
+										{elseif $vo.audit_state==98}
+											<div>&nbsp;&nbsp;提币成功&nbsp;&nbsp;</div>
+										{elseif $vo.audit_state==97}
+											<div>提币失败，请联系客服</div>
+										{/if}
 									</ul>
 
 									<!--删除弹窗-->
@@ -96,7 +342,7 @@
 										</div>
 									</div>
 									<!--提交审核弹框、-->
-									{if $vo.raise_jindu gt 1 || $vo.raise_jindu eq 1}
+									
 									<div class="w_zhe">
 										<div class="w_submittk">
 											<p class="w_tx">{:lang('myProject14')}?</p>
@@ -105,12 +351,13 @@
 										</div>
 									</div>
 									<!--申请提币弹窗-->
+									
 									<div class="sqtbTc">
 										<div class="w_sqtbk">
 											<p>{:lang('zuserinfo2')}</p>
-											<button class="w_tbqd" onclick="location.reload()">{:lang('record14')}</button>
+											<button class="w_tbqd" onclick="tb_state('{$vo.id}')">{:lang('record14')}</button>
 										</div>
-									</div>{/if}
+									</div>
 								</div>
 								<div style="clear:both;"></div>
 							</li>
@@ -142,11 +389,10 @@
 							</div>
 						</ul>
 					</div>
-
 				</div>
-
 			</div>
 		</div>
+		
 	</body>
 	<script src="__JS__/whh_personal.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -158,6 +404,28 @@
 		function set_state($id) {
 			$.ajax({
 				url: "{:url('index/user_info/set_state')}",
+				type: "post",
+				data: {
+					'id': $id
+				},
+				// dataType: "json",   
+				error: function() {
+					// console.log(form.attr("action"));
+					alert("{:lang('remind1')}")
+				},
+				success: function(data) {
+					if(data.code == 1) {
+						alert(data.msg);
+						parent.changehtml('{:url('index/user_info/project',array('page'=>$page))}', this);
+					} else {
+						alert(data.msg);
+					}
+				}
+			});
+		}
+		function tb_state($id) {
+			$.ajax({
+				url: "{:url('index/user_info/tb_state')}",
 				type: "post",
 				data: {
 					'id': $id
@@ -247,6 +515,40 @@
 			$(".w_bj").attr("disabled",false);
 			$(".sqtb").attr("disabled",false);
 			$(".w_tjsh").attr("disabled",false);
+		})
+//		我的钱包
+		$(".wzw_purse>ul>li").click(function(){
+			$(this).addClass("wzw_purse_li_bor").siblings().removeClass("wzw_purse_li_bor");
+			var index=$(this).index();
+			$(".purse_tab>ul>li").eq(index).show().siblings().hide();
+		})
+		$(".wzw_code").hover(function(){
+			$(this).next().stop(true,true).fadeIn();
+		},function(){
+			$(this).next().stop(true,true).fadeOut();
+		});
+		$(".wzw_for_li .span3").click(function(){
+			$(this).next(".wzw_xiang_toggle").fadeIn();
+		});
+//		钱包点击弹框里的叉号
+		$(".wzw_xiang_close").click(function(){
+			$(this).parent().parent().parent().parent().fadeOut();
+		});
+		//点击发送验证码
+		var i=60;
+		$(".fs-yzm").click(function(){
+			$(".fs-yzm").attr("disabled","disabled");
+			$(this).html("重新发送"+i+"s");
+			var timer=setInterval(function(){
+				i--;
+				$(".fs-yzm").html("重新发送"+i+"s");
+				if(i==0){
+					clearInterval(timer);
+					$(".fs-yzm").html("发送验证码");
+					$(".fs-yzm").removeAttr("disabled","disabled");
+					return i=60;
+				}
+			},1000);
 		})
 		
 	</script>
