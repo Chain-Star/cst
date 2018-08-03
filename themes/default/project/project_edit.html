@@ -229,7 +229,7 @@
       dataType: "json",
       async: true,
       xhr:xhrOnProgress(function(e){
-				var percent = Math.round(100*(e.loaded / e.total))+'%';//计算百分比
+				var percent = parseInt(100*(e.loaded / e.total))+'%';//计算百分比
 				$('.wzw_shadow_loading').find('p').html("{:lang('remind38')}("+percent+")");
 			}),
       beforeSubmit: function(arr, from, options) {

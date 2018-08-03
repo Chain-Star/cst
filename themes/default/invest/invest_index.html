@@ -1,6 +1,5 @@
 {extend name="base" /} {block name="css"}
-<link rel="stylesheet" type="text/css" href="__CSS__/sqtz.css" />
-{/block} {block name="body"}
+<link rel="stylesheet" type="text/css" href="__CSS__/sqtz.css" /> {/block} {block name="body"}
 </div>
 <div id="body">
 	<div class="w_start">
@@ -47,7 +46,7 @@
 										<div class="posi_ul">
 											<div class="posi_li1">
 												<div class="posi_li1_left">
-													<img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="posi_img" />
+													<img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}" {/if} class="posi_img" />
 												</div>
 												<div class="posi_li1_right">
 													<span>{$vo.name}</span>
@@ -183,14 +182,13 @@
 			data: {
 				"pid": num
 			},
-			beforeSubmit:function(){
+			beforeSubmit: function() {
 				return false
 			},
 			success: function(data1) {
-				if (data1.code==0) 
-				{
+				if(data1.code == 0) {
 					// alert(data1.msg);
-					clicklogin();//登录弹窗
+					clicklogin(data1.data.time); //登录弹窗
 				}
 				var data = "";
 				var pinglunStr = "";
@@ -204,30 +202,25 @@
 				}
 				var zcpro = "{:url('index/invest/sendtoaddress',['pid'=>'p__id'])}{$zllang}";
 				zcpro = zcpro.replace('p__id', data.id);
-				if(data.id == 147)
-				{
+				if(data.id == 147) {
 					zcpro = 'javascript:;';
 				}
-				var tityts="";
-				if (data.tity==1) 
-				{
-					zcpro="javascript:;";
-					tityts="{:lang('remind39')}";
-				}
+				//				var tityts="";
+				//				if (data.tity==1) 
+				//				{
+				//					zcpro="javascript:;";
+				//					tityts="{:lang('remind39')}";
+				//				}
 				for(var i in tu) {
-					  var src="";
-	               			 if (tu[i]!="") 
-	               			 {
-	                 		   src="__PUBLIC__"+tu[i];
-	               			 }
-	                		if (i==0) 
-	                		{
-	                    		tustr+="<div class='active item'><img src='"+src+"'></div>";
-	                		}
-	                		else
-	                		{
-	                		 tustr+="<div class='item'><img src='"+src+"'></div>";
-	                		}
+					var src = "";
+					if(tu[i] != "") {
+						src = "__PUBLIC__" + tu[i];
+					}
+					if(i == 0) {
+						tustr += "<div class='active item'><img src='" + src + "'></div>";
+					} else {
+						tustr += "<div class='item'><img src='" + src + "'></div>";
+					}
 				}
 				var data2 = data.review;
 				var pinglun_c = "<div class='w_all'>{:lang('boxx1')}" + data.review_cont + "{:lang('boxx2')}</div>" +
@@ -237,19 +230,16 @@
 					pinglun_c += "<div class='plGy' onclick='get_pinglun(" + num + "," + (i + 1) + ",this)'>" + (i + 1) + "</div>";
 				}
 
-				pinglun_c += "<div class='plGy' id='next'>{:lang('news_page_end')}</div>"
-					+
+				pinglun_c += "<div class='plGy' id='next'>{:lang('news_page_end')}</div>" +
 					"<div style='clear: both;'></div>";
 
-
 				for(var i in data2) {
-				var src="";
-       				             if (data2[i].tx_path!="") 
-                    				{
-                       				 var src="__PUBLIC__"+data2[i].tx_path;
-        				            }
-						pinglunStr += "<li class='w_plxq'>" +
-						"<div class='w_pick'><img src='" +src+ "'/></div>" +	
+					var src = "";
+					if(data2[i].tx_path != "") {
+						var src = "__PUBLIC__" + data2[i].tx_path;
+					}
+					pinglunStr += "<li class='w_plxq'>" +
+						"<div class='w_pick'><img src='" + src + "'/></div>" +
 						"<div class='w_plMain'>" +
 						"<p class='w_plTit'>" + data2[i].name + "</p>" +
 						"<p class='w_plnr'>" + data2[i].review_content + "</p>" +
@@ -260,13 +250,12 @@
 				};
 				var chengyuan = data.team;
 				for(var i in chengyuan) {
-						var src="";
-              				      if (chengyuan[i].tx_path!="") 
-              				      {
-                			        var src="__PUBLIC__"+chengyuan[i].tx_path;
-   				                 }
-      					      chengyuanStr += "<li class='w_tzlist'>" +
-                       				 "<div class='tzdoc'><img src='" +src+ "' /></div>" +	
+					var src = "";
+					if(chengyuan[i].tx_path != "") {
+						var src = "__PUBLIC__" + chengyuan[i].tx_path;
+					}
+					chengyuanStr += "<li class='w_tzlist'>" +
+						"<div class='tzdoc'><img src='" + src + "' /></div>" +
 						"<div class='tzTxt'>" +
 						"<span class='w_tztt'>" + chengyuan[i].firstname + chengyuan[i].lastname + "</span>" +
 						"<span class='w_tztt w_color999'>" + chengyuan[i].cn + "</span>" +
@@ -283,12 +272,10 @@
 						one[i] = "__IMAGES__/facebook.png";
 					} else if(data.account_url[i].indexOf('twitter') != -1) {
 						one[i] = "__IMAGES__/twitterd.png";
-					} else if(data.account_url[i].indexOf('t.me') != -1){
+					} else if(data.account_url[i].indexOf('t.me') != -1) {
 						one[i] = "__IMAGES__/dianbao.png";
-					}
-					else
-					{
-						one[i]="";
+					} else {
+						one[i] = "";
 					}
 				}
 				var star = ["", "", "", "", ""];
@@ -306,10 +293,9 @@
 					}
 				}
 				var str = "";
-				var dg="";
-				if (data.logo_path!="") 
-				{
-					dg="__PUBLIC__"+data.logo_path;
+				var dg = "";
+				if(data.logo_path != "") {
+					dg = "__PUBLIC__" + data.logo_path;
 				}
 				str += "<div class='w_tzTc' style='display:block;'>" +
 					"<div class='w_tzContent'>" +
@@ -318,7 +304,7 @@
 					"</div>" +
 					"<div class='w_tzHeader'>" +
 					"<div class='w_tzImg'>" +
-					"<img src='" + dg+ "'/>" +
+					"<img src='" + dg + "'/>" +
 					"</div>" +
 					"<div class='w_tzCenter'>" +
 					"<p class='w_tzxm'>" + data.name + "</p>" +
@@ -336,8 +322,8 @@
 					"<a href='" + data.book_url + "' target='_blank'>{:lang('White_Paper')}</a>" +
 					"</div>" +
 					"<div style='clear: both;'></div>" +
-					"</div>" +
-					"<div style='width:810px;'>"+
+					"</div>" + 
+					"<div style='width:810px;'>" +
 					"<div class='w_tzTab'>" +
 					"<ul class='w_tzQul'>" +
 					"<li class='w_tab w_tzQh'>{:lang('content')}</li>" +
@@ -345,8 +331,8 @@
 					"</ul>" +
 					"</div>" +
 					"<div class='w_zc w_zc1'>" +
-					"<a href='"+zcpro+"'>{:lang('boxx7')}</a>" +
-					"<p class='cyno'>{:lang('remind39')}</p>"+
+					"<a href='" + zcpro + "'>{:lang('boxx7')}</a>" +
+					"<p class='cyno'>{:lang('remind39')}</p>" +
 					"</div>" +
 					"</div>" +
 					"<div style='clear: both;'></div>" +
@@ -458,8 +444,8 @@
 					"<div class='w_look'>" +
 					"<div class='w_lookStar'>{:lang('boxx6')}</div>" +
 					"<div class='w_zc'>" +
-					"<a href='"+zcpro+"'>{:lang('boxx7')}</a>" +
-					"<p class='cyno'>{:lang('remind39')}</p>"+
+					"<a href='" + zcpro + "'>{:lang('boxx7')}</a>" +
+					"<p class='cyno'>{:lang('remind39')}</p>" +
 					"</div>" +
 					"<div style='clear: both;'></div>" +
 					"</div>" +
@@ -545,11 +531,17 @@
 					width: '100%',
 					height: 1000
 				});
+				if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+		           $(".w_tzTc").css({
+			          "min-width":"1200px","max-width":"2400px",
+			          "height":"2594px"
+		           });
+					} else {
+						console.log('PC端');
+					}
 				fun();
 
 				function fun() {
-					//				设置阴影高度
-					$(".w_tzTc").css("height", 400 + $("\nhtml").height() + "px");
 					//		点击最大关闭整个遮罩消失
 					$(".w_tzgb").click(function() {
 						$('.w_tzTc').detach();
@@ -575,9 +567,18 @@
 					})
 					//		点击x号图片关闭
 					$(".w_tzClose").click(function() {
-						$(".w_tzStart").css("display", "none");
-						$(".w_chengkai").css("height",0 + "px");
-						$(".w_tzTc").css("height","323%")
+//						$(".w_tzStart").css("display", "none");
+//						$(".w_chengkai").css("height", 0 + "px");
+//						$(".w_tzTc").css("height", "323%")
+						if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+				          	$(".w_tzStart").css("display", "none");
+				           $(".w_tzTc").css("height", "2594px");
+							} else {
+								console.log('PC端');
+								$(".w_tzStart").css("display", "none");
+								$(".w_chengkai").css("height", 0 + "px");
+								$(".w_tzTc").css("height", "323%")
+							}
 					})
 					//		文本框输入字数最大限制
 					$(".w_plSub").click(function() {
@@ -588,7 +589,7 @@
 					//		鼠标移入星星时的效果
 					$(".w_tzimg>img").mouseenter(function() {
 						var img = $(".w_tzimg>img").index(this);
-						$(".w_tzimg>img").eq(0).attr("src",star[0])
+						$(".w_tzimg>img").eq(0).attr("src", star[0])
 						$(this).attr("src", bstar[img]);
 						$(this).parent().parent().children(".box").css("display", "block");
 						$(this).parents(".w_bigLi").siblings().children(".box").css("display", "none")
@@ -598,33 +599,47 @@
 						$(this).attr("src", star[img]);
 						$(this).parent().parent().children(".box").css("display", "none");
 					})
-					
-					$(".box").hover(function(){
-						$(this).css("display","block");
-					},function(){
-						$(this).css("display","none");
+
+					$(".box").hover(function() {
+						$(this).css("display", "block");
+					}, function() {
+						$(this).css("display", "none");
 					})
-					
+
 					$('.carousel').carousel({
 						interval: false
 					});
 
 					$(".w_lookStar").click(function() {
-						$(".w_tzStart").css("display", "block");
-						$(".w_chengkai").css("height",386 + "px");
-						$(".w_tzTc").css("height","374%");
-						var top = $("html").height() + 386;
-						$("html").animate({
-							scrollTop: top + "px"
-						})
+//						$(".w_tzStart").css("display", "block");
+//						$(".w_chengkai").css("height", 386 + "px");
+//						$(".w_tzTc").css("height", "374%");
+//						var top = $("html").height() + 386;
+//						$("html").animate({
+//							scrollTop: top + "px"
+//						})
+						if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+				          		$(".w_tzStart").css("display", "block");
+				          	 	$(".w_tzTc").css("height", "2744px");
+							} else {
+								console.log('PC端');
+								$(".w_tzStart").css("display", "block");
+								$(".w_chengkai").css("height", 386 + "px");
+								$(".w_tzTc").css("height", "374%");
+								var top = $("html").height() + 386;
+								$("html").animate({
+									scrollTop: top + "px"
+								})
+							}
 					});
 					$(".w_xm").click(function() {
 						$(".w_tzTc").css("display", "block");
 					});
 					
-					$(".w_zc").mouseenter(function(){
-						if(data.tity == 1){
-							zcpro="javascript:;";
+					//鼠标移入提示显示
+					$(".w_zc").mouseenter(function() {
+						if(data.tity == 1) {
+							zcpro = "javascript:;";
 							$(".cyno").show()
 						}
 					})
@@ -636,7 +651,6 @@
 	$(".w_xm").click(function() {
 		$(".w_tzTc").css("display", "block")
 	})
-
 
 	function get_pinglun(project_id, page, t) {
 		$.ajax({
@@ -652,18 +666,17 @@
 				alert("{:lang('remind1')}")
 			},
 			success: function(data) {
-			
+
 				if(data.code == 1) {
 					//成功
 					var data2 = JSON.parse(data.msg);
 					$('.w_plName').empty();
 					var pinglunStr = "";
 					for(var i in data2) {
-							var src="";
-                    					if (data2[i].tx_path!="") 
-                   					 {
-                        				var src="__PUBLIC__"+data2[i].tx_path;
-                   	 				}
+						var src = "";
+						if(data2[i].tx_path != "") {
+							var src = "__PUBLIC__" + data2[i].tx_path;
+						}
 						pinglunStr += "<li class='w_plxq'>" +
 							"<div class='w_pick'><img src='" + src + "' /></div>" +
 							"<div class='w_plMain'>" +
@@ -746,6 +759,9 @@
 	})
 
 	$(".w_tzMiddle").click(function() {
+		if($(".w_xm").length == 3) {
+			$(".w_container").css("min-height", "900px")
+		}
 		if($(".w_xm").length == 4) {
 			$(".w_container").css("min-height", "900px")
 		}
@@ -764,4 +780,5 @@
 	})
 	
 </script>
+
 {/block}

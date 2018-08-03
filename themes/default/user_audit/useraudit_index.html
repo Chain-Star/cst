@@ -23,16 +23,15 @@
 					<div class="w_smName w_jj">
 						<input type="text" placeholder="" disabled="disabled" class="smIpt" value="{$user.email}" />
 					</div>
+					<div class="w_smName w_jj">
+						<input type="text" placeholder="{:lang('Verified2')}" name="tel" class="smIpt" id="number" style="float: left;" value="{$user.code} {$user.mobile}" readonly="readonly" />
+						<p class="t"></p>
+						<div style="clear: both;"></div>
+					</div>
 					<div class="w_smName">
 						<input type="text" placeholder="{:lang('Verified1')}" name="name" class="smIpt" id="xm" style="float: left;" />
 						<span class="w_star" style="float: left;display: block;">*</span>
 						<p class="iam"></p>
-						<div style="clear: both;"></div>
-					</div>
-					<div class="w_smName w_jj">
-						<input type="text" placeholder="{:lang('Verified2')}" name="tel" class="smIpt" id="number" style="float: left;" />
-						<span class="w_star" style="float: left;">*</span>
-						<p class="t"></p>
 						<div style="clear: both;"></div>
 					</div>
 					<div class="one">
@@ -56,10 +55,9 @@
 					{:lang('Verified15')}
 				</div>
 				<div class="two he">
-					<select name="identity" class="IDcard" onchange="hs(this)">
+					<select name="identity" class="IDcard">
 						<option value="1">{:lang('Verified5')}</option>
-						<option value="2">{:lang('Verified6')}</option>
-						<option value="3" selected="selected">{:lang('Verified7')}</option>
+						<option value="2" selected="selected">{:lang('Verified6')}</option>
 					</select>
 					<p style="margin-left: 10px;margin-top: 10px;display: inline-block;float: left;position: relative;">
 								<span style="width: 22px;height: 23px;position: absolute;top: 8px;left: 0;"><img src="__IMAGES__/mark.png" class="w_pd"/></span>
@@ -68,13 +66,13 @@
 					</p>
 				</div>
 				<div style="clear: both;"></div>
-				<div class="w_tt">
+				<!-- <div class="w_tt">
 					<input type="text" placeholder="{:lang('Verified8')}" name='wallet_token' class="smIpt" id="mony" />
 					<p class="w_star"><img src="__IMAGES__/mark.png" class="w_move" /><img src="__IMAGES__/{:lang('Verified34')}" class="w_yuck" /></p>
 					<p class="mon" style="float: left;margin-top: 15px;margin-left: 10px;color: #f00;"></p>
 					<div style="clear: both;"></div>
-				</div>
-				<div style="clear: both;"></div>
+				</div> -->
+				<!-- <div style="clear: both;"></div> -->
 				<div class="hz">
 					<div class="dropdown IDcard" style="float: left;">
 
@@ -337,13 +335,6 @@
 		}
 	};
 
-	function hs(t) {
-		if($(t).find("option:selected").val() == 1) {
-			$(".w_tt").hide();
-		} else {
-			$(".w_tt").show();
-		}
-	};
 
 	function tj(t) {
 		//		用户名验证
@@ -360,14 +351,14 @@
 			$(".iam").html("")
 		}
 		//		电话号码验证
-		var number = document.getElementById("number");
-		if(number.value == '') {
-			$(".t").html("{:lang('Verified3')}")
-			return false
-		} 
-		else {
-			$(".t").html("")
-		}
+//		var number = document.getElementById("number");
+//		if(number.value == '') {
+//			$(".t").html("{:lang('Verified3')}")
+//			return false
+//		} 
+//		else {
+//			$(".t").html("")
+//		}
 		//国家验证
 		if($(".one>select option:selected").val() == "") {
 			$(".count").html("{:lang('Verified4')}");
@@ -382,25 +373,23 @@
 			$(".w_z").hide()
 		} else {
 			$(".w_tzperson").hide()
-			var re = /^[0-9a-zA-Z]*$/g;
-		    var mon = $("#mony").val();
-			mon = mon.trim();//去除两端空格
-			mon = mon.replace(/\s/g,"")//去除中间空格
-			$('#mony').val(mon);
-		    if(mon == '') {
-			    $(".mon").html("{:lang('Verified9')}");
-			    return false
-		    }
-			else if(!re.test(mon)){
-				$(".mon").html("{:lang('Verified36')}");
-				return false
-			}
-			else {
-			   $(".mon").html("")
-		    }
+			// var re = /^[0-9a-zA-Z]*$/g;
+		 //    var mon = $("#mony").val();
+			// mon = mon.trim();//去除两端空格
+			// mon = mon.replace(/\s/g,"")//去除中间空格
+			// $('#mony').val(mon);
+		 //    if(mon == '') {
+			//     $(".mon").html("{:lang('Verified9')}");
+			//     return false
+		 //    }
+			// else if(!re.test(mon)){
+			// 	$(".mon").html("{:lang('Verified36')}");
+			// 	return false
+			// }
+			// else {
+			//    $(".mon").html("")
+		 //    }
 		}
-		
-		
 		
 		//		判断图片
 		if($("input:radio[id='one']:checked").val()) {

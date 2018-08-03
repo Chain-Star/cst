@@ -1,6 +1,5 @@
 {extend name="base" /}
 {block name="body"}
-
 <!-- Wrapper for slides -->
 <div class="carousel-inner" role="listbox">
     {foreach name="banner_list" item="bl" key="k"}
@@ -34,7 +33,7 @@
 
 <!--box3-->
 <div class="box3">
-<div class="box_three" style="display: block;">
+<div class="box_three" style="display: block;height: 400px;">
     <ul>
         {foreach name="hot_project" item="vo"}
         <li onclick="window.location.href='{:url('index/invest/index')}{$zllang}'">
@@ -95,65 +94,126 @@
         {/foreach}
     </ul>
 </div>
-<div class="box_three">
-        <ul>
-            {foreach name="new_project" item="vo"}
-            <li onclick="window.location.href='{:url('index/invest/index')}{$zllang}'">
-                <img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="iconTwo" alt="__PUBLIC__{$vo.logo_path}"/>
-                <div class="posi_ab">
-                    <div class="posi_ul">
-                        <div class="posi_li1">
-                            <div class="posi_li1_left">
-                                <img {if !empty($vo.logo_path)}src="__PUBLIC__{$vo.logo_path}"{/if} class="posi_img" alt="__PUBLIC__{$vo.logo_path}"/>
-                            </div>
-                            <div class="posi_li1_right">
-                                <span>{$vo.name}</span>
-                                <span>{if $zllang eq '?lang=en'}{$vo.en}{else}{$vo.cn}{/if}</span>
-                            </div>
-                        </div>
-                        <div class="posi_li2">
-                            <p>
-                                    <span>{:lang('index_stars')}</span>
-                                    {php} 
-                                        $arr=[];
-                                        $arr[]=$vo['basic_star'];
-                                        $arr[]=$vo['team_star'];
-                                        $arr[]=$vo['book_star'];
-                                        $arr[]=$vo['plan_star'];
-                                        $arr[]=$vo['route_star'];
-                                        rsort($arr);
-                                    {/php}
-                                    <img {if $arr[0]==1} src="__IMAGES__/star1.png" {elseif $arr[0]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
-                                    <img {if $arr[1]==1} src="__IMAGES__/star1.png" {elseif $arr[1]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
-                                    <img {if $arr[2]==1} src="__IMAGES__/star1.png" {elseif $arr[2]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
-                                    <img {if $arr[3]==1} src="__IMAGES__/star1.png" {elseif $arr[3]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
-                                    <img {if $arr[4]==1} src="__IMAGES__/star1.png" {elseif $arr[4]==2} src="__IMAGES__/star2.png"{else} src="__IMAGES__/star0.png"{/if} />
-                                    
-                            </p>	
-                        </div>
-                        <div class="posi_li3">
-                            <p><span class="sp1">TOKEN</span><span class="sp2">{$vo.token}</span></p>
-                            <p><span class="sp1">{:lang('index_Total_Issued_Volume')}</span><span class="sp2">{$vo.sum}</span></p>
-                            <p><span class="sp1">{:lang('index_Liquidity')}</span><span class="sp2">{$vo.actual}</span></p>
-                            <p><span class="sp1">{:lang('index_Fundraising_Object')}</span><span class="sp2">{$vo.currency}</span></p>
-                            <p><span class="sp1">{:lang('index_Fundraising_Amount')}</span><span class="sp2">{$vo.plan}</span></p>
-                            <p><span class="sp1">{:lang('index_Price_Ratio')}</span><span class="sp2">{$vo.price}</span></p>
-                        </div>
-                        <div class="posi_li4">
-                            <p><span class="sp1">{:lang('index_Fundraising_deadline')}</span><span class="sp2">{:date("d/m/Y",$vo.start_time)}-{:date("d/m/Y",$vo.end_time)}</span></p>
-                            <div class="jindutiao">
-                                <span class="sp1">{:lang('index_Fundraising_Progress')}</span>
-                                    <div class="jin_Fu">
-                                        <div class="jin_1 zlll{$vo.id}" style="width:{$vo.scale1}px; z-index: 12;"></div>
-                                    </div>
-                                <span class="sp4">{$vo.amount}/{$vo.scale}</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </li>
-            {/foreach}
+<div class="box_three wzw_jigou_page_auto" style="height: auto;">
+        <ul style="width: 1200px;">
+            <div>
+            	{foreach name="organizations" item="project"}
+				<li style="height: auto;margin: 15px;width: 370px;padding: 25px;background: #f6f6f6;border-radius: 5px;"> 
+					<div style="background: #f6f6f6;">
+						<!--第一块-->
+						<div class="jigou_one">
+							<div class="jigou_one_left">
+								<img {if !empty($project.logo_path)}src='__PUBLIC__{$project.logo_path}'{/if}/>
+							</div>
+							<div class="jigou_one_right">
+								<span>{$project.name}</span>
+								<span>{if $zllang eq '?lang=en'}{$project.en}{else}{$project.cn}{/if}</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<!--第2块星级-->
+						<div class="jigou_two">
+							<span class="p">
+								<span class="span11">{:lang('index_stars')}</span>
+								<span class="span2">
+									{php} $arr=[]; $arr[]=$project['basic_star']; $arr[]=$project['team_star']; $arr[]=$project['book_star']; $arr[]=$project['plan_star']; $arr[]=$project['route_star']; rsort($arr); {/php}
+									<img {if $arr[0]==1} src="__IMAGES__/yellow star.png" {elseif $arr[0]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+									<img {if $arr[1]==1} src="__IMAGES__/yellow star.png" {elseif $arr[1]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+									<img {if $arr[2]==1} src="__IMAGES__/yellow star.png" {elseif $arr[2]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+									<img {if $arr[3]==1} src="__IMAGES__/yellow star.png" {elseif $arr[3]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+									<img {if $arr[4]==1} src="__IMAGES__/yellow star.png" {elseif $arr[4]==2} src="__IMAGES__/star2.png" {else} src="__IMAGES__/star0.png" {/if} />
+								</span>
+							</span>
+						</div>
+						<!--第3块-->
+						<div class="jigou_three">
+							<span class="p">
+								<span class="span11">TOKEN</span>
+								<span class="span2">{$project.token}</span>
+							</span>
+							<span class="p">
+								<span class="span11">{:lang('index_Total_Issued_Volume')}</span>
+								<span class="span2">{$project.sum}</span>
+							</span>
+							<span class="p">
+								<span class="span11">{:lang('index_Liquidity')}</span>
+								<span class="span2">{$project.actual}</span>
+							</span>
+							<span class="p">
+								<span class="span11">{:lang('index_Fundraising_Object')}</span>
+								<span class="span2">{if $project.currency eq 2}ETH{/if}</span>
+							</span>
+							<span class="p">
+								<span class="span11">{:lang('index_Price_Ratio')}</span>
+								<span class="span2">{$project.price}</span>
+							</span>
+							<span class="p">
+								<span class="span11">{:lang('index_Fundraising_deadline')}</span>
+								<span class="span2">{:date("d/m/Y",$project.start_time)}-{:date("d/m/Y",$project.end_time)}</span>
+							</span>
+						</div>
+						<!--第4块-->
+						{foreach name="project.organizations" item='organization' key="k"}
+						{if $k eq 0}
+						<div class="jigou_four_parent" style="display: block;background: #fff;">
+							<div class="jigou_four" style="background: url(__PUBLIC__{if $zllang eq '?lang=en'}{$organization.img_path_en}{else}{$organization.img_path}{/if});">
+								<div class="" style="height: 1px;"></div>
+								<div class="wzw_cantou">
+									<span>{:lang('investment-institution')}</span>
+								</div>
+							</div>
+							<div class="jigou_four_cont">
+								<span class="p1">
+									<span class="span11">{:lang('Release-amount')}</span>
+									<span class="span2">{:number_format($organization.amount)}{$organization.type_currency}</span>
+								</span>
+								<span class="p1">
+									<span class="span11">{:lang('index_Price_Ratio')}</span>
+									<span class="span2">{$organization.price_ratio}</span>
+								</span>
+								<span class="p2">
+									<a href="{:url('index/invest/sendtoaddress',['pid'=>$project.id,'oid'=>$organization.id])}{$zllang}"><button class="btn">{:lang('get-quota')}</button></a>
+									<div class="clear" style="clear: both;"></div>
+								</span>
+							</div>
+						</div>{/if}
+						{/foreach}
+						{foreach name="project.organizations" item='organization' key="k"}
+						{if $k gt 0}
+						<div class="jigou_four_parent jigou_four_parent_copy">
+							<div class="jigou_four" style="background: url(__PUBLIC__{if $zllang eq '?lang=en'}{$organization.img_path_en}{else}{$organization.img_path}{/if});">
+								<div class="" style="height: 1px;"></div>
+								<div class="wzw_cantou">
+									<span>{:lang('investment-institution')}</span>
+								</div>
+							</div>
+							<div class="jigou_four_cont">
+								<span class="p1">
+									<span class="span11">{:lang('Release-amount')}</span>
+									<span class="span2">{:number_format($organization.amount)}{$organization.type_currency}</span>
+									<span class="span11">{:lang('index_Price_Ratio')}</span>
+									<span class="span2">{$organization.price_ratio}</span>
+								</span>
+								<span class="p2">
+									<a href="{:url('index/invest/sendtoaddress',['pid'=>$project.id,'oid'=>$organization.id])}{$zllang}"><button class="btn">{:lang('get-quota')}</button></a>
+									<div class="clear" style="clear: both;"></div>
+								</span>
+							</div>
+						</div>
+						{/if}
+						{/foreach}
+						<!--第5块-->
+						<div class="jigou_five">
+							<a href="javascript:;">
+								<img src="__HOME__/img/more.png"/>
+								<span>{:lang('index_news_more')}</span>
+							</a>
+						</div>
+					</div>
+				</li>
+				{/foreach}
+				<div class="clear"></div>
+			</div>
         </ul>
     </div>
 
@@ -202,6 +262,17 @@
 
 <div class="box4">
 <div class="boxZhong">
+	<!--快讯轮播-->
+	<div class="wzw_kuaixun">
+		<img src="__HOME__/img/laba.png" class="laba"/>
+        <input type="hidden" name="kburl" value="{:url('api/Getkuaibi/get_kb')}">
+		<div class="box_re">
+			<ul class="wzw_inline_block">
+				
+			</ul>
+		</div>
+	</div>
+    
     <div class="box4_bt">
         <p>
             <img src="__HOME__/img/1h_07.jpg"/>
@@ -288,5 +359,138 @@
 </div>
 {/block}
 {block name="script"}
+<!-- <script type="text/javascript">
+    $.ajax({
+        url: "{:url('index/index/get_kb')}",
+        type: 'post',
+    })
+    .done(function(info) {
+        if (info.code==1) 
+        {
+
+        }
+        else
+        {
+            
+        }
+        console.log(info.msg);
+    })
+    .fail(function() {
+        console.log("error");
+    });
+    
+</script> -->
 <script src="__HOME__/js/home-index.js"></script>
+<script>
+	$(".wzw_jigou_page_auto>ul>div>li").addClass("box_shadow");
+	$(".jigou_five>a").click(function(){
+		var index_fu=$(this).parent().parent().parent().parent().index();
+		var index_son=$(this).parent().parent().parent().index();
+		//显示隐藏
+		$(this).parent().parent().children(".jigou_four_parent_copy").slideToggle();
+		//查看更多图片旋转
+		if($(".wzw_jigou_page_auto>ul>div").eq(index_fu).children("li").eq(index_son).children().children().children("a").children("img").hasClass("bor_xuan")){
+			$(".wzw_jigou_page_auto>ul>div").eq(index_fu).children("li").eq(index_son).children().children().children("a").children("img").removeClass("bor_xuan");
+		}else{
+			$(".wzw_jigou_page_auto>ul>div").eq(index_fu).children("li").eq(index_son).children().children().children("a").children("img").addClass("bor_xuan")
+		}
+	})
+	//btn点击效果
+	$(".wzw_jigou_btn_right>button").click(function(){
+		$(this).css({"background":"#2ba2b2","color":"white","outline":"none","font-size":"16px"}).siblings().css({"background":"#f6f6f6","color":"#666","outline":"none","font-size":"14px"});
+	})
+
+	
+	
+
+	
+	
+</script>
+<!-- 快讯接口 -->
+<script type="text/javascript">
+        $(function (){
+            $.ajax({
+                url: $('.wzw_kuaixun input[name="kburl"]').val(),
+                type:'POST',
+                data:{},
+                success: function (data)
+                {
+                    if(data.code == 1)
+                    {
+                        var mm = data.data;
+                        var mmj = JSON.parse(mm);
+                        var html = '';
+                        var str_tk='';
+                        for (var i = (mmj.length-1); i >= 0; i--)
+                        {
+                            var dd = mmj[i];
+                            html += "<li class='wzw_inline_block_posi'>"+dd.title+"-"+dd.time+"</li>";
+                            str_tk+="<div class='wzw_kuaixun_tk1'>"+dd.text+"</div>"
+                        }
+                        $('.wzw_kuaixun .wzw_inline_block').html(html);
+                        $(".wzw_public_form").html(str_tk);
+                        //	快讯轮播2018年7月24日11:56:33
+						var li_length=$(".wzw_inline_block li").length;
+						var	li_one_html=$(".wzw_inline_block li").eq(0).html();
+						var new_html="<li class='wzw_inline_block_posi'>"+li_one_html+"</li>";
+						 $('.wzw_kuaixun .wzw_inline_block').append(new_html);
+						function settimerfun(){
+							var settimer=null;
+							var i=0;
+							function aaa(){
+								i-=60;
+								$(".wzw_inline_block").animate({"top":i+"px"});
+								if(i==(-60*li_length)){
+									return i=0;
+								}
+							}
+							
+							settimer=setInterval(aaa,7000)
+							$(".wzw_inline_block_posi").hover(function(){
+								clearInterval(settimer);
+							},function(){
+								settimer = setInterval(aaa,7000);
+							})
+							
+						}
+						
+						settimerfun();
+
+                       	$(".wzw_inline_block li").click(function(){
+							publictk();
+							var index=$(this).index();	
+							if(index==li_length){
+								var div1=$(".wzw_kuaixun_tk1").eq(0).html();
+								$(".wzw_kuaixun_tk1").eq(li_length).html(div1);
+							}
+							$(".wzw_kuaixun_tk1").eq(index).fadeIn().siblings(".wzw_kuaixun_tk1").fadeOut();
+						}) 
+                    }
+                   
+                },
+                error: function (data)
+                {
+                    alert('error');
+                    console.log(data);
+                }
+            });
+        })
+    </script>
+    <script type="text/javascript">
+    	            if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+//						点击logo显示弹窗再次点击跳转
+						$(".box_three").eq(0).children("ul").children("li").removeAttr("onclick");
+						$(".posi_li2").nextAll().click(function(){
+							window.location.href='{:url('index/invest/index')}{$zllang}';
+						});
+//						点击发起项目禁止跳转
+						$(".box_three_two_li2").click(function(){
+							alert("{:lang('pc-for-operation')}");
+							var nowHref = window.location.href
+							window.location.href=nowHref
+						})
+					} else {
+						console.log('PC端');
+					}
+    </script>
 {/block}

@@ -96,6 +96,13 @@
 		<script src="__HOME__/js/home-class.js"></script>
 		<script src="__HOME__/js/home-user.js"></script>
 		<script src="__HOME__/js/home-base.js"></script>
+		<script>
+			var zlogin = '{$Think.session.zllogin_error}';
+			if(zlogin == 1)
+			{
+				clicklogin();
+			}
+		</script>
 	</body>
 
 </html>

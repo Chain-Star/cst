@@ -13,7 +13,7 @@
 						<fieldset>
 							<div class="wzw_dl_tab2">
 								<div class="wzw_dl_tab2_son1" style="display: block;">
-									<input type="text" value="" name='loginname' class="form-control wzw_telyzm" placeholder="{:lang('index_box_login_title')}/{:lang('mobile_input')}[eg:86-18888888888]" style="margin:0;"/>
+									<input type="text" value="" name='loginname' class="form-control wzw_telyzm" placeholder="{:lang('index_box_login_title')}/{:lang('mobile_input')}" style="margin:0;"/>
 									<div class="clear" style="clear: both;"></div>
 									<input type="password" name="password" value="" placeholder="{:lang('mobile_r5')}" class="form-control denglumima loginpas"/>
 								</div>
@@ -95,6 +95,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<script>
 		function thisfun(){
 			var att=$(".wzw_agree").attr("checked");
@@ -116,8 +117,11 @@
 			}
 		}
 		//注册选择区号点击事件
-		$(".wzw_telnum").click(function(){
+		$(".wzw_telnum").focus(function(){
 			wtelfun();
+		})
+		$(".wzw_telnum").blur(function(){
+			$(".wzw_telnum").parent().next().next().next(".sele_twoul").fadeOut();
 		})
 		//注册选择区号oninput触发事件
 		function wtelfun(){
@@ -134,38 +138,5 @@
 			$(".wzw_dl_tab>li").eq(index).addClass("yzm_bor").siblings().removeClass("yzm_bor");
 			$(".wzw_dl_tab2_son1").eq(index).fadeIn(300).siblings().fadeOut(300);
 		})
-		function wzwtelfun2(){
-			var val2=$("#wzw_telyzm2").val();
-			if(Number(val2)){
-				$(".wzw_sryzm_btn").removeAttr("disabled");
-			}else{
-				$(".wzw_sryzm_btn").attr("disabled","disabled");
-			}
-		}
-		//登陆选择区号点击事件
-		$(".wzw_telnum2").click(function(){
-			wtelfun2();
-		})
-		//登陆选择区号oninput触发事件
-		function wtelfun2(){
-			$(".wzw_telnum2").parent().next().next().next().next(".sele_twoul").fadeIn();
-			$(".sele_twoul>li").click(function(){				
-				var htm=$(this).html().split("(");
-				$(".wzw_telnum2").attr("value",$(this).html().split("(")[1].toString().split(")")[0]);
-				$(".sele_twoul").css('display','none');				
-			})
-		}
-		//登陆选择区号点击事件
-		$(".wzw_telnum3").click(function(){
-			wtelfun3();
-		})
-		//登陆选择区号oninput触发事件
-		function wtelfun3(){
-			$(".wzw_telnum3").parent().next().next().next().next(".sele_twoul").fadeIn();
-			$(".sele_twoul>li").click(function(){				
-				var htm=$(this).html().split("(");
-				$(".wzw_telnum3").attr("value",$(this).html().split("(")[1].toString().split(")")[0]);
-				$(".sele_twoul").css('display','none');				
-			})
-		}
+		
 	</script>

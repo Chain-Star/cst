@@ -6,20 +6,35 @@
 </div>
 <!--忘记密码部分-->
 <div class="wzw_wangj">
-    <form action="{:url('api/Forgot/forgetPasswd')}" method="POST" id="findForm">
+    <form action="{:url('index/Forgot/verifMobile')}{$zllang}" method="POST" id="findForm">
         <div class="wzw_wangj_Auto">
             <h3>{:lang('bpass1')}</h3>
             <p>{:lang('bpass2')}</p>
-            <p>{:lang('bpass4')}</p>
-            <p>
-                <input type="email" name="email" id="" value="" class="form-control findpa" />
-                <input type="hidden" name="__token__" value="{$Request.token}" />
-                <input type="hidden" name="zllang" value="{$zllang}" />
-                <button class="btn btn2 " onclick="return findpass()">{:lang('bpass3')}</button>
-            </p>
+           
+            <div id="forgot_password" style="width: 440px;position: relative;">
+            	<div id="wzw_yzmparent4" style="margin: 0;text-align: center;width: 120px;display: inline-block;">
+					<input type="text" name="area_code" id="" class="form-control wzw_telnum4" oninput="wtelfun4()" value="+86" style="margin: 0;border-bottom-right-radius: 0;border-top-right-radius: 0;width: 120px;"/>
+				</div>
+				<input type="text" name="mobile" value="{$mobile}" class="form-control wzw_telyzm" id="wzw_telyzm4" placeholder="{:lang('mobile_input')}" oninput="wzwtelfun4()" style="display:inline-block;margin:0;width: 320px;border-bottom-left-radius: 0;border-top-left-radius: 0;"/>
+				<div class="clear" style="clear: both;"></div>
+				<div class="wzw_sryzm">
+					<input type="text" name="code" class="form-control wzw_sryzm_son" placeholder="{:lang('mobile_verfied')}" style="width: 320px;margin: 0;"/>
+					<input type="hidden" class="send_verfiedurl" value="{:url('api/Mregister/sendmsgz')}">
+					<button class="btn wzw_sryzm_btn4" style="width: 120px;margin: 0;background: #ffffff;font-size: 15px;">{:lang('send_verfied')}</button>
+				</div>
+				<ul class="sele_twoul">
+					{foreach name="country_codes" item="code"}
+					<li>{$code.cn}(+{$code.area_code})</li>
+					{/foreach}
+				</ul>
+				<button class="btn wzw_next_forgot" style="width: 150px;height: 34px;font-size:16px;color: white;background: #4fbecb;" >{:lang('nextpage')}</button>
+				<input type="hidden" name="__token__" value="{$Request.token}" />
+				<input type="hidden" name="zllang" value="{$zllang}" />
+            </div>
         </div>
     </form>
-    
+    <input type="hidden" class="mobileempty" value="{:lang('mobile_empty')}">
 </div>
+
 <script src="__HOME__/js/home-findpass.js"></script>
 {/block}
