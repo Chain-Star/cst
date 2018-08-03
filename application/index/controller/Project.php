@@ -13,11 +13,10 @@ class Project extends HomeBase
 {
     protected function _initialize()
     {
-        $this->isSetMobile();
         if (!Session::has('user_id'))
         {
-            Session::set('zllogin_error', 1);
-            $this->redirect_add(backurl());
+            echo "login wrong";
+            $this->redirect_add('index/login');
         }
  
         parent::_initialize();
