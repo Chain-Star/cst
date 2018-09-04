@@ -3,16 +3,8 @@ namespace app\index\controller;
 
 use app\common\controller\HomeBase;
 use app\common\model\Country as CountryModel;
-use app\common\model\OrganizationProjectList as OrganizationProjectListModel;
 use app\common\model\Project as ProjectModel;
-use app\common\model\ProjectAudit as ProjectAuditModel;
-use app\common\model\ProjectField as ProjectFieldModel;
-use app\common\model\ProjectPlan as ProjectPlanModel;
-use app\common\model\ProjectRoute as ProjectRouteModel;
-use app\common\model\ProjectTeam as ProjectTeamModel;
-use app\common\model\ProjectWhiteBook as WhiteBookModel;
 use app\common\model\Review as ReviewModel;
-use app\common\model\TransactionLog as TransactionLogModel;
 use app\common\model\User as UserModel;
 use think\Cookie;
 use think\Db;
@@ -26,16 +18,8 @@ class Invest extends HomeBase
         parent::_initialize();
         $this->user_model           = new UserModel();
         $this->project_model        = new ProjectModel();
-        $this->project_field_model  = new ProjectFieldModel();
         $this->country_model        = new CountryModel();
-        $this->white_book_model     = new WhiteBookModel();
-        $this->route_model          = new ProjectRouteModel();
-        $this->project_team_model   = new ProjectTeamModel();
-        $this->project_plan_model   = new ProjectPlanModel();
-        $this->project_audit_model  = new ProjectAuditModel();
         $this->Review_model         = new ReviewModel();
-        $this->transaction_model    = new TransactionLogModel();
-        $this->organization_p_model = new OrganizationProjectListModel();
         $country_list               = $this->country_model->select();
         $field_list                 = $this->project_field_model->select();
         set_time_limit(60);
@@ -171,7 +155,30 @@ class Invest extends HomeBase
     {
         if ($this->request->isPost())
         {
-            
+            $data  = $this->request->param();
+            $pid   = $data['pid'];
+            $page  = 1;
+            $limit = 10;
+            if (!empty($data['page']))
+            {
+                $page = $data['page'];
+            }
+            $review_list = $this->Review_model->alias('r')
+                ->field('r.*, u.name,u.tx_path')
+                ->join('user u', 'r.user_id=u.id', 'left')
+                ->where('project_id', $pid)->limit(($page - 1) * $limit, $limit)->order('id', 'DESC')->select();
+            foreach ($review_list as $k => $v)
+            {
+                $review_list[$k]['ip']          = long2ip($v['review_ip']);
+                $review_list[$k]['create_time'] = date('Y-m-d H:i:s', $v['create_time']);
+                $review_list[$k]['tx_path']     = $v['tx_path'];
+                $review_list[$k]['page']        = $page;
+            }
+            $review = [];
+            foreach ($review_list as $k => $v)
+            {
+                $review[] = $v->toArray();
+            }
             $this->success(json_encode($review));
         }
     }
@@ -197,5 +204,5 @@ class Invest extends HomeBase
         }
         $this->error(Lang::get('remind13'));
     }
-   
+  
 }
